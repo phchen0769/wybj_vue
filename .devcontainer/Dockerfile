@@ -20,8 +20,10 @@ RUN apk update && apk add --no-cache --update-cache libuv\
 	python3 \
 	openssh-client
 
+RUN npm config set registry https://mirrors.huaweicloud.com/repository/npm/
+
 WORKDIR /workspaces/wybj_vue
 
 EXPOSE 8080
 
-CMD ["npm", "config", "set", "registry", "https://registry.npm.taobao.org/"]
+CMD ["npm", "run", "serve"]

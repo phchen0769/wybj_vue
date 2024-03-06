@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
-	"name": "yuejuan_vue",
+	"name": "wybj_vue",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	// "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
 	"build": {
@@ -29,7 +29,6 @@
 				"kisstkondoros.vscode-gutter-preview",
 				"jock.svg",
 				"xabikos.JavaScriptSnippets",
-				"ms-vscode.vscode-typescript-next",
 				"mike-co.import-sorter",
 				"steoates.autoimport",
 				"esbenp.prettier-vscode",
