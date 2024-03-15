@@ -6,9 +6,9 @@ const svgRequire = require.context('./svg', false, /\.svg$/) // 参数说明：�
 // 该函数提供三个属性：resolve, keys, id，可以通过svgRequire.keys()获取所有的svg文件路径
 // 遍历图标，把图标作为Request参数传入，svgRequire导入函数中，完成本地svg图标的全局注册
 // console.log(svgRequire.keys()) //浏览器中打印所有key
-svgRequire.keys().forEach(svgIcon => svgRequire(svgIcon))
+svgRequire.keys().forEach((svgIcon) => svgRequire(svgIcon))
 
 // 2、完成SvgIcon的全局注册
-export default app => {
+export default (app) => {
   app.component('svg-icon', SvgIcon)
 }

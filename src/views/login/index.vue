@@ -30,8 +30,7 @@
       </el-form-item>
 
       <!-- 登录按钮 -->
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px;" :loading="loading"
-        @click="handlerLogin">登录</el-button>
+      <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
       <!-- 注册 -->
       <el-button type="primary">注册</el-button>
     </el-form>
@@ -43,6 +42,7 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
+// import { login } from '@/api/sys'
 
 // 数据源
 const loginForm = ref({
@@ -72,10 +72,14 @@ const showPwd = () => {
 
 // 登录按钮点击事件
 const loading = ref(false)
+// 实例化vux实例
 const store = useStore()
+// 获取表单实例：当需要手动触发表单校验时，可以通过ref获取表单实例
 const loginFormRef = ref(null)
 const handlerLogin = () => {
-  // 1、表单验证
+  // 1、表单校验
+  // 打印loginformref，可以看到里面有validate方法
+  // console.log(loginFormRef.value)
   loginFormRef.value.validate((valid) => {
     if (!valid) return
     // 2、发送请求（触发登录动作）

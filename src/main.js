@@ -8,6 +8,9 @@ import installElementPlus from './plugins/element'
 import '@/styles/reset.scss'
 // 导入svgIcon
 import installIcons from '@/icons'
+// 导入路由守卫
+import '@/permission'
+
 // 创建vue实例
 const app = createApp(App)
 installElementPlus(app)

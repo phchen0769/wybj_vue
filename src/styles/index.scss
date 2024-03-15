@@ -1,12 +1,18 @@
+@import './variables.module.scss';
+@import './mixin.scss';
+@import './sidebar.scss';
+// @import './element.scss';
+// @import './transition.scss';
+
 html,
 body {
   height: 100%;
   margin: 0;
   padding: 0;
-  -moz-osx-font-smotthing: grayscale;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, Helvetica, sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 
 #app {
@@ -16,11 +22,6 @@ body {
 *,
 *:before,
 *:after {
-  // 初始化浏览器外观
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-progress-appearance: none;
-  appearance: none;
   box-sizing: inherit;
   margin: 0;
   padding: 0;
@@ -48,7 +49,7 @@ div:focus {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: '';
+    content: ' ';
     clear: both;
     height: 0;
   }

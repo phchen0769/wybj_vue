@@ -3,20 +3,26 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-// 组件中的svg文件全部打包成一个svg文件
 module.exports = {
   // webpack devServer配置 ：提供了代理功能，把所有请求转发到另一个服务器上。
   devServer: {
+    // 监听端口
+    port: 8080,
+    // 配置反向代理
     proxy: {
-      // 当地址中有/api时，就会转发到http://api.imooc-admin.lgdsunday.club/
+      // 当地址中有/api时触发代理机制，就会转发到target指定的地址
+      // 天坑!!!!!，此处位置必须和.env.development中的VUE_APP_BASE_API一致,否则代理不生效
       '/api': {
-        target: 'http://api.imooc-admin.lgdsunday.club/',
+        // 要代理的地址
+        // target: 'https://api.imooc-admin.lgdsunday.club/',
+        target: 'http://10.165.27.234:8000/',
         // 允许跨域
         changeOrigin: true
       }
     }
   },
 
+  // 配置svg-sprite-loader: 把src/icons/svg中的svg文件全部打包成一个svg文件
   chainWebpack(config) {
     config.module.rule('svg').exclude.add(resolve('src/icons')).end()
     config.module
@@ -30,5 +36,16 @@ module.exports = {
         symbolId: 'icon-[name]'
       })
       .end()
+  },
+
+  // 配置全局scss变量
+  css: {
+    loaderOptions: {
+      sass: {
+        sassOptions: {
+          errorOnUnspecifiedImports: true
+        }
+      }
+    }
   }
 }

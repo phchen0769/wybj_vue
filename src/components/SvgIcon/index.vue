@@ -1,12 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
+
 <template>
   <!-- 展示外部图标 -->
-  <div
-    v-if="isExternal"
-    :style="styleExternalIcon"
-    class="svg-external-icon svg-icon"
-    :class="className"
-  ></div>
+  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" :class="className"></div>
   <!-- 展示内部图标 -->
   <svg v-else class="svg-icon" :class="className" aria-hidden="true">
     <use :xlink:href="iconName" />
@@ -14,7 +10,7 @@
 </template>
 
 <script setup>
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { isExternal as external } from '@/utils/validate'
 // props是父组件传递参数给子组件
 const props = defineProps({
