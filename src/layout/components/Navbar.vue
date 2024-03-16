@@ -4,11 +4,11 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <!-- 头像 -->
+          <!-- 当userInfo为空时，el-avatar标签src内容也为空 -->
           <el-avatar
             shape="square"
             :size="40"
-            :src="$store.getters.userInfo.avatar">
-          </el-avatar>
+            :src="userInfo?.avatar || ''"></el-avatar>
           <!-- 工具栏 -->
           <el-icon><Setting /></el-icon>
         </div>
@@ -21,7 +21,9 @@
             <a target="__blank" href="#"
               ><el-dropdown-item>课程主页</el-dropdown-item></a
             >
-            <el-dropdown-item divided>退出登录</el-dropdown-item>
+            <el-dropdown-item divided @click="logout"
+              >退出登录</el-dropdown-item
+            >
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -29,7 +31,17 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
+// 设置计算属性，获取用户信息，用于显示头像
+const userInfo = computed(() => store.getters.userInfo)
+const logout = () => {
+  // 触发退出登录动作
+  store.dispatch('user/logout')
+}
+</script>
 
 <style lang="scss" scoped>
 .navbar {

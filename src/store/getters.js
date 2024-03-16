@@ -13,6 +13,7 @@ const getters = {
   hasUserInfo: (state) => {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
+  // 获取用户信息
   userInfo: (state) => state.user.userInfo[0]
 }
 

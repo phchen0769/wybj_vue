@@ -1,8 +1,9 @@
 import { login, getUserInfo } from '@/api/sys'
 // import md5 from 'md5'
-import { setStorage, getStorage } from '@/utils/storage'
+import { setStorage, getStorage, clearStorage } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 export default {
   // 表示此模块是单独模块，不会被合并到其他模块中
@@ -44,8 +45,12 @@ export default {
             // console.log(data)
             // 设置token
             this.commit('user/setToken', data.access)
+
             // 跳转到首页
             router.push('/')
+
+            // 保存登录时间
+            setTimeStamp()
             resolve()
           })
           .catch((err) => {
@@ -54,10 +59,28 @@ export default {
       })
     },
 
+    /**
+     * 获取用户信息
+     */
     async getUserInfo() {
       const res = await getUserInfo()
       this.commit('user/setUserInfo', res)
       return res
+    },
+
+    /**
+     * 退出登录
+     */
+    logout() {
+      // 清空vuex的token
+      this.commit('user/setToken', '')
+      // 清空vuex的用户信息
+      this.commit('user/setUserInfo', {})
+      // 清空localStorage的token
+      clearStorage()
+      // TODO: 清理权限相关配置
+      // 跳转到登录页
+      router.push('/login')
     }
   }
 }
