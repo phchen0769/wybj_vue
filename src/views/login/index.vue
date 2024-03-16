@@ -2,7 +2,11 @@
 
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
+    <el-form
+      class="login-form"
+      ref="loginFormRef"
+      :model="loginForm"
+      :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -14,7 +18,11 @@
           <!-- 使用内部图标 -->
           <svg-icon icon="user"></svg-icon>
         </span>
-        <el-input placeholder="请输入用户名" name="username" type="text" v-model="loginForm.username" />
+        <el-input
+          placeholder="请输入用户名"
+          name="username"
+          type="text"
+          v-model="loginForm.username" />
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
@@ -22,15 +30,22 @@
           <!-- 使用内部图标 -->
           <svg-icon icon="password"></svg-icon>
         </span>
-        <el-input placeholder="请输入密碼" name="password" :type="passwordType" v-model="loginForm.password" />
+        <el-input
+          placeholder="请输入密碼"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.password" />
         <span class="show-pwd" @click="showPwd">
           <!-- 密码眼睛图片逻辑判断-->
-          <svg-icon :icon="passwordType === 'password' ? 'eye':'eye-open'"></svg-icon>
+          <svg-icon
+            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
         </span>
       </el-form-item>
 
       <!-- 登录按钮 -->
-      <el-button type="primary" :loading="loading" @click="handlerLogin">登录</el-button>
+      <el-button type="primary" :loading="loading" @click="handlerLogin"
+        >登录</el-button
+      >
       <!-- 注册 -->
       <el-button type="primary">注册</el-button>
     </el-form>
@@ -42,7 +57,6 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
-// import { login } from '@/api/sys'
 
 // 数据源
 const loginForm = ref({
@@ -56,9 +70,7 @@ const loginRules = ref({
     { required: true, message: '请输入用户名', trigger: 'blur' },
     { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
   ],
-  password: [
-    { required: true, trigger: 'blur', validator: validatePassword() }
-  ]
+  password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
 })
 
 // 处理密码框文本显示
@@ -84,10 +96,12 @@ const handlerLogin = () => {
     if (!valid) return
     // 2、发送请求（触发登录动作）
     loading.value = true
-    store.dispatch('user/login', loginForm.value).then(() => {
-      loading.value = false
-      // 3、进行登录
-    })
+    store
+      .dispatch('user/login', loginForm.value)
+      .then(() => {
+        loading.value = false
+        // 3、进行登录
+      })
       .catch((err) => {
         console.log(err)
         loading.value = false

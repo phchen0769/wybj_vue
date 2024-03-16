@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import installElementPlus from './plugins/element'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
 // 初始化样式表
 import '@/styles/reset.scss'
@@ -13,8 +14,13 @@ import '@/permission'
 
 // 创建vue实例
 const app = createApp(App)
+// 使用installElementPlus插件
 installElementPlus(app)
-// 使用installIcons插件
+// 使用installIcons插件(svgIcon)
 installIcons(app)
+// 使用ElementPlusIconsVue插件，导入所有element-plus的图标
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
 // 在vue实例中挂载store和router插件
 app.use(store).use(router).mount('#app')

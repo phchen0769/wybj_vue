@@ -18,7 +18,7 @@ export const login = (data) => {
  */
 export const getUserInfo = () => {
   return request({
-    url: '/user/info',
+    url: '/userinfo',
     method: 'get'
   })
 }

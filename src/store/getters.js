@@ -1,5 +1,7 @@
 // 快捷访问
 
+// import user from './modules/user'
+
 // vuex 中的计算属性
 const getters = {
   token: (state) => state.user.token,
@@ -10,7 +12,8 @@ const getters = {
    */
   hasUserInfo: (state) => {
     return JSON.stringify(state.user.userInfo) !== '{}'
-  }
+  },
+  userInfo: (state) => state.user.userInfo[0]
 }
 
 export default getters

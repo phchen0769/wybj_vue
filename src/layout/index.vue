@@ -1,7 +1,10 @@
 <template>
   <div class="app-wrapper">
     <!-- 左侧 menu-->
-    <sidebar class="sidebar-container" :style="{ backgroundColor: variables.menuBg }"> </sidebar>
+    <sidebar
+      class="sidebar-container"
+      :style="{ backgroundColor: variables.menuBg }">
+    </sidebar>
     <!-- 右侧内容 -->
     <div class="main-container">
       <div class="fixed-header">
@@ -37,7 +40,7 @@ import variables from '@/styles/variables.module.scss'
 }
 
 .fixed-header {
-  position: fixed;
+  // position: fixed;
   top: 0;
   right: 0;
   z-index: 9;

@@ -1,5 +1,5 @@
 {
-	"printWidth": 120,
+	"printWidth": 80,
 	"tabWidth": 2,
 	"useTabs": false,
 	"semi": false,
@@ -7,7 +7,7 @@
 	"singleQuote": true,
 	"proseWrap": "preserve",
 	"bracketSpacing": true,
-	"bracketSameLine": false,
+	"bracketSameLine": true,
 	"jsxSingleQuote": false,
 	"requireConfig": false,
 	"files.associations": {

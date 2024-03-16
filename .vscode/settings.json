@@ -1,6 +1,5 @@
 {
 	"workbench.colorTheme": "Vue Theme",
-	// "workbench.colorTheme": "Material Theme",
 	"editor.fontSize": 20,
 	/*配置html css js的默认格式化程序*/
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
