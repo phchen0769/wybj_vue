@@ -1,3 +1,4 @@
+// 纯前端动态路由获取
 import path from 'path'
 
 /**

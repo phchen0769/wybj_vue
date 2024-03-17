@@ -1,9 +1,7 @@
 <template>
   <div class="app-wrapper">
     <!-- 左侧 menu-->
-    <sidebar
-      class="sidebar-container"
-      :style="{ backgroundColor: variables.menuBg }">
+    <sidebar class="sidebar-container" style="background-color: #545c64">
     </sidebar>
     <!-- 右侧内容 -->
     <div class="main-container">
@@ -22,9 +20,6 @@ import {} from 'vue'
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
 import AppMain from './components/AppMain'
-import variables from '@/styles/variables.module.scss'
-
-// console.log(variables)
 </script>
 
 <style lang="scss" scoped>

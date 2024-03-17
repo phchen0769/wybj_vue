@@ -21,7 +21,8 @@
 
 <script setup>
 import MenuItem from './MenuItem'
-// 定义 props
+// 定义 props,从父组件接收数据
+// MenuItem->SidebarItem->SidebarMenu->Sidebar(index.vue)
 defineProps({
   route: {
     type: Object,

@@ -1,14 +1,14 @@
 <template>
-  <!-- <i v-if="icon.includes('el-icon')" class="sub-el-icon" :class="icon"></i> -->
   <el-icon v-if="icon.includes('el-icon')" class="sub-el-icon" :class="icon">
     <component :is="iconName" />
   </el-icon>
   <svg-icon v-else :icon="icon"></svg-icon>
-  <!-- <span>{{ generateTitle(title) }}</span> -->
   <span>{{ title }}</span>
 </template>
 
 <script setup>
+// 定义 props,从父组件接收数据
+// MenuItem->SidebarItem->SidebarMenu->Sidebar(index.vue)
 defineProps({
   title: {
     type: String,

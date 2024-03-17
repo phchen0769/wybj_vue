@@ -8,9 +8,12 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceFolder}/server.js"
-            // "args": ["npm", "run", "dev"]
-            // "program": "npm run dev",
+            "runtimeExecutable": "npm",
+            "args": [
+                "run",
+                "serve"
+            ],
+            "console": "integratedTerminal"
         }
     ]
 }
