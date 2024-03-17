@@ -38,7 +38,8 @@
 				"christian-kohler.path-intellisense",
 				"syler.sass-indented",
 				"sibiraj-s.vscode-scss-formatter",
-				"GitHub.copilot"
+				"GitHub.copilot",
+				"wangluo.vue-element-plus-snippets"
 			]
 		}
 	},

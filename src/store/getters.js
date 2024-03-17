@@ -1,7 +1,5 @@
 // 快捷访问
 
-// import user from './modules/user'
-
 // vuex 中的计算属性
 const getters = {
   token: (state) => state.user.token,

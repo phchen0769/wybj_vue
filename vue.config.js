@@ -48,5 +48,13 @@ module.exports = {
         }
       }
     }
+  },
+  configureWebpack: {
+    // 使用path-browserify代替path
+    resolve: {
+      fallback: {
+        path: require.resolve('path-browserify')
+      }
+    }
   }
 }
