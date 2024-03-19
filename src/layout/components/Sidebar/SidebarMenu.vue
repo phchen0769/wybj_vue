@@ -20,7 +20,6 @@ import { useRouter } from 'vue-router'
 // 导入路由过滤函数
 import { filterRouters, generateMenus } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
-// console.log(JSON.stringify(routes.value)M
 
 // 实例化vue-router对象
 const router = useRouter()
@@ -29,4 +28,5 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
+console.log(JSON.stringify(routes.value))
 </script>
