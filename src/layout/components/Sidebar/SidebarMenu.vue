@@ -18,15 +18,22 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 // 导入路由过滤函数
-import { filterRouters, generateMenus } from '@/utils/route'
+// import { filterRouters, generateMenus } from '@/utils/route'
+import { arrayToMenu } from '@/utils/routes'
 import SidebarItem from './SidebarItem.vue'
 
 // 实例化vue-router对象
 const router = useRouter()
-// 生成可用动态路由，并赋值给vue-router
+// 前端控制路由：生成可用动态路由，并赋值给vue-router
+// const routes = computed(() => {
+//   const filterRoutes = filterRouters(router.getRoutes())
+//   return generateMenus(filterRoutes)
+// })
+
+// 后端控制路由：直接从后端获取路由
 const routes = computed(() => {
-  const filterRoutes = filterRouters(router.getRoutes())
-  return generateMenus(filterRoutes)
+  return arrayToMenu(router.getRoutes())
 })
+
 console.log(JSON.stringify(routes.value))
 </script>
