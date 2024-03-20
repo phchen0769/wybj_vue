@@ -15,25 +15,32 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-// 导入路由过滤函数
-// import { filterRouters, generateMenus } from '@/utils/route'
-import { arrayToMenu } from '@/utils/routes'
 import SidebarItem from './SidebarItem.vue'
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+// 通过后端返回的路由数组生成菜单
+import { arrayToMenu } from '@/utils/menus'
 
-// 实例化vue-router对象
-const router = useRouter()
-// 前端控制路由：生成可用动态路由，并赋值给vue-router
+// 获取vuex中的路由
+const store = useStore()
+// 设置计算属性，获取用户菜单
+const routes = computed(() => {
+  return arrayToMenu(store.getters.userInfo.menus)
+})
+
+routes.value.forEach((item) => {
+  console.log(item)
+})
+
+// // 导入前端路由过滤函数
+// import { filterRouters, generateMenus } from '@/utils/route'
+
+// import { useRouter } from 'vue-router'
+// // 实例化vue-router对象
+// const router = useRouter()
+// // 前端控制路由：生成可用动态路由，并赋值给vue-router
 // const routes = computed(() => {
 //   const filterRoutes = filterRouters(router.getRoutes())
 //   return generateMenus(filterRoutes)
 // })
-
-// 后端控制路由：直接从后端获取路由
-const routes = computed(() => {
-  return arrayToMenu(router.getRoutes())
-})
-
-console.log(JSON.stringify(routes.value))
 </script>

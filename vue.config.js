@@ -15,8 +15,8 @@ module.exports = {
       '/api': {
         // 要代理的地址
         // target: 'https://api.imooc-admin.lgdsunday.club/',
-        // target: 'http://10.165.27.234:8000/',
-        target: 'http://192.168.12.166:8000/',
+        target: 'http://10.165.27.210:8000/',
+        // target: 'http://192.168.12.166:8000/',
         // 允许跨域
         changeOrigin: true
       }

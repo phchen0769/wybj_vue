@@ -21,23 +21,26 @@ export const privateRoutes = [
 /**
  * 公开路由表
  */
-const publicRoutes = [
+export const publicRoutes = [
   {
     // 登录页
     path: '/login',
-    component: () => import('@/views/login/index.vue')
+    component: () => import('@/views/login/index.vue'),
+    hidden: true
   },
   {
     // 首页
     path: '/',
     redirect: '/profile',
     component: layout,
+    hidden: true,
     children: [
       // 个人中心
       {
         path: '/profile',
         name: 'profile',
         component: () => import('@/views/profile/index.vue'),
+        hidden: false,
         meta: {
           title: 'profile',
           icon: 'el-icon-user'
@@ -47,20 +50,24 @@ const publicRoutes = [
       {
         path: '/404',
         name: '404',
-        component: () => import('@/views/error-page/404.vue')
+        component: () => import('@/views/error-page/404.vue'),
+        hidden: true
       },
       // 401
       {
         path: '/401',
         name: '401',
-        component: () => import('@/views/error-page/401.vue')
+        component: () => import('@/views/error-page/401.vue'),
+        hidden: true
       }
     ]
   }
 ]
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [...publicRoutes, ...privateRoutes]
+  // 私有路由从后端传入
+  // routes: [...publicRoutes, ...privateRoutes]
+  routes: [...publicRoutes]
 })
 /**
  * 初始化路由表
