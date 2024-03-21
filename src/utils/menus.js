@@ -1,58 +1,51 @@
-/** 后端传入的路由表转换成router的格式
- * @param {Array} array
- * @returns {Array}
+import path from 'path'
+
+/**
+ * 判断数据是否为空值
  */
-export function arrayToMenu(array) {
-  const nodes = []
-  // 获取顶级节点
-  for (let i = 0; i < array.length; i++) {
-    const row = array[i]
-    // 这个exists方法就是判断下有没有子级
-    if (!exists(array, row.sub_menu)) {
-      nodes.push({
-        path: row.path, // 路由地址
-        hidden: row.hidden, // 是否隐藏
-        component: row.component, // 一般就是匹配你文件的component
-        name: row.name, // 路由名称
-        meta: { title: row.title, icon: row.icon }, // title就是显示的名字
-        id: row.menu_id, // 路由的id
-        redirect: 'noRedirect',
-        children: []
-      })
+function isNull(data) {
+  if (!data) return true
+  if (JSON.stringify(data) === '{}') return true
+  if (JSON.stringify(data) === '[]') return true
+  return false
+}
+
+/**
+ * 根据 routes 数据，返回对应 menu 规则数组
+ */
+export function generateMenus(routes, basePath = '') {
+  const result = []
+  // 遍历路由表
+  routes.forEach((item) => {
+    // 不存在 children && 不存在 meta 直接 return
+    if (isNull(item.meta) && isNull(item.children)) return
+    // 存在 children 不存在 meta，进入迭代
+    if (isNull(item.meta) && !isNull(item.children)) {
+      result.push(...generateMenus(item.children))
+      return
     }
-  }
-  const toDo = Array.from(nodes)
-  while (toDo.length) {
-    const node = toDo.shift()
-    // 获取子节点
-    for (let i = 0; i < array.length; i++) {
-      const row = array[i]
-      // hidden不为true而且sub_menu等于哪个父级的id，就push到哪个
-      if (row.hidden === false && row.sub_menu === node.id) {
-        const child = {
-          path: row.path,
-          name: row.name,
-          hidden: row.hidden,
-          // 核心代码，因为二级路由的component是需要匹配页面的
-          component: require('@/views/' + row.component + '/index.vue'),
-          meta: { title: row.title, icon: row.name },
-          id: row.menu_id
-        }
-        if (node.children) {
-          node.children.push(child)
-        } else {
-          node.children = [child]
-        }
-        toDo.push(child)
+    // 合并 path 作为跳转路径
+    const routePath = path.resolve(basePath, item.path)
+    // 路由分离之后，存在同名父路由的情况，需要单独处理
+    let route = result.find((item) => item.path === routePath)
+    if (!route) {
+      route = {
+        ...item,
+        path: routePath,
+        children: []
+      }
+
+      // hidden为false表示要显示
+      if (route.hidden === false) {
+        // meta 存在生成 route 对象，放入 arr
+        result.push(route)
       }
     }
-  }
-  return nodes
-}
-// 看下有没有子级
-function exists(rows, subMenu) {
-  for (let i = 0; i < rows.length; i++) {
-    if (rows[i].menu_id === subMenu) return true
-  }
-  return false
+
+    // 存在 children 进入迭代到children
+    // if (item.children) {
+    //   route.children.push(...generateMenus(item.children, route.path))
+    // }
+  })
+  return result
 }

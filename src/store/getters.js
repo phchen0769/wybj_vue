@@ -1,5 +1,5 @@
 // 快捷访问
-
+import variables from '@/styles/variables.module.scss'
 // vuex 中的计算属性
 const getters = {
   token: (state) => state.user.token,
@@ -12,7 +12,9 @@ const getters = {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
   // 获取用户信息
-  userInfo: (state) => state.user.userInfo[0]
+  userInfo: (state) => state.user.userInfo[0],
+  // 定义动态菜单的css变量
+  cssVar: (state) => variables
 }
 
 export default getters

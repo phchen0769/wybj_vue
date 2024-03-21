@@ -1,22 +1,22 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import store from '@/store'
 import layout from '@/layout/index.vue'
-import ArticleCreaterRouter from './modules/ArticleCreate'
-import ArticleRouter from './modules/Article'
-import PermissionListRouter from './modules/PermissionList'
-import RoleListRouter from './modules/RoleList'
-import UserManageRouter from './modules/UserManage'
+// import ArticleCreaterRouter from './modules/ArticleCreate'
+// import ArticleRouter from './modules/Article'
+// import PermissionListRouter from './modules/PermissionList'
+// import RoleListRouter from './modules/RoleList'
+// import UserManageRouter from './modules/UserManage'
 
 /**
  * 私有路由表
  */
-export const privateRoutes = [
-  RoleListRouter,
-  UserManageRouter,
-  PermissionListRouter,
-  ArticleCreaterRouter,
-  ArticleRouter
-]
+// export const privateRoutes = [
+//   RoleListRouter,
+//   UserManageRouter,
+//   PermissionListRouter,
+//   ArticleCreaterRouter,
+//   ArticleRouter
+// ]
 // console.log(privateRoutes)
 /**
  * 公开路由表

@@ -25,13 +25,13 @@
 import MenuItem from './MenuItem'
 // 定义 props,从父组件接收数据
 // MenuItem->SidebarItem->SidebarMenu->Sidebar(index.vue)
-const props = defineProps({
+defineProps({
   route: {
     type: Object,
-    // required: true,
-    default: () => ({ children: [] })
+    required: true
+    // default: () => ({ children: [] })
   }
 })
 
-console.log(props.route)
+// console.log(props.route)
 </script>
