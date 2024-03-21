@@ -10,24 +10,25 @@ export function arrayToMenu(array) {
     // 这个exists方法就是判断下有没有子级
     if (!exists(array, row.sub_menu)) {
       // 父级菜单的component
-      let component
-      if (row.component === 'layout') {
-        component = require('@/layout/index.vue')
-      } else {
-        component = require('@/views/' + row.component + '/index.vue')
-      }
+      // let component
+      // if (row.component === 'layout') {
+      //   component = require('@/layout/index.vue')
+      // } else {
+      //   component = require('@/views/' + row.component + '/index.vue')
+      // }
       nodes.push({
         path: row.path, // 路由地址
         hidden: row.hidden, // 是否隐藏
-        component: component, // 一般就是匹配你文件的component
+        component: row.component, // 一般就是匹配你文件的component
         name: row.name, // 路由名称
         meta: { title: row.title, icon: row.icon }, // title就是显示的名字
         id: row.menu_id, // 路由的id
-        redirect: 'noRedirect',
-        children: []
+        redirect: row.redirect, // 重定向
+        children: [] // 子级
       })
     }
   }
+
   const toDo = Array.from(nodes)
   while (toDo.length) {
     const node = toDo.shift()
@@ -56,7 +57,7 @@ export function arrayToMenu(array) {
   }
   return nodes
 }
-// 看下有没有子级
+// 看下有没有子菜单
 function exists(rows, parentId) {
   for (let i = 0; i < rows.length; i++) {
     if (rows[i].id === parentId) return true

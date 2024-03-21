@@ -39,7 +39,8 @@
 				"syler.sass-indented",
 				"sibiraj-s.vscode-scss-formatter",
 				"GitHub.copilot",
-				"wangluo.vue-element-plus-snippets"
+				"wangluo.vue-element-plus-snippets",
+				"ms-vscode.js-debug-nightly"
 			]
 		}
 	},
