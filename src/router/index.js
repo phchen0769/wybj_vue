@@ -17,7 +17,6 @@ import layout from '@/layout/index.vue'
 //   ArticleCreaterRouter,
 //   ArticleRouter
 // ]
-// console.log(privateRoutes)
 /**
  * 公开路由表
  */
@@ -65,8 +64,8 @@ export const publicRoutes = [
 ]
 const router = createRouter({
   history: createWebHashHistory(),
-  // 私有路由从后端传入
   // routes: [...publicRoutes, ...privateRoutes]
+  // 私有路由从后端传入
   routes: [...publicRoutes]
 })
 /**

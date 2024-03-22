@@ -19,7 +19,7 @@ import SidebarItem from './SidebarItem.vue'
 import { useRoute, useRouter } from 'vue-router'
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-// // 通过后端返回的路由数组生成菜单
+// 通过后端返回的路由数组生成菜单
 import { arrayToMenu } from '@/utils/privateRouter'
 
 // 导入前端路由过滤函数
@@ -33,21 +33,18 @@ const routes = computed(() => {
   return generateMenus(filterRoutes)
 })
 
-// // 获取vuex中的路由
+// 获取vuex中的路由
 const store = useStore()
-// // 设置计算属性，获取用户路由
+// 设置计算属性，获取用户路由
 const privateRoutes = computed(() => {
   return arrayToMenu(store.getters.userInfo.menus)
 })
-
-console.log(privateRoutes.value)
 
 // 后端控制路由：私有动态路由，赋值给vue-router
 privateRoutes.value.forEach((item) => {
   router.addRoute(item)
 })
-
-// console.log(routes.value)
+console.log(router.getRoutes())
 
 // 默认激活项
 const route = useRoute()

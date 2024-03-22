@@ -17,19 +17,19 @@
 //         }
 //     ]
 // }
-{
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "/Volumes/myDriver/github/vue3/wybj_vue⁠/src",
-            "sourceMapPathOverrides": {
-                "webpack:///src/*": "${webRoot}/*",
-                "webpack:///./src/*": "${webRoot}/*"
-            }
-        }
-    ]
-}
+// {
+//     "version": "0.2.0",
+//     "configurations": [
+//         {
+//             "type": "chrome",
+//             "request": "launch",
+//             "name": "Launch Chrome against localhost",
+//             "url": "http://localhost:8080",
+//             "webRoot": "/Volumes/myDriver/github/vue3/wybj_vue⁠/src",
+//             "sourceMapPathOverrides": {
+//                 "webpack:///src/*": "${webRoot}/*",
+//                 "webpack:///./src/*": "${webRoot}/*"
+//             }
+//         }
+//     ]
+// }
