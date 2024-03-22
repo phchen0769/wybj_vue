@@ -1,7 +1,9 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧 menu-->
-    <sidebar class="sidebar-container" style="background-color: #545c64">
+    <sidebar class="sidebar-container" style="background-color: #304156">
     </sidebar>
     <!-- 右侧内容 -->
     <div class="main-container">
@@ -35,10 +37,15 @@ import AppMain from './components/AppMain'
 }
 
 .fixed-header {
-  // position: fixed;
+  position: fixed;
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{sidebarWidth});
+  width: calc(100% - #{$sideBarWidth});
+
+  transition: width #{$sideBarDuration};
+}
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>

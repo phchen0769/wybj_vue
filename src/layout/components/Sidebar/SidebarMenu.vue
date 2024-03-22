@@ -1,6 +1,7 @@
 <template>
   <!-- 一级 menu 菜单 -->
   <el-menu
+    :collapse="!$store.getters.sidebarOpened"
     :background-color="$store.getters.cssVar.menuBg"
     :text-color="$store.getters.cssVar.menuText"
     :active-text-color="$store.getters.cssVar.menuActiveText"
@@ -44,7 +45,8 @@ const privateRoutes = computed(() => {
 privateRoutes.value.forEach((item) => {
   router.addRoute(item)
 })
-console.log(router.getRoutes())
+// 获取vue-router中的路由
+// console.log(router.getRoutes())
 
 // 默认激活项
 const route = useRoute()
@@ -53,3 +55,10 @@ const activeMenu = computed(() => {
   return path
 })
 </script>
+<style lang="scss" scoped>
+@import '~@/styles/variables.module.scss';
+.el-menu {
+  border: none;
+  background-color: #304156;
+}
+</style>

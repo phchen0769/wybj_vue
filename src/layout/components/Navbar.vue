@@ -1,5 +1,9 @@
 <template>
   <div class="navbar">
+    <!-- 汉堡 -->
+    <hamburger class="hamburger-container" />
+    <!-- 面包屑 -->
+    <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -34,6 +38,8 @@
 <script setup>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
+import Hamburger from '@/components/hamburger/index.vue'
+import breadcrumb from '@/components/Breadcrumb/index.vue'
 const store = useStore()
 // 设置计算属性，获取用户信息，用于显示头像
 const userInfo = computed(() => store.getters.userInfo)
@@ -50,6 +56,21 @@ const logout = () => {
   position: relative;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    // hover动画
+    transition: backgroud 0.5s;
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+  .breadcrumb-container {
+    float: left;
+  }
 
   .right-menu {
     display: flex;

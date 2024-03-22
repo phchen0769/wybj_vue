@@ -14,7 +14,9 @@ const getters = {
   // 获取用户信息
   userInfo: (state) => state.user.userInfo[0],
   // 定义动态菜单的css变量
-  cssVar: (state) => variables
+  cssVar: (state) => variables,
+  // 定义动态菜单的css变量
+  sidebarOpened: (state) => state.app.sidebarOpened
 }
 
 export default getters

@@ -35,3 +35,4 @@ defineProps({
 
 // console.log(props.route)
 </script>
+<style lang="scss" scoped></style>

@@ -58,6 +58,10 @@ export const publicRoutes = [
         name: '401',
         component: () => import('@/views/error-page/401.vue'),
         hidden: true
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        component: () => import('@/views/error-page/404')
       }
     ]
   }
