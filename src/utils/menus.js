@@ -1,4 +1,30 @@
+// 纯前端动态路由获取
 import path from 'path'
+
+/**
+ * 返回所有子路由
+ */
+const getChildrenRoutes = (routes) => {
+  const result = []
+  routes.forEach((route) => {
+    if (route.children && route.children.length > 0) {
+      result.push(...route.children)
+    }
+  })
+  return result
+}
+/**
+ * 处理脱离层级的路由：某个一级路由为其他子路由，则剔除该一级路由，保留路由层级
+ * @param {*} routes router.getRoutes()
+ */
+export const filterRouters = (routes) => {
+  const childrenRoutes = getChildrenRoutes(routes)
+  return routes.filter((route) => {
+    return !childrenRoutes.find((childrenRoute) => {
+      return childrenRoute.path === route.path
+    })
+  })
+}
 
 /**
  * 判断数据是否为空值
@@ -9,7 +35,6 @@ function isNull(data) {
   if (JSON.stringify(data) === '[]') return true
   return false
 }
-
 /**
  * 根据 routes 数据，返回对应 menu 规则数组
  */
@@ -35,17 +60,17 @@ export function generateMenus(routes, basePath = '') {
         children: []
       }
 
-      // hidden为false表示要显示
-      if (route.hidden === false) {
+      // icon 与 title 必须全部存在
+      if (route.meta.icon && route.meta.title) {
         // meta 存在生成 route 对象，放入 arr
         result.push(route)
       }
     }
 
     // 存在 children 进入迭代到children
-    // if (item.children) {
-    //   route.children.push(...generateMenus(item.children, route.path))
-    // }
+    if (item.children) {
+      route.children.push(...generateMenus(item.children, route.path))
+    }
   })
   return result
 }

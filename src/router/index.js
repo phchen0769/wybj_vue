@@ -42,7 +42,8 @@ export const publicRoutes = [
         hidden: false,
         meta: {
           title: 'profile',
-          icon: 'el-icon-user'
+          icon: 'el-icon',
+          iconName: 'User'
         }
       },
       // 404
@@ -58,11 +59,11 @@ export const publicRoutes = [
         name: '401',
         component: () => import('@/views/error-page/401.vue'),
         hidden: true
-      },
-      {
-        path: '/:pathMatch(.*)*',
-        component: () => import('@/views/error-page/404')
       }
+      // {
+      //   path: '/:pathMatch(.*)*',
+      //   component: () => import('@/views/error-page/404')
+      // }
     ]
   }
 ]
