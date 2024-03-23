@@ -4,9 +4,9 @@
       <el-avatar
         :size="logoHeight"
         shape="square"
-        src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png" />
+        :src="$store.getters.userInfo.avatar" />
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">
-        imooc-admin
+        {{ $store.getters.userInfo.username }}
       </h1>
     </div>
     <el-scrollbar>

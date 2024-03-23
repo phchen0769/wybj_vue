@@ -1,4 +1,5 @@
 <template>
+  <!-- 触发triggerSidebarOpened函数 -->
   <div class="hamburger-container" @click="toggleClick">
     <svg-icon id="guide-hamburger" class="hamburger" :icon="icon"></svg-icon>
   </div>
@@ -9,10 +10,13 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 
 const store = useStore()
+
+// 触发triggerSidebarOpened函数
 const toggleClick = () => {
   store.commit('app/triggerSidebarOpened')
 }
 
+// 根据sidebarOpened的值设置图标
 const icon = computed(() =>
   store.getters.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'
 )

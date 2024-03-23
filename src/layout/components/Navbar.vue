@@ -38,7 +38,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useStore } from 'vuex'
-import Hamburger from '@/components/hamburger/index.vue'
+import Hamburger from '@/components/Hamburger/index.vue'
 import breadcrumb from '@/components/Breadcrumb/index.vue'
 const store = useStore()
 // 设置计算属性，获取用户信息，用于显示头像

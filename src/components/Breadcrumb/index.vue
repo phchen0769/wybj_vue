@@ -26,6 +26,7 @@ const route = useRoute()
 // 生成数组数据
 const breadcrumbData = ref([])
 const getBreadcrumbData = () => {
+  // 根据当前路由信息，生成面包屑数据
   breadcrumbData.value = route.matched.filter(
     (item) => item.meta && item.meta.title
   )
@@ -46,6 +47,7 @@ watch(
 const router = useRouter()
 const onLinkClick = (item) => {
   // console.log(item)
+  // 执行路由跳转
   router.push(item.path)
 }
 
