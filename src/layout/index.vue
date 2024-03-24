@@ -3,7 +3,9 @@
     class="app-wrapper"
     :class="[$store.getters.sidebarOpened ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧 menu-->
-    <sidebar class="sidebar-container" style="background-color: #304156">
+    <sidebar
+      class="sidebar-container"
+      :style="{ backgroundColor: $store.getters.cssVar.menuBg }">
     </sidebar>
     <!-- 右侧内容 -->
     <div class="main-container">

@@ -2,7 +2,9 @@ export default {
   login: {
     title: '用户登录',
     loginBtn: '登录',
+    regesterBtn: '注册',
     usernameRule: '用户名为必填项',
+    usernameLengthRule: '用户名长度不能小于4位',
     passwordRule: '密码不能少于6位',
     desc: `
     测试权限账号：<br />

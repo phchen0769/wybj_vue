@@ -5,10 +5,12 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!--全屏 -->
+      <screen-full class="right-menu-item hover-effect" />
+      <!-- 切换主题 -->
+      <theme-picker class="right-menu-item hover-effect" />
       <!-- 切换语言 -->
-      <div class="right-menu-item">
-        <lang-select class="international" effect="dark" />
-      </div>
+      <lang-select class="right-menu-item hover-effect" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <!-- 头像 -->
@@ -24,14 +26,18 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item>主页</el-dropdown-item></router-link
+              <el-dropdown-item>{{
+                $t('msg.navBar.home')
+              }}</el-dropdown-item></router-link
             >
             <a target="__blank" href="#"
-              ><el-dropdown-item>课程主页</el-dropdown-item></a
+              ><el-dropdown-item>{{
+                $t('msg.navBar.course')
+              }}</el-dropdown-item></a
             >
-            <el-dropdown-item divided @click="logout"
-              >退出登录</el-dropdown-item
-            >
+            <el-dropdown-item divided @click="logout">{{
+              $t('msg.navBar.logout')
+            }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -45,6 +51,8 @@ import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ThemePicker from '@/components/ThemeSelect/index.vue'
+import ScreenFull from '@/components/Screenfull/index.vue'
 
 const store = useStore()
 // 设置计算属性，获取用户信息，用于显示头像
@@ -60,7 +68,7 @@ const logout = () => {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background-color: #fff;
+  background: #fff;
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
@@ -68,8 +76,9 @@ const logout = () => {
     height: 100%;
     float: left;
     cursor: pointer;
-    // hover动画
-    transition: backgroud 0.5s;
+    // hover 动画
+    transition: background 0.5s;
+
     &:hover {
       background: rgba(0, 0, 0, 0.1);
     }
@@ -77,23 +86,11 @@ const logout = () => {
   .breadcrumb-container {
     float: left;
   }
-
   .right-menu {
     display: flex;
     align-items: center;
     float: right;
-    padding-right: 16px;
-
-    :deep(.right-menu-item) {
-      display: inline-block;
-      padding: 0 18px 0 0;
-      color: #5a5e66;
-      vertical-align: text-bottom;
-
-      &.hover-effect {
-        cursor: pointer;
-      }
-    }
+    // padding-right: 16px;
 
     :deep(.avatar-container) {
       cursor: pointer;
@@ -105,6 +102,17 @@ const logout = () => {
           --el-avatar-bg-color: none;
           margin-right: 12px;
         }
+      }
+    }
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
       }
     }
   }

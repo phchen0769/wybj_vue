@@ -29,10 +29,7 @@ defineProps({
   route: {
     type: Object,
     required: true
-    // default: () => ({ children: [] })
   }
 })
-
-// console.log(props.route)
 </script>
 <style lang="scss" scoped></style>

@@ -45,6 +45,5 @@ const activeMenu = computed(() => {
 @import '~@/styles/variables.module.scss';
 .el-menu {
   border: none;
-  background-color: #304156;
 }
 </style>

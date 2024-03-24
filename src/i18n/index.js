@@ -1,4 +1,5 @@
 import { createI18n } from 'vue-i18n'
+// 引入自定义语言包
 import mZhLocale from './lang/zh'
 import mEnLocale from './lang/en'
 import store from '@/store'
@@ -7,6 +8,7 @@ import store from '@/store'
 const messages = {
   en: {
     msg: {
+      // 结构语言包
       ...mEnLocale
     }
   },
@@ -17,7 +19,6 @@ const messages = {
   }
 }
 
-// const locale = 'zh'
 /**
  * 返回当前 lang
  */

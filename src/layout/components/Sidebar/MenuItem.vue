@@ -1,19 +1,17 @@
 <template>
   <!-- element icon -->
-  <el-icon
-    v-if="icon && icon.includes('el-icon')"
-    class="sub-el-icon"
-    :class="icon">
+  <el-icon v-if="icon && icon.includes('el-icon')" :class="icon">
     <component :is="iconName" />
   </el-icon>
   <!-- svg icon -->
   <svg-icon v-else :icon="icon"></svg-icon>
   <!-- 文本 -->
-  <span>{{ title }}</span>
+  <span>{{ generateTitle(title) }}</span>
 </template>
 
 <script setup>
 import { ElIcon } from 'element-plus'
+import { generateTitle } from '@/utils/i18n'
 // 定义 props,从父组件接收数据
 // MenuItem->SidebarItem->SidebarMenu->Sidebar(index.vue)
 defineProps({

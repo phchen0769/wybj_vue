@@ -26,7 +26,7 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { defineProps, computed } from 'vue'
+import { computed } from 'vue'
 import { useStore } from 'vuex'
 import { ElMessage } from 'element-plus'
 

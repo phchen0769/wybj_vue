@@ -1,5 +1,8 @@
 // 快捷访问
-import variables from '@/styles/variables.module.scss'
+import { generateColors } from '@/utils/theme'
+import { getStorage } from '@/utils/storage'
+import { MAIN_COLOR } from '@/constant/index'
+
 // vuex 中的计算属性
 const getters = {
   token: (state) => state.user.token,
@@ -14,11 +17,16 @@ const getters = {
   // 获取用户信息
   userInfo: (state) => state.user.userInfo[0],
   // 定义动态菜单的css变量
-  cssVar: (state) => variables,
+  cssVar: (state) => ({
+    ...state.theme.variables,
+    ...generateColors(getStorage(MAIN_COLOR))
+  }),
   // 定义动态菜单的css变量
   sidebarOpened: (state) => state.app.sidebarOpened,
   // 获取语言
-  language: (state) => state.app.language
+  language: (state) => state.app.language,
+  // 获取主题色
+  mainColor: (state) => state.theme.mainColor
 }
 
 export default getters

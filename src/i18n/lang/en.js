@@ -2,7 +2,9 @@ export default {
   login: {
     title: 'User Login',
     loginBtn: 'Login',
+    regesterBtn: 'Register',
     usernameRule: 'Username is required',
+    usernameLengthRule: 'Username canot be less than 4 characters',
     passwordRule: 'Password cannot be less than 6 digits',
     desc: `
     Test authority account:<br />

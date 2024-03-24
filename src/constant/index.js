@@ -9,3 +9,9 @@ export const TOKEN_TIME_OUT = 2 * 3600 * 1000
 
 // 国际化
 export const LANGUAGE = 'language'
+
+// 主题色保存的key值
+export const MAIN_COLOR = 'main'
+
+// 默认主题色
+export const DEFAULT_COLOR = '#409EFF'

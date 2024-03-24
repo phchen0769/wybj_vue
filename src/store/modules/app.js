@@ -13,12 +13,11 @@ export default {
       state.sidebarOpened = !state.sidebarOpened
     },
     // 设置语言
-    setLanguange(state, lang) {
+    setLanguage(state, lang) {
       // 把语言存到本地
       setStorage(LANGUAGE, lang)
       // 把语言存到中vuex中
       state.language = lang
-      console.log('setLanguange', lang)
     }
   }
 }

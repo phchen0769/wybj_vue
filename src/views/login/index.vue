@@ -1,5 +1,3 @@
-// eslint-disable-next-line vue/multi-word-component-names
-
 <template>
   <div class="login-container">
     <el-form
@@ -8,7 +6,8 @@
       :model="loginForm"
       :rules="loginRules">
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <lang-select class="lang-select" effect="light" />
       </div>
       <!-- 用户名 -->
       <el-form-item prop="username">
@@ -43,11 +42,12 @@
       </el-form-item>
 
       <!-- 登录按钮 -->
-      <el-button type="primary" :loading="loading" @click="handlerLogin"
-        >登录</el-button
-      >
+      <el-button type="primary" :loading="loading" @click="handlerLogin">{{
+        $t('msg.login.loginBtn')
+      }}</el-button>
       <!-- 注册 -->
-      <el-button type="primary">注册</el-button>
+      <el-button type="primary">{{ $t('msg.login.regesterBtn') }}</el-button>
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -57,6 +57,11 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useStore } from 'vuex'
+import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
+
+// 实例化i18n
+const i18n = useI18n()
 
 // 数据源
 const loginForm = ref({
@@ -67,8 +72,17 @@ const loginForm = ref({
 // 验证规则
 const loginRules = ref({
   username: [
-    { required: true, message: '请输入用户名', trigger: 'blur' },
-    { min: 3, max: 20, message: '长度在 3 到 20 个字符', trigger: 'blur' }
+    {
+      required: true,
+      // 使用i18n
+      message: i18n.t('msg.login.usernameRule'),
+      trigger: 'blur'
+    },
+    {
+      min: 4,
+      message: i18n.t('msg.login.usernameLengthRule'),
+      trigger: 'blur'
+    }
   ],
   password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
 })
@@ -172,6 +186,12 @@ $cursor: #fff;
     }
   }
 
+  .tips {
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
   .svg-container {
     padding: 6px 5px 6px 15px;
     color: $dark_gray;
@@ -199,6 +219,17 @@ $cursor: #fff;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+
+  .lang-select {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    background-color: #fff;
+    font-size: 22px;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
   }
 }
 </style>
