@@ -5,6 +5,10 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 切换语言 -->
+      <div class="right-menu-item">
+        <lang-select class="international" effect="dark" />
+      </div>
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <!-- 头像 -->
@@ -39,7 +43,9 @@
 import { computed } from 'vue'
 import { useStore } from 'vuex'
 import Hamburger from '@/components/Hamburger/index.vue'
-import breadcrumb from '@/components/Breadcrumb/index.vue'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
+
 const store = useStore()
 // 设置计算属性，获取用户信息，用于显示头像
 const userInfo = computed(() => store.getters.userInfo)
@@ -77,6 +83,17 @@ const logout = () => {
     align-items: center;
     float: right;
     padding-right: 16px;
+
+    :deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
 
     :deep(.avatar-container) {
       cursor: pointer;

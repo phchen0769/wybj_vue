@@ -16,7 +16,9 @@ const getters = {
   // 定义动态菜单的css变量
   cssVar: (state) => variables,
   // 定义动态菜单的css变量
-  sidebarOpened: (state) => state.app.sidebarOpened
+  sidebarOpened: (state) => state.app.sidebarOpened,
+  // 获取语言
+  language: (state) => state.app.language
 }
 
 export default getters
