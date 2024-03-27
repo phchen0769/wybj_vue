@@ -16,7 +16,7 @@
       "scripthost"
     ],
     "types": [
-      "element-plus/global"
+      // "element-plus/global"
     ]
   }
 }

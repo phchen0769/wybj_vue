@@ -15,6 +15,5 @@
 	"[vue]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
-	// 启动调试时，总是打开调试面板
-	"debug.javascript.debugByLinkOptions": "always"
+	"window.zoomLevel": -0.5,
 }
