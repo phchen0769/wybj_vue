@@ -2,9 +2,18 @@
 
 <template>
   <!-- 展示外部图标 -->
-  <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" :class="className"></div>
+  <div
+    v-if="isExternal"
+    :style="styleExternalIcon"
+    class="svg-external-icon svg-icon"
+    :class="className"></div>
   <!-- 展示内部图标 -->
-  <svg v-else class="svg-icon" :class="className" aria-hidden="true">
+  <svg
+    v-else
+    class="svg-icon"
+    :class="className"
+    aria-hidden="true"
+    @click="$emit('click', $event)">
     <use :xlink:href="iconName" />
   </svg>
 </template>
@@ -36,7 +45,7 @@ const isExternal = computed(() => external(props.icon))
  */
 const styleExternalIcon = computed(() => ({
   mask: `url(${props.icon}) no-repeat 50% 50%`,
-  '-WebkitMask': `url(${props.icon}) no-repeat 50% 50%`
+  '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`
 }))
 /**
  * 内部图标

@@ -41,7 +41,10 @@
 				"GitHub.copilot",
 				"wangluo.vue-element-plus-snippets",
 				"ms-vscode.js-debug-nightly",
-				"FittenTech.Fitten-Code"
+				"FittenTech.Fitten-Code",
+				"ClemensPeters.format-json",
+				"ZainChen.json",
+				"ms-vscode.vscode-typescript-next"
 			]
 		}
 	},

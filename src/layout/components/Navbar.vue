@@ -5,6 +5,8 @@
     <!-- 面包屑 -->
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <!-- 搜索 -->
+      <header-search class="right-menu-item hover-effect"></header-search>
       <!--全屏 -->
       <screen-full class="right-menu-item hover-effect" />
       <!-- 切换主题 -->
@@ -53,6 +55,7 @@ import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemePicker from '@/components/ThemeSelect/index.vue'
 import ScreenFull from '@/components/Screenfull/index.vue'
+import HeaderSearch from '@/components/HeaderSearch/index.vue'
 
 const store = useStore()
 // 设置计算属性，获取用户信息，用于显示头像
