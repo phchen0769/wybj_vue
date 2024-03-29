@@ -4,7 +4,16 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+watch(route, (to, from) => {
+  console.log('to:', to)
+  console.log('from:', from)
+})
+</script>
 
 <style lang="scss" scoped>
 .app-main {
