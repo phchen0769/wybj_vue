@@ -8,7 +8,8 @@ export function arrayToRouter(array) {
       nodes.push({
         path: row.path, // 路由地址
         hidden: row.hidden, // 全部携程true就行，如果后端没配
-        component: require('@/layout/index').default, // 子组件的路由出口
+        component: () => import('@/layout/index'),
+        // 子组件的路由出口
         name: row.name, // 路由名称
         meta: { title: row.title, icon: row.icon }, // title就是显示的名字
         id: row.router_id, // 路由的id
@@ -30,8 +31,7 @@ export function arrayToRouter(array) {
           name: row.name,
           hidden: row.hidden,
           // 核心代码，因为二级路由的component是需要匹配页面的
-          component: () =>
-            require('@/views/' + row.component + '/index').default,
+          component: () => import('@/views/' + row.component + '/index'),
           meta: { title: row.title, icon: row.icon },
           id: row.router_id
         }

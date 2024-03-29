@@ -47,7 +47,7 @@
       }}</el-button>
       <!-- 注册 -->
       <el-button type="primary">{{ $t('msg.login.regesterBtn') }}</el-button>
-      <div class="tips" v-html="$t('msg.login.desc')"></div>
+      <!-- <div class="tips" v-html="$t('msg.login.desc')"></div> -->
     </el-form>
   </div>
 </template>

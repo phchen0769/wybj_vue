@@ -24,22 +24,24 @@ export const publicRoutes = [
   {
     // 登录页
     path: '/login',
-    component: () => import('@/views/login/index.vue'),
-    hidden: true
+    component: () => import('@/views/login/index.vue')
   },
+  // {
+  //   // 注册页
+  //   path: '/register',
+  //   component: () => import('@/views/register/index.vue')
+  // },
   {
     // 首页
     path: '/',
     redirect: '/profile',
     component: layout,
-    hidden: true,
     children: [
       // 个人中心
       {
         path: '/profile',
         name: 'profile',
         component: () => import('@/views/profile/index.vue'),
-        hidden: false,
         meta: {
           title: 'profile',
           icon: 'el-icon',
@@ -50,20 +52,18 @@ export const publicRoutes = [
       {
         path: '/404',
         name: '404',
-        component: () => import('@/views/error-page/404.vue'),
-        hidden: true
+        component: () => import('@/views/error-page/404.vue')
       },
       // 401
       {
         path: '/401',
         name: '401',
-        component: () => import('@/views/error-page/401.vue'),
-        hidden: true
+        component: () => import('@/views/error-page/401.vue')
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        component: () => import('@/views/error-page/404')
       }
-      // {
-      //   path: '/:pathMatch(.*)*',
-      //   component: () => import('@/views/error-page/404')
-      // }
     ]
   }
 ]

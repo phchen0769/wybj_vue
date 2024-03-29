@@ -46,6 +46,10 @@ export default {
     themeColorChange: '主题色更换',
     themeChange: '主题更换'
   },
+  headerSearch: {
+    placeholder: '页面搜索',
+    noData: '无搜索结果'
+  },
   universal: {
     title: '提示',
     confirm: '确定',

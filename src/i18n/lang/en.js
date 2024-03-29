@@ -46,6 +46,10 @@ export default {
     themeColorChange: 'Theme Color Change',
     themeChange: 'Theme Change'
   },
+  headerSearch: {
+    placeholder: 'Page Search',
+    noData: 'No search results'
+  },
   universal: {
     title: 'reminder',
     confirm: 'confirm',

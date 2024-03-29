@@ -21,12 +21,14 @@ const getters = {
     ...state.theme.variables,
     ...generateColors(getStorage(MAIN_COLOR))
   }),
+  // 获取主题色
+  mainColor: (state) => state.theme.mainColor,
   // 定义动态菜单的css变量
   sidebarOpened: (state) => state.app.sidebarOpened,
   // 获取语言
   language: (state) => state.app.language,
-  // 获取主题色
-  mainColor: (state) => state.theme.mainColor
+  // tagview
+  tagsViewList: (state) => state.app.tagsViewList
 }
 
 export default getters

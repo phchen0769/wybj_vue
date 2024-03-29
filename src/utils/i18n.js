@@ -14,6 +14,7 @@ export function generateTitle(title) {
  */
 export function watchSwitchLang(...cbs) {
   watch(
+    // 当language的值发生变化时，调用回调函数
     () => store.getters.language,
     () => {
       cbs.forEach((cb) => cb(store.getters.language))

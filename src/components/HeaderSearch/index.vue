@@ -12,7 +12,8 @@
       filterable
       default-first-option
       remote
-      placeholder="Search"
+      :placeholder="i18n.t('msg.headerSearch.placeholder')"
+      :no-data-text="i18n.t('msg.headerSearch.noData')"
       :remote-method="querySearch"
       @change="onSelectChange">
       <el-option
@@ -31,6 +32,11 @@ import { useRouter } from 'vue-router'
 import Fuse from 'fuse.js'
 import { generateRoutes } from './FuseData'
 import { watchSwitchLang } from '@/utils/i18n'
+
+// 导入i18n
+import { useI18n } from 'vue-i18n'
+// 实例化i18n
+const i18n = useI18n()
 
 // 检索数据源
 const router = useRouter()
@@ -100,7 +106,7 @@ const search = ref('')
 // const querySearch = () => {
 //   console.log('querySearch')
 // }
-// 搜索结果
+// 搜索结果(响应式的引用)
 const searchOptions = ref([])
 // 搜索方法
 const querySearch = (query) => {
