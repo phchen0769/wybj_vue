@@ -35,12 +35,6 @@ router.beforeEach(async (to, from, next) => {
         })
         // 不强制进行跳转，浏览器刷新后会找不到页面
         // 此时已添加了后端返回的动态路由，进行跳转一次
-        // if (privateRoutes.value) {
-        //   // 此处 next 里就不可用 ...to，因为 to 是临时路由
-        //   next({ path: to.path, query: to.query, replace: true })
-        // } else {
-        //   next({ ...to, replace: true })
-        // }
         if (privateRoutes.value) {
           // 此处 next 里就不可用 ...to，因为 to 是临时路由
           next({ path: to.path, query: to.query, replace: true })
