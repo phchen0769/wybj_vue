@@ -69,6 +69,7 @@ export default {
     close: '关闭',
     next: '下一个',
     prev: '上一个',
+    done: '结束',
     guideTitle: '引导',
     guideDesc: '打开引导功能',
     hamburgerTitle: '汉堡按钮',
@@ -86,7 +87,10 @@ export default {
     tagTitle: '标签',
     tagDesc: '已打开页面标签',
     sidebarTitle: '菜单',
-    sidebarDesc: '项目功能菜单'
+    sidebarDesc: '项目功能菜单',
+    endingTitle: '感谢使用',
+    endingDesc:
+      '以上就是所有功能了，现在可以开始使用系统了。如果你有任何问题，请联系作者。感谢你的支持。'
   },
   profile: {
     muted: '《vue3 改写 vue-element-admin，实现后台前端综合解决方案》项目演示',
