@@ -1,6 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import store from '@/store'
-import layout from '@/layout/index.vue'
 // import ArticleCreaterRouter from './modules/ArticleCreate'
 // import ArticleRouter from './modules/Article'
 // import PermissionListRouter from './modules/PermissionList'
@@ -35,7 +34,7 @@ export const publicRoutes = [
     // 首页
     path: '/',
     redirect: '/profile',
-    component: layout,
+    component: () => import('@/layout/index.vue'),
     children: [
       // 个人中心
       {
