@@ -23,19 +23,16 @@ router.beforeEach(async (to, from, next) => {
       // 判断用户信息是否存在，如不存在，则获取用户信息
       if (!store.getters.hasUserInfo) {
         await store.dispatch('user/getUserInfo')
-
         // 设置计算属性，获取用户路由
         const privateRoutes = computed(() => {
           return arrayToRouter(store.getters.userInfo.routers)
         })
-
         // 后端控制路由：私有动态路由，赋值给vue-router
         privateRoutes.value.forEach((item) => {
           router.addRoute(item)
           // trigger a redirection
           return to.fullPath
         })
-
         // 不强制进行跳转，浏览器刷新后会找不到页面
         // 此时已添加了后端返回的动态路由，进行跳转一次
         if (privateRoutes.value) {

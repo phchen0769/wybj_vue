@@ -1,5 +1,5 @@
 <template>
-  <div class="">创建文章</div>
+  <div class="">创建文章123</div>
 </template>
 
 <script setup>
