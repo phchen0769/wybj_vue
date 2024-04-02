@@ -1,15 +1,24 @@
 <template>
   <router-view />
 </template>
-<script>
-export default {
-  name: 'App'
-}
+<script setup>
+import { useStore } from 'vuex'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
+import { watchSwitchLang } from '@/utils/i18n'
+
+const store = useStore()
+generateNewStyle(store.getters.mainColor).then((newStyleText) => {
+  writeNewStyle(newStyleText)
+})
+
+// 语言切换后,重新获取用户信息
+watchSwitchLang(() => {
+  if (store.getters.token) {
+    store.dispatch('user/getUserInfo')
+  }
+})
 
 // 解决ERROR ResizeObserver loop completed with undelivered notifications.
-
-// 问题的
-
 const debounce = (fn, delay) => {
   let timer = null
 

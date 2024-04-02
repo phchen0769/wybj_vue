@@ -44,7 +44,7 @@ const getFeatureData = async () => {
   // 从后端获取feature数据（没分页时处理）
   featureData.value = await feature()
   // 打印featureDate内容
-  console.log('featureData', featureData.value)
+  // console.log('featureData', featureData.value)
 }
 getFeatureData()
 

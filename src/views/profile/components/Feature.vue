@@ -27,7 +27,7 @@ defineProps({
 }
 
 .el-collapse-item {
-  :deep a {
+  :deep(a) {
     color: #2d62f7;
     margin: 0 4px;
   }

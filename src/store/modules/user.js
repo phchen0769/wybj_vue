@@ -62,7 +62,7 @@ export default {
     /**
      * 获取用户信息
      */
-    async getUserInfo() {
+    async fetchUserInfo() {
       const res = await getUserInfo()
       this.commit('user/setUserInfo', res)
       return res
