@@ -8,13 +8,13 @@
         <el-card>
           <el-tabs v-model="activeName">
             <el-tab-pane :label="$t('msg.profile.feature')" name="feature">
-              <feature :features="featureData" />
+              <!-- <feature :features="featureData" /> -->
             </el-tab-pane>
             <el-tab-pane :label="$t('msg.profile.chapter')" name="chapter">
-              <chapter />
+              <!-- <chapter /> -->
             </el-tab-pane>
             <el-tab-pane :label="$t('msg.profile.author')" name="author">
-              <author />
+              <!-- <author /> -->
             </el-tab-pane>
           </el-tabs>
         </el-card>
@@ -26,22 +26,22 @@
 <script setup>
 import ProjectCard from './components/ProjectCard.vue'
 // eslint-disable-next-line
-import Feature from './components/Feature.vue'
-import Author from './components/Author.vue'
-import Chapter from './components/Chapter.vue'
-import { feature } from '@/api/user'
-import { ref } from 'vue'
-import { watchSwitchLang } from '@/utils/i18n'
+// import Feature from './components/Feature.vue'
+// import Author from './components/Author.vue'
+// import Chapter from './components/Chapter.vue'
+// import { feature } from '@/api/user'
+// import { ref } from 'vue'
+// import { watchSwitchLang } from '@/utils/i18n'
 
-const activeName = ref('feature')
-const featureData = ref([])
-const getFeatureData = async () => {
-  featureData.value = await feature()
-}
-getFeatureData()
+// const activeName = ref('feature')
+// const featureData = ref([])
+// const getFeatureData = async () => {
+//   featureData.value = await feature()
+// }
+// getFeatureData()
 
 // 监听语言切换
-watchSwitchLang(getFeatureData)
+// watchSwitchLang(getFeatureData)
 </script>
 
 <style lang="scss" scoped>
