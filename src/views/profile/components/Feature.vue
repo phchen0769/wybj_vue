@@ -4,14 +4,15 @@
       v-for="item in features"
       :key="item.id"
       :title="item.title"
-      :name="item.id">
+      :name="item.id"
+    >
       <div v-html="item.content"></div>
     </el-collapse-item>
   </el-collapse>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
 const activeName = ref(0)
 defineProps({
   features: {
@@ -27,7 +28,7 @@ defineProps({
 }
 
 .el-collapse-item {
-  :deep(a) {
+  :deep a {
     color: #2d62f7;
     margin: 0 4px;
   }
