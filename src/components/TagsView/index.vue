@@ -1,5 +1,5 @@
 <template>
-  <div class="tags-view-container" id="guide-tags">
+  <div class="tags-view-container">
     <el-scrollbar class="tags-view-wrapper">
       <router-link
         class="tags-view-item"

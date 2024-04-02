@@ -1,7 +1,6 @@
 <template>
   <!-- 一级 menu 菜单 -->
   <el-menu
-    id="guide-sidebar"
     :collapse="!$store.getters.sidebarOpened"
     :background-color="$store.getters.cssVar.menuBg"
     :text-color="$store.getters.cssVar.menuText"
