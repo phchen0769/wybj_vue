@@ -15,7 +15,7 @@ const getters = {
     return JSON.stringify(state.user.userInfo) !== '{}'
   },
   // 获取用户信息
-  userInfo: (state) => state.user.userInfo,
+  userInfo: (state) => state.user.userInfo[0],
   // 定义动态菜单的css变量
   cssVar: (state) => ({
     ...state.theme.variables,

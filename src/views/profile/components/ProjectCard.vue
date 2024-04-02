@@ -13,8 +13,7 @@
           :image="$store.getters.userInfo.avatar"
           :height="'100px'"
           :width="'100px'"
-          :hoverable="false"
-        >
+          :hoverable="false">
           <div>Hello</div>
           {{ $store.getters.userInfo.title }}
         </pan-thumb>
@@ -51,9 +50,14 @@
         }}</span>
       </div>
       <div class="project-bio-section-body">
-        <div class="progress-item" v-for="item in features" :key="item.id">
-          <div>{{ item.title }}</div>
-          <el-progress :percentage="item.percentage" status="success" />
+        <div
+          class="progress-item"
+          v-for="item in features"
+          :key="item ? item.id : undefined">
+          <div>{{ item ? item.title : undefined }}</div>
+          <el-progress
+            :percentage="item ? item.percentage : undefined"
+            status="success" />
         </div>
       </div>
     </div>
@@ -61,7 +65,6 @@
 </template>
 <script setup>
 import PanThumb from '@/components/PanThumb'
-import { defineProps } from 'vue'
 defineProps({
   features: {
     type: Array,

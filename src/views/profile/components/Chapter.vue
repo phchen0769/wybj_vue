@@ -2,12 +2,11 @@
   <el-timeline>
     <el-timeline-item
       v-for="item in chapterData"
-      :key="item.id"
-      :timestamp="item.timestamp"
-      placement="top"
-    >
+      :key="item ? item.id : undefined"
+      :timestamp="item ? item.timestamp : undefined"
+      placement="top">
       <el-card>
-        <h4>{{ item.content }}</h4>
+        <h4>{{ item ? item.content : undefined }}</h4>
       </el-card>
     </el-timeline-item>
   </el-timeline>

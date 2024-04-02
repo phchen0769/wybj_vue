@@ -23,6 +23,8 @@ router.beforeEach(async (to, from, next) => {
       // 判断用户信息是否存在，如不存在，则获取用户信息
       if (!store.getters.hasUserInfo) {
         await store.dispatch('user/getUserInfo')
+
+        console.log(store.getters.userInfo)
         // 设置计算属性，获取用户路由
         const privateRoutes = computed(() => {
           return arrayToRouter(store.getters.userInfo.routers)
