@@ -5,8 +5,7 @@
         image="https://img4.sycdn.imooc.com/61110c2b0001152907400741-140-140.jpg"
         height="60px"
         width="60px"
-        :hoverable="false"
-      >
+        :hoverable="false">
         {{ $t('msg.profile.name') }}
       </pan-thumb>
       <div class="header-desc">

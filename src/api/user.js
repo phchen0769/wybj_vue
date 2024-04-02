@@ -2,13 +2,15 @@ import request from '@/utils/request'
 
 export const feature = () => {
   return request({
-    url: '/user/feature'
+    url: '/feature',
+    method: 'get'
   })
 }
 
 // 获取章节模块
 export const chapter = () => {
   return request({
-    url: '/user/chapter'
+    url: '/chapter',
+    method: 'get'
   })
 }
