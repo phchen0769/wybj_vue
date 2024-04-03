@@ -50,7 +50,8 @@ export const userDetail = (id) => {
  */
 export const userRoles = (id) => {
   return request({
-    url: `/roles/${id}`
+    // url: `/roles/${id}`
+    url: `/userinfo/${id}`
   })
 }
 /**

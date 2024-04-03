@@ -28,7 +28,6 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { userRoles, updateRole } from '@/api/user-manage'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
-// import { useStore } from 'vuex'
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -36,6 +35,10 @@ const props = defineProps({
   },
   userId: {
     type: String,
+    required: true
+  },
+  row: {
+    type: Object,
     required: true
   }
 })
@@ -50,9 +53,6 @@ const onConfirm = async () => {
   const roles = userRoleTitleList.value.map((title) => {
     return allRoleList.value.find((role) => role.title === title)
   })
-  // const store = useStore()
-  // const roles = store.getters.userInfo.roles
-  // console.log(roles)
 
   await updateRole(props.userId, roles)
 
@@ -82,7 +82,7 @@ const userRoleTitleList = ref([])
 // 获取当前用户角色
 const getUserRoles = async () => {
   const res = await userRoles(props.userId)
-  userRoleTitleList.value = res.role.map((item) => item.title)
+  userRoleTitleList.value = res.role.map((item) => item.name)
 }
 watch(
   () => props.userId,

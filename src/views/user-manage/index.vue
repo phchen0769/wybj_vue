@@ -15,7 +15,7 @@
     </el-card> -->
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
-        <el-table-column label="#" type="index" />
+        <el-table-column :label="$t('msg.excel.num')" type="index" />
         <el-table-column prop="username" :label="$t('msg.excel.name')">
         </el-table-column>
         <el-table-column prop="mobile" :label="$t('msg.excel.mobile')">
@@ -58,7 +58,7 @@
               type="primary"
               size="default"
               @click="onShowClick(row.id)"
-              >{{ $t('msg.excel.show') }}{{ row.id }}</el-button
+              >{{ $t('msg.excel.show') }}</el-button
             >
             <!-- v-permission="['distributeRole']" -->
             <el-button
@@ -98,7 +98,7 @@
 </template>
 
 <script setup>
-import { ref, onActivated, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
@@ -120,15 +120,16 @@ const getListData = async () => {
   })
   tableData.value = result.results
   total.value = result.count
-  console.log(tableData.value)
-  console.log(total.value)
+  // 打印获取到的数据
+  // console.log(tableData.value)
+  // console.log(total.value)
 }
 // 执行获取数据的函数
 getListData()
 // 监听语言切换
 watchSwitchLang(getListData)
 // 处理导入用户后数据不重新加载的问题
-onActivated(getListData)
+// onActivated(getListData)
 
 // 分页相关
 /**
@@ -167,10 +168,6 @@ const onShowClick = (id) => {
 const roleDialogVisible = ref(false)
 const selectUserId = ref('')
 const onShowRoleClick = (row) => {
-  if (!row.id) {
-    console.error('row.id is undefined')
-    return
-  }
   roleDialogVisible.value = true
   selectUserId.value = row.id
 }
@@ -186,16 +183,21 @@ const i18n = useI18n()
 const onRemoveClick = (row) => {
   ElMessageBox.confirm(
     i18n.t('msg.excel.dialogTitle1') +
-      row.name +
+      row.username +
       i18n.t('msg.excel.dialogTitle2'),
     {
       type: 'warning'
     }
   ).then(async () => {
-    await deleteUser(row.id)
-    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
-    // 重新渲染数据
-    getListData()
+    try {
+      await deleteUser(row.id)
+      ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+      // 重新渲染数据
+      getListData()
+    } catch (error) {
+      console.log(error)
+      ElMessage.error(i18n.t('msg.excel.removeFail'))
+    }
   })
 }
 

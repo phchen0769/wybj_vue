@@ -89,18 +89,24 @@
 import { userDetail } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-  }
-})
+// 不知道为什么不能从父组件拿到id
+// const props = defineProps({
+//   id: {
+//     type: String,
+//     required: true
+//   }
+// })
+
+const route = useRoute()
 
 // 数据相关
 const detailData = ref({})
 const getUserDetail = async () => {
-  detailData.value = await userDetail(props.id)
+  // 从路由中获取id
+  detailData.value = await userDetail(route.params.id)
+  // 打印获取到的数据
   console.log(detailData.value)
 }
 getUserDetail()
