@@ -32,7 +32,8 @@ export const userBatchImport = (data) => {
  */
 export const deleteUser = (id) => {
   return request({
-    url: `/user-manage/detele/${id}`
+    url: `/userinfo/${id}`,
+    method: 'DELETE'
   })
 }
 /**
@@ -40,7 +41,8 @@ export const deleteUser = (id) => {
  */
 export const userDetail = (id) => {
   return request({
-    url: `/user-manage/detail/${id}`
+    url: `/userinfo/${id}`,
+    method: 'GET'
   })
 }
 /**
@@ -48,7 +50,7 @@ export const userDetail = (id) => {
  */
 export const userRoles = (id) => {
   return request({
-    url: `/user-manage/role/${id}`
+    url: `/roles/${id}`
   })
 }
 /**

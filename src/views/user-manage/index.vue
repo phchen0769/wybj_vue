@@ -1,6 +1,6 @@
 <template>
   <div class="user-manage-container">
-    <el-card class="header">
+    <!-- <el-card class="header">
       <div>
         <el-button
           type="primary"
@@ -12,7 +12,7 @@
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
       </div>
-    </el-card>
+    </el-card> -->
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column label="#" type="index" />
@@ -35,8 +35,8 @@
                 v-for="item in row.role"
                 :key="item ? item.id : undefined"
                 size="default"
-                >{{ item ? item.title : undefined }}</el-tag
-              >
+                >{{ item ? item.name : undefined }}
+              </el-tag>
             </div>
             <div v-else>
               <el-tag size="default">{{ $t('msg.excel.defaultRole') }}</el-tag>
@@ -57,21 +57,21 @@
             <el-button
               type="primary"
               size="default"
-              @click="onShowClick(row._id)"
-              >{{ $t('msg.excel.show') }}</el-button
+              @click="onShowClick(row.id)"
+              >{{ $t('msg.excel.show') }}{{ row.id }}</el-button
             >
+            <!-- v-permission="['distributeRole']" -->
             <el-button
               type="info"
               size="default"
               @click="onShowRoleClick(row)"
-              v-permission="['distributeRole']"
               >{{ $t('msg.excel.showRole') }}</el-button
             >
+            <!-- v-permission="['removeUser']" -->
             <el-button
               type="danger"
               size="default"
               @click="onRemoveClick(row)"
-              v-permission="['removeUser']"
               >{{ $t('msg.excel.remove') }}</el-button
             >
           </template>
@@ -89,7 +89,7 @@
         :total="total">
       </el-pagination>
     </el-card>
-    <export-to-excel v-model="exportToExcelVisible"></export-to-excel>
+    <!-- <export-to-excel v-model="exportToExcelVisible"></export-to-excel> -->
     <roles-dialog
       v-model="roleDialogVisible"
       :userId="selectUserId"
@@ -98,28 +98,32 @@
 </template>
 
 <script setup>
-import { ref, onActivated } from 'vue'
-import { getUserManageList } from '@/api/user-manage'
+import { ref, onActivated, watch } from 'vue'
+import { getUserManageList, deleteUser } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
-// import { ElMessage, ElMessageBox } from 'element-plus'
-// import { useI18n } from 'vue-i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { useI18n } from 'vue-i18n'
 // import ExportToExcel from './components/Export2Excel.vue'
-// import RolesDialog from './components/roles.vue'
-// 数据相关
+import RolesDialog from './components/roles.vue'
+// ①、定义数据
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
 const size = ref(2)
-// 获取数据的方法
+// ②、获取数据
 const getListData = async () => {
+  // 调用api接口函数获取数据，并赋值
   const result = await getUserManageList({
     page: page.value,
     size: size.value ? size.value : 10
   })
   tableData.value = result.results
   total.value = result.count
+  console.log(tableData.value)
+  console.log(total.value)
 }
+// 执行获取数据的函数
 getListData()
 // 监听语言切换
 watchSwitchLang(getListData)
@@ -154,42 +158,46 @@ const router = useRouter()
  * 查看用户详情按钮点击事件
  */
 const onShowClick = (id) => {
-  router.push(`/userinfo/${id}`)
+  router.push(`/user/info/${id}`)
 }
 /**
  * 查看角色的点击事件
  * 为员工分配角色
  */
-// const roleDialogVisible = ref(false)
-// const selectUserId = ref('')
-// const onShowRoleClick = (row) => {
-//   roleDialogVisible.value = true
-//   selectUserId.value = row._id
-// }
+const roleDialogVisible = ref(false)
+const selectUserId = ref('')
+const onShowRoleClick = (row) => {
+  if (!row.id) {
+    console.error('row.id is undefined')
+    return
+  }
+  roleDialogVisible.value = true
+  selectUserId.value = row.id
+}
 // 保证每次打开重新获取用户角色数据
-// watch(roleDialogVisible, (val) => {
-//   if (!val) selectUserId.value = ''
-// })
+watch(roleDialogVisible, (val) => {
+  if (!val) selectUserId.value = ''
+})
 /**
  * 删除按钮点击事件
  * 删除用户
  */
-// const i18n = useI18n()
-// const onRemoveClick = (row) => {
-//   ElMessageBox.confirm(
-//     i18n.t('msg.excel.dialogTitle1') +
-//       row.username +
-//       i18n.t('msg.excel.dialogTitle2'),
-//     {
-//       type: 'warning'
-//     }
-//   ).then(async () => {
-//     await deleteUser(row._id)
-//     ElMessage.success(i18n.t('msg.excel.removeSuccess'))
-//     // 重新渲染数据
-//     getListData()
-//   })
-// }
+const i18n = useI18n()
+const onRemoveClick = (row) => {
+  ElMessageBox.confirm(
+    i18n.t('msg.excel.dialogTitle1') +
+      row.name +
+      i18n.t('msg.excel.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteUser(row.id)
+    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
+}
 
 /**
  * excel 导出点击事件

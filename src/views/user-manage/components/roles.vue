@@ -6,8 +6,8 @@
     <el-checkbox-group v-model="userRoleTitleList">
       <el-checkbox
         v-for="item in allRoleList"
-        :key="item.id"
-        :label="item.title"></el-checkbox>
+        :key="item ? item.id : undefined"
+        :label="item ? item.title : undefined"></el-checkbox>
     </el-checkbox-group>
 
     <template #footer>
@@ -23,12 +23,12 @@
 
 <script setup>
 import { defineEmits, ref, watch } from 'vue'
-import { roleList } from '@/api/role'
+import { getRoleList } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
 import { userRoles, updateRole } from '@/api/user-manage'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
 const props = defineProps({
   modelValue: {
     type: Boolean,
@@ -47,12 +47,12 @@ const emits = defineEmits(['update:modelValue', 'updateRole'])
 const i18n = useI18n()
 const onConfirm = async () => {
   // 处理数据结构
-  // const roles = userRoleTitleList.value.map((title) => {
-  //   return allRoleList.value.find((role) => role.title === title)
-  // })
-  const store = useStore()
-  const roles = store.getters.userInfo
-  console.log(roles)
+  const roles = userRoleTitleList.value.map((title) => {
+    return allRoleList.value.find((role) => role.title === title)
+  })
+  // const store = useStore()
+  // const roles = store.getters.userInfo.roles
+  // console.log(roles)
 
   await updateRole(props.userId, roles)
 
@@ -72,7 +72,7 @@ const closed = () => {
 const allRoleList = ref([])
 // 获取所有角色数据的方法
 const getListData = async () => {
-  allRoleList.value = await roleList()
+  allRoleList.value = await getRoleList()
 }
 getListData()
 watchSwitchLang(getListData)
