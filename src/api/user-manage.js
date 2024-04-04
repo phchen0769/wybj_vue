@@ -17,6 +17,7 @@ export const getUserManageAllList = () => {
     url: '/userinfo'
   })
 }
+
 /**
  * 批量导入
  */
@@ -50,17 +51,16 @@ export const userDetail = (id) => {
  */
 export const userRoles = (id) => {
   return request({
-    // url: `/roles/${id}`
-    url: `/userinfo/${id}`
+    url: `/roles/${id}`
   })
 }
 /**
- * 分用户分配角色
+ * 为用户分配角色
  */
 export const updateRole = (id, roles) => {
   return request({
-    url: `/user-manage/update-role/${id}`,
-    method: 'POST',
+    url: `/userinfo/${id}`,
+    method: 'PATCH',
     data: {
       roles
     }
