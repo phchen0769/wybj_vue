@@ -163,9 +163,20 @@ export default {
     updateRoleSuccess: 'User role updated successfully'
   },
   permission: {
+    num: 'No.',
     name: 'Authority name',
-    mark: 'Authority ID',
-    desc: 'Permission description'
+    method: 'Method type',
+    router: 'Router',
+    add: 'New',
+    edit: 'Edit',
+    remove: 'Delete',
+    addDialogTitle: 'Add permission',
+    editDialogTitle: 'Edit permission',
+    dialogTitle1: 'Are you sure you want to delete the permission ',
+    dialogTitle2: ' Is it?',
+    addSuccess: 'Added successfully',
+    editSuccess: 'Edited successfully',
+    removeSuccess: 'Deleted successfully'
   },
   article: {
     ranking: 'Ranking',

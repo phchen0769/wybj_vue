@@ -1,9 +1,7 @@
 <template>
-  <div class="">角色列表</div>
+  <div>角色列表页</div>
 </template>
 
-<script setup>
-import {} from 'vue'
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

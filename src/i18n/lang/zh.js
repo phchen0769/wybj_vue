@@ -162,9 +162,20 @@ export default {
     updateRoleSuccess: '用户角色更新成功'
   },
   permission: {
+    num: '序号',
     name: '权限名称',
-    mark: '权限标识',
-    desc: '权限描述'
+    method: '方法类型',
+    router: '所属路由',
+    add: '新增',
+    edit: '编辑',
+    remove: '删除',
+    addDialogTitle: '新增权限',
+    editDialogTitle: '编辑权限',
+    dialogTitle1: '确定要删除权限 ',
+    dialogTitle2: ' 吗？',
+    addSuccess: '新增成功',
+    editSuccess: '编辑成功',
+    removeSuccess: '删除成功'
   },
   article: {
     ranking: '排名',

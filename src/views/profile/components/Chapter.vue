@@ -14,12 +14,15 @@
 
 <script setup>
 import { watchSwitchLang } from '@/utils/i18n'
-import { chapter } from '@/api/user'
+import { chapterListAPI } from '@/api/user'
 import { ref } from 'vue'
 const chapterData = ref([])
 
 const getChapterData = async () => {
-  chapterData.value = await chapter()
+  const res = await chapterListAPI()
+  chapterData.value = await res.results
+  // 打印chapterData内容
+  // console.log('chapterData', chapterData.value)
 }
 getChapterData()
 

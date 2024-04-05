@@ -6,7 +6,8 @@ import request from '@/utils/request'
 export const getUserManageList = (data) => {
   return request({
     url: '/userinfo',
-    params: data
+    params: data,
+    method: 'GET'
   })
 }
 /**

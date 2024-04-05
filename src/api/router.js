@@ -3,9 +3,9 @@ import request from '@/utils/request'
 /**
  * 获取角色列表数据
  */
-export const roleListAPI = () => {
+export const getRouterListAPI = () => {
   return request({
-    url: '/roles',
+    url: '/routers',
     method: 'GET'
   })
 }

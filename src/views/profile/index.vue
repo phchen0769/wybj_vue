@@ -29,20 +29,16 @@ import ProjectCard from './components/ProjectCard.vue'
 import Feature from './components/Feature.vue'
 import Author from './components/Author.vue'
 import Chapter from './components/Chapter.vue'
-import { feature } from '@/api/user'
+import { featureListAPI } from '@/api/user'
 import { ref } from 'vue'
 import { watchSwitchLang } from '@/utils/i18n'
 
 const activeName = ref('feature')
 const featureData = ref([])
 const getFeatureData = async () => {
-  // 从后端获取feature数据（有分页时处理）
-  // const res = await feature()
-  // if (res && res.results) {
-  //   featureData.value = res.results
-  // }
-  // 从后端获取feature数据（没分页时处理）
-  featureData.value = await feature()
+  // 从后端获取数据
+  const res = await featureListAPI()
+  featureData.value = res.results
   // 打印featureDate内容
   // console.log('featureData', featureData.value)
 }

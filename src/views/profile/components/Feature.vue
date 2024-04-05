@@ -2,10 +2,10 @@
   <el-collapse v-model="activeName" accordion>
     <el-collapse-item
       v-for="item in features"
-      :key="item ? item.id : undefined"
-      :title="item ? item.title : undefined"
-      :name="item ? item.id : undefined">
-      <div v-html="item ? item.content : undefined"></div>
+      :key="item.id"
+      :title="item.title"
+      :name="item.id">
+      <div v-html="item.content"></div>
     </el-collapse-item>
   </el-collapse>
 </template>

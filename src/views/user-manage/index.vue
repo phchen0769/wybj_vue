@@ -81,7 +81,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="page"
-        :page-sizes="[2, 5, 10, 20]"
+        :page-sizes="[5, 10, 20, 50, 100]"
         :page-size="size"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
@@ -90,7 +90,7 @@
     <!-- <export-to-excel v-model="exportToExcelVisible"></export-to-excel> -->
     <roles-dialog
       v-model="roleDialogVisible"
-      :userId="selectUserId"
+      :userId="selectUserId.toString()"
       @updateRole="getListData"></roles-dialog>
   </div>
 </template>
@@ -104,20 +104,20 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 // import ExportToExcel from './components/Export2Excel.vue'
 import RolesDialog from './components/roles.vue'
-// ①、定义数据
+// ①、定义数据，并赋初值
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
-const size = ref(2)
+const size = ref(10)
 // ②、获取数据
 const getListData = async () => {
   // 调用api接口函数获取数据，并赋值
-  const result = await getUserManageList({
+  const res = await getUserManageList({
     page: page.value,
     size: size.value
   })
-  tableData.value = result.results
-  total.value = result.count
+  tableData.value = res.results
+  total.value = res.count
   // console.log(tableData.value)
   // console.log(total.value)
 }
@@ -166,10 +166,6 @@ const onShowClick = (id) => {
 const roleDialogVisible = ref(false)
 const selectUserId = ref('')
 const onShowRoleClick = (row) => {
-  if (!row.id) {
-    console.error('row.id is undefined')
-    return
-  }
   roleDialogVisible.value = true
   selectUserId.value = row.id
 }

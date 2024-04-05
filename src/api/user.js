@@ -1,14 +1,16 @@
 import request from '@/utils/request'
 
-export const feature = () => {
+export const featureListAPI = () => {
   return request({
-    url: '/features'
+    url: '/features',
+    method: 'GET'
   })
 }
 
 // 获取章节模块
-export const chapter = () => {
+export const chapterListAPI = () => {
   return request({
-    url: '/chapters'
+    url: '/chapters',
+    method: 'GET'
   })
 }
