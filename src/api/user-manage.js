@@ -46,23 +46,16 @@ export const userDetail = (id) => {
     method: 'GET'
   })
 }
-/**
- * 获取指定用户角色
- */
-export const userRoles = (id) => {
-  return request({
-    url: `/roles/${id}`
-  })
-}
+
 /**
  * 为用户分配角色
  */
-export const updateRole = (id, roles) => {
+export const updateRole = (id, role) => {
   return request({
     url: `/userinfo/${id}`,
     method: 'PATCH',
     data: {
-      roles
+      role
     }
   })
 }

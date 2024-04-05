@@ -32,11 +32,8 @@
         <el-table-column :label="$t('msg.excel.role')">
           <template #default="{ row }">
             <div v-if="row.role && row.role.length > 0">
-              <el-tag
-                v-for="item in row.role"
-                :key="item ? item.id : undefined"
-                size="default"
-                >{{ item ? item.name : undefined }}
+              <el-tag v-for="item in row.role" :key="item.id" size="default"
+                >{{ item.name }}
               </el-tag>
             </div>
             <div v-else>
@@ -59,20 +56,20 @@
               type="primary"
               size="default"
               @click="onShowClick(row.id)"
-              >{{ $t('msg.excel.show') }}{{ row.id }}</el-button
+              >{{ $t('msg.excel.show') }}</el-button
             >
             <!-- v-permission="['distributeRole']" -->
             <el-button
               type="info"
               size="default"
-              @click="onShowRoleClick(row ? row : undefined)"
+              @click="onShowRoleClick(row)"
               >{{ $t('msg.excel.showRole') }}</el-button
             >
             <!-- v-permission="['removeUser']" -->
             <el-button
               type="danger"
               size="default"
-              @click="onRemoveClick(row ? row : undefined)"
+              @click="onRemoveClick(row)"
               >{{ $t('msg.excel.remove') }}</el-button
             >
           </template>
@@ -117,12 +114,12 @@ const getListData = async () => {
   // 调用api接口函数获取数据，并赋值
   const result = await getUserManageList({
     page: page.value,
-    size: size.value ? size.value : 10
+    size: size.value
   })
   tableData.value = result.results
   total.value = result.count
-  console.log(tableData.value)
-  console.log(total.value)
+  // console.log(tableData.value)
+  // console.log(total.value)
 }
 // 执行获取数据的函数
 getListData()
@@ -188,7 +185,7 @@ const i18n = useI18n()
 const onRemoveClick = (row) => {
   ElMessageBox.confirm(
     i18n.t('msg.excel.dialogTitle1') +
-      row.name +
+      row.username +
       i18n.t('msg.excel.dialogTitle2'),
     {
       type: 'warning'

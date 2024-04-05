@@ -103,7 +103,7 @@ const route = useRoute()
 // 数据相关
 const detailData = ref({})
 const getUserDetail = async () => {
-  detailData.value = await userDetail(props.id)
+  detailData.value = await userDetail(route.params.id)
   console.log(detailData.value)
 }
 getUserDetail()
