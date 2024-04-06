@@ -38,6 +38,7 @@ const props = defineProps({
     required: true
   }
 })
+// 定义触发事件函数，用于更新父组件的数据
 const emits = defineEmits(['update:modelValue', 'updateRole'])
 
 /**
@@ -53,7 +54,7 @@ const onConfirm = async () => {
   await updateRole(props.userId, roles)
 
   ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
-  // 角色更新成功
+  // 触发自定义事件函数，更新父组件数据
   emits('updateRole')
   closed()
 }
@@ -62,6 +63,7 @@ const onConfirm = async () => {
  * 关闭
  */
 const closed = () => {
+  // 触发自定义事件函数，更新父组件数据
   emits('update:modelValue', false)
 }
 

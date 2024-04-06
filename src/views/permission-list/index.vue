@@ -109,16 +109,17 @@
       <el-form-item :label="$t('msg.permission.method')" label-width="140px">
         <el-input v-model="selectPermission.method" autocomplete="off" />
       </el-form-item>
-      <!-- <el-form-item :label="$t('msg.permission.router')" label-width="140px">
+      <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
           :placeholder="$t('msg.permission.selectRouterDialog')">
           <el-option
             v-for="item in allRouter"
-            :key="item.router_id"
-            :label="item.router_id" />
+            :key="item.id"
+            :value="item.path"
+            :label="item.path" />
         </el-select>
-      </el-form-item> -->
+      </el-form-item>
     </el-form>
     <template #footer>
       <div class="dialog-footer">
@@ -145,6 +146,7 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useI18n } from 'vue-i18n'
+
 /**
  * 权限分级：
  * 1. 一级权限为页面权限
@@ -152,14 +154,28 @@ import { useI18n } from 'vue-i18n'
  * 2. 二级权限为功能权限
  *  permissionMark 对应 功能权限表
  */
+/**
+ *
+map 用法
+const numbers = [1, 2, 3, 4, 5]
+const squares = numbers.map((item) => item + 1)
+console.log(squares) // 输出：[2, 3, 4, 5, 6]
+
+find 用法
+const numbers = [1, 2, 3, 4, 5]
+const found = numbers.find((number) => number > 3)
+console.log(found) // 输出：4
+ */
+
 // 所有路由
 const allRouter = ref([])
 const getRouterAll = async () => {
   const res = await getRouterAllAPI()
   allRouter.value = res.results
   // 打印所有信息
-  console.log(allRouter.value)
+  console.log('allRouter', allRouter.value)
 }
+
 getRouterAll()
 
 // 所有权限
@@ -167,15 +183,22 @@ const permissionList = ref([])
 const total = ref(0)
 const page = ref(1)
 const size = ref(10)
+
 const getPermissionList = async () => {
   const res = await getPermissionListAPI({
     page: page.value,
     size: size.value
   })
   permissionList.value = res.results
+  console.log('permissionList.value', permissionList.value)
+  permissionList.value.forEach((item) => {
+    item.router = allRouter.value.find(
+      (router) => router.router_id === item.router.router_id
+    ).path
+  })
   total.value = res.count
   // 打印所有信息
-  // console.log(permissionList.value)
+  // console.log('permissionList.value', permissionList.value)
   // console.log(total.value)
   // console.log(page.value)
   // console.log(size.value)
@@ -209,6 +232,7 @@ const dialogFormEditVisible = ref(false)
  * 添加权限对话框显示
  */
 const onAddClick = () => {
+  selectPermission.value = []
   dialogFormAddVisible.value = true
 }
 
@@ -228,15 +252,15 @@ const onEditClick = (row) => {
   // 为表格赋值
   selectPermission.value = row
   // 打印selelPermission的值
-  console.log('selectPermission', selectPermission.value)
+  // console.log('selectPermission', selectPermission.value)
 }
 
 // 更新权限
 const updatePermission = (selectPermission) => {
   // 更新数据
-  updatePermissionAPI(selectPermission.value.id, selectPermission.value)
+  updatePermissionAPI(selectPermission.id, selectPermission.value)
   dialogFormEditVisible.value = false
-  ElMessage.success(i18n.t('msg.permission.updateSuccess'))
+  ElMessage.success(i18n.t('msg.universal.updateSuccess'))
 }
 
 // 保证每次打开重新获取用户角色数据
@@ -269,7 +293,4 @@ const onRemoveClick = async (selectPermission) => {
 }
 </script>
 
-<style lang="scss" scoped>
-.permission-container {
-}
-</style>
+<style lang="scss" scoped></style>
