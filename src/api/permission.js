@@ -3,7 +3,7 @@ import request from '@/utils/request'
 /**
  * 获取权限列表数据, data是查询参数page,limit,key等
  */
-export const permissionListAPI = (data) => {
+export const getPermissionListAPI = (data) => {
   return request({
     url: '/permissions',
     method: 'GET',

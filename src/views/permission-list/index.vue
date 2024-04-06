@@ -1,7 +1,7 @@
 <template>
-  <div class="">
+  <div class="permission-container">
     <el-card>
-      <el-table :data="allPermission" border style="width: 100%">
+      <el-table :data="permissionList" border style="width: 100%">
         <el-table-column
           :label="$t('msg.permission.num')"
           prop="id"
@@ -16,27 +16,27 @@
         <el-table-column prop="router" :label="$t('msg.permission.router')">
         </el-table-column>
         <el-table-column
-          :label="$t('msg.excel.action')"
+          :label="$t('msg.universal.action')"
           fixed="right"
           width="260">
           <template #default="{ row }">
             <!-- v-permission="['distributeRole']" -->
             <!-- v-permission="['removeUser']" -->
             <el-button type="success" size="default" @click="onAddClick(row)">{{
-              $t('msg.permission.add')
+              $t('msg.universal.add')
             }}</el-button>
 
             <el-button
               type="primary"
               size="default"
               @click="onEditClick(row)"
-              >{{ $t('msg.permission.edit') }}</el-button
+              >{{ $t('msg.universal.update') }}</el-button
             >
             <el-button
               type="danger"
               size="default"
               @click="onRemoveClick(row)"
-              >{{ $t('msg.permission.remove') }}</el-button
+              >{{ $t('msg.universal.remove') }}</el-button
             >
           </template>
         </el-table-column>
@@ -55,7 +55,7 @@
     </el-card>
   </div>
 
-  <!-- 添加权限 -->
+  <!-- 新增权限 -->
   <el-dialog
     v-model="dialogFormAddVisible"
     :title="$t('msg.permission.addDialogTitle')"
@@ -73,7 +73,7 @@
       <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
-          placeholder="Please select a router">
+          :placeholder="$t('msg.permission.selectRouterDialog')">
           <el-option
             v-for="item in allRouter"
             :key="item.id"
@@ -84,8 +84,12 @@
     </el-form>
     <template #footer>
       <div class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="addPermission()"> Confirm </el-button>
+        <el-button @click="dialogFormAddVisible = false">{{
+          $t('msg.universal.cancel')
+        }}</el-button>
+        <el-button type="primary" @click="addPermission()">{{
+          $t('msg.universal.confirm')
+        }}</el-button>
       </div>
     </template>
   </el-dialog>
@@ -105,23 +109,24 @@
       <el-form-item :label="$t('msg.permission.method')" label-width="140px">
         <el-input v-model="selectPermission.method" autocomplete="off" />
       </el-form-item>
-      <el-form-item :label="$t('msg.permission.router')" label-width="140px">
+      <!-- <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
-          placeholder="Please select a router">
+          :placeholder="$t('msg.permission.selectRouterDialog')">
           <el-option
             v-for="item in allRouter"
-            :key="item.id"
-            :label="item.title"
-            :value="item.id" />
+            :key="item.router_id"
+            :label="item.router_id" />
         </el-select>
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
     <template #footer>
       <div class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="updatePermission()">
-          Confirm
+        <el-button @click="dialogFormEditVisible = false">{{
+          $t('msg.universal.cancel')
+        }}</el-button>
+        <el-button type="primary" @click="updatePermission(selectPermission)">
+          {{ $t('msg.universal.confirm') }}
         </el-button>
       </div>
     </template>
@@ -130,12 +135,12 @@
 
 <script setup>
 import {
-  permissionListAPI,
+  getPermissionListAPI,
   postPermissionAPI,
   updatePermissionAPI,
   deletePermissionAPI
 } from '@/api/permission'
-import { getRouterListAPI } from '@/api/router'
+import { getRouterAllAPI } from '@/api/router'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -149,28 +154,28 @@ import { useI18n } from 'vue-i18n'
  */
 // 所有路由
 const allRouter = ref([])
-const getRouterList = async () => {
-  const res = await getRouterListAPI()
+const getRouterAll = async () => {
+  const res = await getRouterAllAPI()
   allRouter.value = res.results
   // 打印所有信息
   console.log(allRouter.value)
 }
-getRouterList()
+getRouterAll()
 
 // 所有权限
-const allPermission = ref([])
+const permissionList = ref([])
 const total = ref(0)
 const page = ref(1)
 const size = ref(10)
 const getPermissionList = async () => {
-  const res = await permissionListAPI({
+  const res = await getPermissionListAPI({
     page: page.value,
     size: size.value
   })
-  allPermission.value = res.results
+  permissionList.value = res.results
   total.value = res.count
   // 打印所有信息
-  // console.log(allPermission.value)
+  // console.log(permissionList.value)
   // console.log(total.value)
   // console.log(page.value)
   // console.log(size.value)
@@ -197,7 +202,7 @@ const handleCurrentChange = (currentPage) => {
 }
 
 // 初始化对话框
-const selectPermission = ref('')
+const selectPermission = ref([])
 const dialogFormAddVisible = ref(false)
 const dialogFormEditVisible = ref(false)
 /**
@@ -208,7 +213,7 @@ const onAddClick = () => {
 }
 
 // 添加权限
-const addPermission = () => {
+const addPermission = (selectPermission) => {
   // 添加数据
   postPermissionAPI(selectPermission.value)
   dialogFormAddVisible.value = false
@@ -222,10 +227,12 @@ const onEditClick = (row) => {
   dialogFormEditVisible.value = true
   // 为表格赋值
   selectPermission.value = row
+  // 打印selelPermission的值
+  console.log('selectPermission', selectPermission.value)
 }
 
 // 更新权限
-const updatePermission = () => {
+const updatePermission = (selectPermission) => {
   // 更新数据
   updatePermissionAPI(selectPermission.value.id, selectPermission.value)
   dialogFormEditVisible.value = false
@@ -241,22 +248,28 @@ watch(dialogFormAddVisible, (val) => {
  * 删除权限
  */
 const i18n = useI18n()
-const onRemoveClick = (row) => {
-  ElMessageBox.confirm(
-    i18n.t('msg.permission.dialogTitle1') +
-      row.name +
-      row.method +
-      i18n.t('msg.permission.dialogTitle2'),
-    {
-      type: 'warning'
-    }
-  ).then(async () => {
-    await deletePermissionAPI(row.id)
-    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+const onRemoveClick = async (selectPermission) => {
+  try {
+    await ElMessageBox.confirm(
+      i18n.t('msg.permission.dialogTitle1') +
+        selectPermission.name +
+        selectPermission.method +
+        i18n.t('msg.permission.dialogTitle2'),
+      {
+        type: 'warning'
+      }
+    )
+    await deletePermissionAPI(selectPermission.id)
+    ElMessage.success(i18n.t('msg.univsersal.removeSuccess'))
     // 重新渲染数据
     getPermissionList()
-  })
+  } catch (error) {
+    ElMessage.info(i18n.t('msg.universal.cancel'))
+  }
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.permission-container {
+}
+</style>

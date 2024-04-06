@@ -38,11 +38,13 @@ service.interceptors.response.use(
     // 需要判断当前请求是否成功
     if (success) {
       // 请求成功，且返回数据，解析数据
+      // ElMessage.success(message)
+      console.log(message)
       return data
-    } else {
-      // 请求成功，但请求数据失败，返回错误信息
-      ElMessage.error(message)
-      return Promise.reject(new Error(message))
+      // } else {
+      //   // 请求成功，但请求数据失败，返回错误信息
+      //   ElMessage.error(message)
+      //   return Promise.reject(new Error(message))
     }
   },
   //  响应失败

@@ -1,4 +1,21 @@
 export default {
+  universal: {
+    title: 'Reminder',
+    confirm: 'Confirm',
+    cancel: 'Cancel',
+    action: 'Action',
+    check: 'Check',
+    commit: 'Commit',
+    add: 'Add',
+    addSuccess: 'Added successfully',
+    addFail: 'Added failed',
+    update: 'Update',
+    updateSuccess: 'Update successfully',
+    updateFail: 'Update failed',
+    remove: 'Remove',
+    removeSuccess: 'Remove successfully',
+    removeFail: 'Remove failed'
+  },
   login: {
     title: 'User Login',
     loginBtn: 'Login',
@@ -49,11 +66,6 @@ export default {
   headerSearch: {
     placeholder: 'Page Search',
     noData: 'No search results'
-  },
-  universal: {
-    title: 'reminder',
-    confirm: 'confirm',
-    cancel: 'cancel'
   },
   navBar: {
     themeChange: 'Theme Modification',
@@ -132,17 +144,11 @@ export default {
     avatar: 'Avatar',
     role: 'Role',
     openTime: 'Opening time',
-    action: 'Operate',
-    show: 'Check',
     showRole: 'Role',
     defaultRole: 'Staff',
-    remove: 'delete',
-    removeSuccess: 'Deleted successfully',
-    removeFail: 'Deleted Fail',
     title: 'Export to excel',
     placeholder: 'excel file name',
     defaultName: 'Staff Management Form',
-    close: 'Cancel',
     confirm: 'Export',
     importSuccess: ' Employee data imported successfully',
     dialogTitle1: 'Are you sure you want to delete the user ',
@@ -156,27 +162,20 @@ export default {
     desc: 'describe',
     action: 'operate',
     assignPermissions: 'assign permissions',
-    removeRole: 'Delete role',
     dialogTitle: 'New role',
     dialogRole: 'Role Name',
-    dialogDesc: 'Role description',
-    updateRoleSuccess: 'User role updated successfully'
+    dialogDesc: 'Role description'
   },
   permission: {
     num: 'No.',
     name: 'Authority name',
     method: 'Method type',
     router: 'Router',
-    add: 'New',
-    edit: 'Edit',
-    remove: 'Delete',
     addDialogTitle: 'Add permission',
     editDialogTitle: 'Edit permission',
     dialogTitle1: 'Are you sure you want to delete the permission ',
     dialogTitle2: ' Is it?',
-    addSuccess: 'Added successfully',
-    editSuccess: 'Edited successfully',
-    removeSuccess: 'Deleted successfully'
+    selectRouterDialog: 'Please select a router'
   },
   article: {
     ranking: 'Ranking',
@@ -186,18 +185,10 @@ export default {
     desc: 'brief introduction',
     action: 'operate',
     dynamicTitle: 'Dynamic display',
-    show: 'check',
-    remove: 'delete',
-    edit: 'editor',
     dialogTitle1: 'Are you sure you want to delete the article ',
     dialogTitle2: ' NS?',
-    removeSuccess: 'Article deleted successfully',
     titlePlaceholder: 'Please enter the title of the article',
     markdown: 'Markdown',
-    richText: 'Rich Text',
-    commit: 'commit',
-    createSuccess: 'The article was created successfully',
-    editorSuccess: 'Article modified successfully',
-    sortSuccess: 'Article ranking modified successfully'
+    richText: 'Rich Text'
   }
 }

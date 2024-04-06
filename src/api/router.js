@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
 /**
- * 获取角色列表数据
+ * 获取所有路由数据
  */
-export const getRouterListAPI = () => {
+export const getRouterAllAPI = () => {
   return request({
     url: '/routers',
     method: 'GET'

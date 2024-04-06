@@ -1,4 +1,21 @@
 export default {
+  universal: {
+    title: '提示',
+    confirm: '确定',
+    cancel: '取消',
+    action: '操作',
+    check: '查看',
+    commit: '提交',
+    add: '添加',
+    addSuccess: '添加成功',
+    addFail: '添加失败',
+    update: '更新',
+    updateSuccess: '更新成功',
+    updateFail: '更新失败',
+    remove: '删除',
+    removeSuccess: '删除成功',
+    removeFail: '删除失败'
+  },
   login: {
     title: '用户登录',
     loginBtn: '登录',
@@ -50,11 +67,7 @@ export default {
     placeholder: '页面搜索',
     noData: '无搜索结果'
   },
-  universal: {
-    title: '提示',
-    confirm: '确定',
-    cancel: '取消'
-  },
+
   navBar: {
     themeChange: '主题修改',
     headerSearch: '页面搜索',
@@ -135,13 +148,9 @@ export default {
     show: '查看',
     showRole: '角色',
     defaultRole: '员工',
-    remove: '删除',
-    removeSuccess: '删除成功',
-    removeFail: '删除失败',
     title: '导出为 excel',
     placeholder: 'excel 文件名称',
     defaultName: '员工管理表',
-    close: '取 消',
     confirm: '导 出',
     importSuccess: ' 条员工数据导入成功',
     dialogTitle1: '确定要删除用户 ',
@@ -153,29 +162,21 @@ export default {
     index: '序号',
     name: '名称',
     desc: '描述',
-    action: '操作',
     assignPermissions: '分配权限',
-    removeRole: '删除角色',
     dialogTitle: '新增角色',
     dialogRole: '角色名称',
-    dialogDesc: '角色描述',
-    updateRoleSuccess: '用户角色更新成功'
+    dialogDesc: '角色描述'
   },
   permission: {
     num: '序号',
     name: '权限名称',
     method: '方法类型',
     router: '所属路由',
-    add: '新增',
-    edit: '编辑',
-    remove: '删除',
     addDialogTitle: '新增权限',
     editDialogTitle: '编辑权限',
     dialogTitle1: '确定要删除权限 ',
     dialogTitle2: ' 吗？',
-    addSuccess: '新增成功',
-    editSuccess: '编辑成功',
-    removeSuccess: '删除成功'
+    selectRouterDialog: '请选择一条路由'
   },
   article: {
     ranking: '排名',
@@ -185,18 +186,11 @@ export default {
     desc: '内容简介',
     action: '操作',
     dynamicTitle: '动态展示',
-    show: '查看',
-    remove: '删除',
-    edit: '编辑',
+
     dialogTitle1: '确定要删除文章 ',
     dialogTitle2: ' 吗？',
-    removeSuccess: '文章删除成功',
     titlePlaceholder: '请输入文章标题',
     markdown: 'markdown',
-    richText: '富文本',
-    commit: '提交',
-    createSuccess: '文章创建成功',
-    editorSuccess: '文章修改成功',
-    sortSuccess: '文章排名修改成功'
+    richText: '富文本'
   }
 }

@@ -48,7 +48,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          :label="$t('msg.excel.action')"
+          :label="$t('msg.universal.action')"
           fixed="right"
           width="260">
           <template #default="{ row }">
@@ -56,7 +56,7 @@
               type="primary"
               size="default"
               @click="onShowClick(row.id)"
-              >{{ $t('msg.excel.show') }}</el-button
+              >{{ $t('msg.universal.check') }}</el-button
             >
             <!-- v-permission="['distributeRole']" -->
             <el-button
@@ -70,7 +70,7 @@
               type="danger"
               size="default"
               @click="onRemoveClick(row)"
-              >{{ $t('msg.excel.remove') }}</el-button
+              >{{ $t('msg.universal.remove') }}</el-button
             >
           </template>
         </el-table-column>
@@ -178,20 +178,24 @@ watch(roleDialogVisible, (val) => {
  * 删除用户
  */
 const i18n = useI18n()
-const onRemoveClick = (row) => {
-  ElMessageBox.confirm(
-    i18n.t('msg.excel.dialogTitle1') +
-      row.username +
-      i18n.t('msg.excel.dialogTitle2'),
-    {
-      type: 'warning'
-    }
-  ).then(async () => {
-    await deleteUser(row.id)
-    ElMessage.success(i18n.t('msg.excel.removeSuccess'))
-    // 重新渲染数据
-    getListData()
-  })
+const onRemoveClick = async (row) => {
+  try {
+    await ElMessageBox.confirm(
+      i18n.t('msg.excel.dialogTitle1') +
+        row.username +
+        i18n.t('msg.excel.dialogTitle2'),
+      {
+        type: 'warning'
+      }
+    ).then(async () => {
+      await deleteUser(row.id)
+      ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+      // 重新渲染数据
+      getListData()
+    })
+  } catch (error) {
+    ElMessage.info(i18n.t('msg.universal.cancel'))
+  }
 }
 
 /**
