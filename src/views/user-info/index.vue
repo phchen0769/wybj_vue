@@ -86,7 +86,7 @@
 </template>
 
 <script setup>
-import { userDetail } from '@/api/user-manage'
+import { getUserDetailAPI } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
@@ -103,8 +103,8 @@ const route = useRoute()
 // 数据相关
 const detailData = ref({})
 const getUserDetail = async () => {
-  detailData.value = await userDetail(route.params.id)
-  console.log(detailData.value)
+  detailData.value = await getUserDetailAPI(route.params.id)
+  // console.log(detailData.value)
 }
 getUserDetail()
 // 语言切换

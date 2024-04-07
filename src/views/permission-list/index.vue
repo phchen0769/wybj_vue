@@ -115,8 +115,8 @@
           :placeholder="$t('msg.permission.selectRouterDialog')">
           <el-option
             v-for="item in allRouter"
-            :key="item.id"
-            :value="item.path"
+            :key="item.router_id"
+            :value="item.router_id"
             :label="item.path" />
         </el-select>
       </el-form-item>
@@ -126,7 +126,7 @@
         <el-button @click="dialogFormEditVisible = false">{{
           $t('msg.universal.cancel')
         }}</el-button>
-        <el-button type="primary" @click="updatePermission(selectPermission)">
+        <el-button type="primary" @click="updatePermission()">
           {{ $t('msg.universal.confirm') }}
         </el-button>
       </div>
@@ -173,7 +173,7 @@ const getRouterAll = async () => {
   const res = await getRouterAllAPI()
   allRouter.value = res.results
   // 打印所有信息
-  console.log('allRouter', allRouter.value)
+  // console.log('allRouter', allRouter.value)
 }
 
 getRouterAll()
@@ -192,9 +192,14 @@ const getPermissionList = async () => {
   permissionList.value = res.results
   console.log('permissionList.value', permissionList.value)
   permissionList.value.forEach((item) => {
-    item.router = allRouter.value.find(
-      (router) => router.router_id === item.router.router_id
-    ).path
+    // 如果有路由，就赋值
+    if (item.router) {
+      item.router = allRouter.value.find(
+        (router) => router.router_id === item.router.router_id
+      ).path
+    } else {
+      item.router = ''
+    }
   })
   total.value = res.count
   // 打印所有信息
@@ -256,9 +261,14 @@ const onEditClick = (row) => {
 }
 
 // 更新权限
-const updatePermission = (selectPermission) => {
+const updatePermission = () => {
   // 更新数据
-  updatePermissionAPI(selectPermission.id, selectPermission.value)
+  // 让接收到的router path转为对应的router_id
+  console.log('selectPermission', selectPermission.value)
+  // selectPermission.value.router = allRouter.value.find(
+  //   (router) => router.path === selectPermission.value.router
+  // ).router_id
+  updatePermissionAPI(selectPermission.value.id, selectPermission.value)
   dialogFormEditVisible.value = false
   ElMessage.success(i18n.t('msg.universal.updateSuccess'))
 }

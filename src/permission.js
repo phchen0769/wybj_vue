@@ -35,6 +35,7 @@ router.beforeEach(async (to, from, next) => {
           // trigger a redirection
           return to.fullPath
         })
+
         // 不强制进行跳转，浏览器刷新后会找不到页面
         // 此时已添加了后端返回的动态路由，进行跳转一次
         // if (privateRoutes.value) {

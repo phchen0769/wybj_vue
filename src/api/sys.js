@@ -7,7 +7,7 @@ import request from '@/utils/request'
 export const login = (data) => {
   return request({
     url: '/login',
-    method: 'post',
+    method: 'POST',
     data
   })
 }
@@ -16,9 +16,10 @@ export const login = (data) => {
  * 获取当前用户信息
  * return promise
  */
-export const getUserInfo = () => {
+export const getUserInfoAPI = () => {
   return request({
-    url: '/userinfo',
+    // userinfo，无实际意义，用户发起retrieve请求，后端根据token返回当前用户信息
+    url: '/userinfo/userinfo',
     method: 'GET'
   })
 }

@@ -5,7 +5,7 @@ import request from '@/utils/request'
  */
 export const getUserManageList = (data) => {
   return request({
-    url: '/userinfo',
+    url: '/users',
     params: data,
     method: 'GET'
   })
@@ -15,7 +15,7 @@ export const getUserManageList = (data) => {
  */
 export const getUserManageAllList = () => {
   return request({
-    url: '/userinfo'
+    url: '/users'
   })
 }
 
@@ -32,18 +32,18 @@ export const userBatchImport = (data) => {
 /**
  * 删除指定数据
  */
-export const deleteUser = (id) => {
+export const deleteUserAPI = (id) => {
   return request({
-    url: `/userinfo/${id}`,
+    url: `/users/${id}`,
     method: 'DELETE'
   })
 }
 /**
  * 获取用户详情
  */
-export const userDetail = (id) => {
+export const getUserDetailAPI = (id) => {
   return request({
-    url: `/userinfo/${id}`,
+    url: `/users/${id}`,
     method: 'GET'
   })
 }
@@ -53,7 +53,7 @@ export const userDetail = (id) => {
  */
 export const updateRole = (id, role) => {
   return request({
-    url: `/userinfo/${id}`,
+    url: `/users/${id}`,
     method: 'PATCH',
     data: {
       role

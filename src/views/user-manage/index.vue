@@ -97,7 +97,7 @@
 
 <script setup>
 import { ref, onActivated, watch } from 'vue'
-import { getUserManageList, deleteUser } from '@/api/user-manage'
+import { getUserManageList, deleteUserAPI } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { ElMessage, ElMessageBox } from 'element-plus'
@@ -156,7 +156,6 @@ const router = useRouter()
  * 查看用户详情按钮点击事件
  */
 const onShowClick = (id) => {
-  console.log(id)
   router.push(`/user/info/${id}`)
 }
 /**
@@ -188,7 +187,7 @@ const onRemoveClick = async (row) => {
         type: 'warning'
       }
     ).then(async () => {
-      await deleteUser(row.id)
+      await deleteUserAPI(row.id)
       ElMessage.success(i18n.t('msg.excel.removeSuccess'))
       // 重新渲染数据
       getListData()

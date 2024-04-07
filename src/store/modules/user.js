@@ -1,8 +1,8 @@
-import { login, getUserInfo } from '@/api/sys'
+import { login, getUserInfoAPI } from '@/api/sys'
 // import md5 from 'md5'
 import { setStorage, getStorage, clearStorage } from '@/utils/storage'
 import { TOKEN } from '@/constant'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 import { setTimeStamp } from '@/utils/auth'
 
 export default {
@@ -63,7 +63,7 @@ export default {
      * 获取用户信息
      */
     async fetchUserInfo() {
-      const res = await getUserInfo()
+      const res = await getUserInfoAPI()
       this.commit('user/setUserInfo', res)
       return res
     },
@@ -72,6 +72,7 @@ export default {
      * 退出登录
      */
     logout() {
+      resetRouter()
       // 清空vuex的token
       this.commit('user/setToken', '')
       // 清空vuex的用户信息

@@ -25,7 +25,7 @@
 import { ref, watch } from 'vue'
 import { roleListAPI } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
-import { userDetail, updateRole } from '@/api/user-manage'
+import { getUserDetailAPI, updateRole } from '@/api/user-manage'
 import { ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 const props = defineProps({
@@ -53,7 +53,7 @@ const onConfirm = async () => {
   // 角色更新
   await updateRole(props.userId, roles)
 
-  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
+  ElMessage.success(i18n.t('msg.universal.updateSuccess'))
   // 触发自定义事件函数，更新父组件数据
   emits('updateRole')
   closed()
@@ -83,7 +83,7 @@ watchSwitchLang(getListData)
 const userRoleNameList = ref([])
 // 获取当前用户角色
 const getUserRoles = async () => {
-  const res = await userDetail(props.userId)
+  const res = await getUserDetailAPI(props.userId)
   userRoleNameList.value = res.role.map((item) => item.name)
   // 打印当前用户角色
   // console.log(userRoleNameList.value)
