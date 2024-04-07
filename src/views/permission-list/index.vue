@@ -76,9 +76,9 @@
           :placeholder="$t('msg.permission.selectRouterDialog')">
           <el-option
             v-for="item in allRouter"
-            :key="item.id"
-            :label="item.title"
-            :value="item.id" />
+            :key="item.router_id"
+            :value="item.router_id"
+            :label="item.path" />
         </el-select>
       </el-form-item>
     </el-form>
@@ -87,9 +87,9 @@
         <el-button @click="dialogFormAddVisible = false">{{
           $t('msg.universal.cancel')
         }}</el-button>
-        <el-button type="primary" @click="addPermission()">{{
-          $t('msg.universal.confirm')
-        }}</el-button>
+        <el-button type="primary" @click="addPermission()">
+          {{ $t('msg.universal.confirm') }}
+        </el-button>
       </div>
     </template>
   </el-dialog>
@@ -143,7 +143,7 @@ import {
 } from '@/api/permission'
 import { getRouterAllAPI } from '@/api/router'
 import { watchSwitchLang } from '@/utils/i18n'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useI18n } from 'vue-i18n'
 
@@ -171,9 +171,12 @@ console.log(found) // 输出：4
 const allRouter = ref([])
 const getRouterAll = async () => {
   const res = await getRouterAllAPI()
-  allRouter.value = res.results
+  // 把hidden的路由去除后再赋值（主要用于下拉选择数据源）
+  allRouter.value = res.results.filter((item) => item.hidden === false)
+  // 添加一个空选项
+  allRouter.value.unshift({ path: '', router_id: null })
   // 打印所有信息
-  // console.log('allRouter', allRouter.value)
+  console.log('allRouter', allRouter.value)
 }
 
 getRouterAll()
@@ -237,16 +240,19 @@ const dialogFormEditVisible = ref(false)
  * 添加权限对话框显示
  */
 const onAddClick = () => {
-  selectPermission.value = []
+  // 初始化数据
+  selectPermission.value = ref([])
   dialogFormAddVisible.value = true
 }
 
 // 添加权限
-const addPermission = (selectPermission) => {
+const addPermission = async () => {
   // 添加数据
-  postPermissionAPI(selectPermission.value)
+  await postPermissionAPI(selectPermission.value)
   dialogFormAddVisible.value = false
-  ElMessage.success(i18n.t('msg.permission.addSuccess'))
+  ElMessage.success(i18n.t('msg.universal.addSuccess'))
+  // 重新渲染数据
+  await getPermissionList()
 }
 
 /**
@@ -256,27 +262,22 @@ const onEditClick = (row) => {
   dialogFormEditVisible.value = true
   // 为表格赋值
   selectPermission.value = row
-  // 打印selelPermission的值
-  // console.log('selectPermission', selectPermission.value)
 }
 
 // 更新权限
 const updatePermission = () => {
   // 更新数据
-  // 让接收到的router path转为对应的router_id
-  console.log('selectPermission', selectPermission.value)
-  // selectPermission.value.router = allRouter.value.find(
-  //   (router) => router.path === selectPermission.value.router
-  // ).router_id
   updatePermissionAPI(selectPermission.value.id, selectPermission.value)
   dialogFormEditVisible.value = false
   ElMessage.success(i18n.t('msg.universal.updateSuccess'))
 }
 
-// 保证每次打开重新获取用户角色数据
-watch(dialogFormAddVisible, (val) => {
-  if (!val) selectPermission.value = ''
-})
+// 保证每次打开重新获取用户角色数据(防止用户角色数据被缓存)
+// watch(dialogFormAddVisible, (newValues) => {
+//   if (newValues === false) {
+//     selectPermission.value = ref([])
+//   }
+// })
 
 /**
  * 删除权限
@@ -294,7 +295,7 @@ const onRemoveClick = async (selectPermission) => {
       }
     )
     await deletePermissionAPI(selectPermission.id)
-    ElMessage.success(i18n.t('msg.univsersal.removeSuccess'))
+    ElMessage.success(i18n.t('msg.universal.removeSuccess'))
     // 重新渲染数据
     getPermissionList()
   } catch (error) {

@@ -72,6 +72,7 @@ export default {
      * 退出登录
      */
     logout() {
+      // 清空用户路由
       resetRouter()
       // 清空vuex的token
       this.commit('user/setToken', '')
