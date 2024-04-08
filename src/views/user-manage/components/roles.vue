@@ -23,7 +23,7 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { roleListAPI } from '@/api/role'
+import { getRoleListAPI } from '@/api/role'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserDetailAPI, updateRole } from '@/api/user-manage'
 import { ElMessage } from 'element-plus'
@@ -71,7 +71,7 @@ const closed = () => {
 const allRoleList = ref([])
 // 获取所有角色数据的方法
 const getListData = async () => {
-  const res = await roleListAPI()
+  const res = await getRoleListAPI()
   allRoleList.value = res.results
   // 打印所有角色数据
   // console.log(allRoleList.value)

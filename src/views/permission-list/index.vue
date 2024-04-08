@@ -176,7 +176,7 @@ const getRouterAll = async () => {
   // 添加一个空选项
   allRouter.value.unshift({ path: '', router_id: null })
   // 打印所有信息
-  console.log('allRouter', allRouter.value)
+  // console.log('allRouter', allRouter.value)
 }
 
 getRouterAll()
@@ -193,7 +193,7 @@ const getPermissionList = async () => {
     size: size.value
   })
   permissionList.value = res.results
-  console.log('permissionList.value', permissionList.value)
+  // console.log('permissionList.value', permissionList.value)
   permissionList.value.forEach((item) => {
     // 如果有路由，就赋值
     if (item.router) {
