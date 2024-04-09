@@ -24,3 +24,14 @@ export const getRolePermissionAPI = (id) => {
  *
  */
 export const distributePermission = () => {}
+
+/**
+ * 添加角色数据
+ */
+export const updateRoleAPI = (id, data) => {
+  return request({
+    url: `/roles/${id}`,
+    method: 'PATCH',
+    data
+  })
+}

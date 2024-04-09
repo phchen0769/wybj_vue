@@ -1,6 +1,7 @@
 export default {
   universal: {
     title: 'Reminder',
+    desc: 'Description',
     confirm: 'Confirm',
     cancel: 'Cancel',
     action: 'Action',

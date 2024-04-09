@@ -1,6 +1,7 @@
 export default {
   universal: {
     title: '提示',
+    desc: '描述',
     confirm: '确定',
     cancel: '取消',
     action: '操作',

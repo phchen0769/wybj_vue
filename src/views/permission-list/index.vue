@@ -7,14 +7,13 @@
           prop="id"
           width="60" />
         <!-- 权限名称 -->
-        <el-table-column prop="name" :label="$t('msg.permission.name')">
-        </el-table-column>
+        <el-table-column prop="name" :label="$t('msg.permission.name')" />
         <!-- 方法 -->
-        <el-table-column prop="method" :label="$t('msg.permission.method')">
-        </el-table-column>
+        <el-table-column prop="method" :label="$t('msg.permission.method')" />
+        <!-- 描述 -->
+        <el-table-column prop="desc" :label="$t('msg.universal.desc')" />
         <!-- 所属路由 -->
-        <el-table-column prop="router" :label="$t('msg.permission.router')">
-        </el-table-column>
+        <el-table-column prop="router" :label="$t('msg.permission.router')" />
         <el-table-column
           :label="$t('msg.universal.action')"
           fixed="right"
@@ -70,6 +69,9 @@
       <el-form-item :label="$t('msg.permission.method')" label-width="140px">
         <el-input v-model="selectPermission.method" autocomplete="off" />
       </el-form-item>
+      <el-form-item :label="$t('msg.universal.desc')" label-width="140px">
+        <el-input v-model="selectPermission.desc" autocomplete="off" />
+      </el-form-item>
       <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
@@ -108,6 +110,9 @@
       </el-form-item>
       <el-form-item :label="$t('msg.permission.method')" label-width="140px">
         <el-input v-model="selectPermission.method" autocomplete="off" />
+      </el-form-item>
+      <el-form-item :label="$t('msg.universal.desc')" label-width="140px">
+        <el-input v-model="selectPermission.desc" autocomplete="off" />
       </el-form-item>
       <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
@@ -192,6 +197,8 @@ const getPermissionList = async () => {
     page: page.value,
     size: size.value
   })
+  // 总数据
+  total.value = res.count
   permissionList.value = res.results
   // console.log('permissionList.value', permissionList.value)
   permissionList.value.forEach((item) => {
@@ -204,7 +211,7 @@ const getPermissionList = async () => {
       item.router = ''
     }
   })
-  total.value = res.count
+
   // 打印所有信息
   // console.log('permissionList.value', permissionList.value)
   // console.log(total.value)

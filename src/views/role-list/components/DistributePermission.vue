@@ -2,20 +2,35 @@
   <el-dialog
     :title="$t('msg.excel.roleDialogTitle')"
     :model-value="modelValue"
-    @close="closed">
-    <el-table :data="allPermission" border style="width: 100%">
-      <el-table-column type="selection" width="55" />
+    @close="closed"
+    style="width: 70%">
+    <el-table
+      ref="multipleTable"
+      :data="allPermission"
+      :row-key="getRowKeys"
+      @selection-change="userSelectionChange"
+      border
+      style="width: 100%">
+      <el-table-column type="selection" width="55" :reserve-selection="true" />
       <el-table-column :label="$t('msg.permission.num')" prop="id" width="60" />
       <!-- 权限名称 -->
-      <el-table-column prop="name" :label="$t('msg.permission.name')">
-      </el-table-column>
+      <el-table-column prop="name" :label="$t('msg.permission.name')" />
       <!-- 方法 -->
-      <el-table-column prop="method" :label="$t('msg.permission.method')">
-      </el-table-column>
-      <!-- 所属路由 -->
-      <el-table-column prop="router" :label="$t('msg.permission.router')">
-      </el-table-column>
+      <el-table-column prop="method" :label="$t('msg.permission.method')" />
+      <!-- 描述 -->
+      <el-table-column prop="desc" :label="$t('msg.universal.desc')" />
     </el-table>
+    <!-- 分页 -->
+    <el-pagination
+      class="pagination"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="page"
+      :page-sizes="[10, 50, 100]"
+      :page-size="size"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
     <template #footer>
       <span class="dialog-footer">
         <el-button @click="closed">{{ $t('msg.universal.cancel') }}</el-button>
@@ -30,8 +45,8 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { getPermissionListAPI } from '@/api/permission'
-import { getRolePermissionAPI } from '@/api/role'
-import { watchSwitchLang } from '@/utils/i18n'
+import { getRolePermissionAPI, updateRoleAPI } from '@/api/role'
+// import { watchSwitchLang } from '@/utils/i18n'
 import { useI18n } from 'vue-i18n'
 import { ElMessage } from 'element-plus'
 
@@ -53,10 +68,10 @@ const emits = defineEmits(['update:modelValue'])
  */
 const i18n = useI18n()
 const onConfirm = async () => {
-  // await distributePermission({
-  //   roleId: props.roleId,
-  //   permissions: treeRef.value.getCheckedKeys()
-  // })
+  await updateRoleAPI(props.roleId, {
+    id: props.roleId,
+    permission: rolePermission.value
+  })
   ElMessage.success(i18n.t('msg.universal.updateSuccess'))
   closed()
 }
@@ -65,32 +80,95 @@ const onConfirm = async () => {
  * 关闭
  */
 const closed = () => {
+  rolePermission.value = []
   emits('update:modelValue', false)
 }
+
 // 所有权限
 const allPermission = ref([])
+const total = ref(0)
+const page = ref(1)
+const size = ref(10)
 const getPermissionList = async () => {
-  const res = await getPermissionListAPI()
+  const res = await getPermissionListAPI({
+    page: page.value,
+    size: size.value
+  })
+  // 总数据
+  total.value = res.count
+  // 获取分页后的所有权限
   allPermission.value = res.results
   // 打印所有权限
-  // console.log(allPermission.value)
+  // console.log('allPermission', allPermission.value)
 }
+// 执行获取所有权限的函数
 getPermissionList()
-watchSwitchLang(getPermissionList)
 
 // 获取当前用户角色的权限
+const rolePermission = ref([])
 const getRolePermission = async () => {
   const res = await getRolePermissionAPI(props.roleId)
-  const checkedKeys = res.permission
+  rolePermission.value = res.permission
   // 打印当前角色的权限
-  console.log('checkedKeys', checkedKeys)
-  // 设置 Tree 组件中被选中节点的键值
+  // console.log('rolePermission', rolePermission)
+}
+
+// 初始化多选框
+const multipleTable = ref()
+// 用户数据反显(默认选中）
+const reserveSelection = async () => {
+  if (rolePermission.value.length !== 0) {
+    // 因为初始化的是allPermission，所以需要等待allPermission加载完成
+    rolePermission.value.forEach((item) => {
+      setTimeout(() => {
+        // 找到对应的行的数据对象
+        const row = allPermission.value.find(
+          (permission) => permission.id === item.id
+        )
+        if (row) {
+          // 找到对应数据，该行显示选中状态
+          multipleTable.value.toggleRowSelection(row, true)
+        }
+      }, 0)
+    })
+  }
+}
+// 指定key值,数据更新之后保留之前行被选中的前端效果
+const getRowKeys = (row) => {
+  return row.id
+}
+
+// 用户点击后，存储选中的数据
+const userSelectionChange = (values) => {
+  rolePermission.value = values
+}
+
+// 分页相关
+/**
+ * size 改变触发
+ */
+const handleSizeChange = async (currentSize) => {
+  size.value = currentSize
+  await getPermissionList()
+  reserveSelection()
+}
+
+/**
+ * 页码改变触发
+ */
+const handleCurrentChange = async (currentPage) => {
+  page.value = currentPage
+  await getPermissionList()
+  reserveSelection()
 }
 
 watch(
   () => props.roleId,
-  (val) => {
-    if (val) getRolePermission()
+  async (val) => {
+    if (val) {
+      await getRolePermission()
+      reserveSelection()
+    }
   }
 )
 </script>
