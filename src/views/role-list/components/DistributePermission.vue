@@ -57,7 +57,7 @@ const props = defineProps({
     required: true
   },
   roleId: {
-    type: String,
+    type: Number,
     required: true
   }
 })
@@ -68,6 +68,7 @@ const emits = defineEmits(['update:modelValue'])
  */
 const i18n = useI18n()
 const onConfirm = async () => {
+  // 调用api更新角色权限
   await updateRoleAPI(props.roleId, {
     id: props.roleId,
     permission: rolePermission.value
@@ -80,7 +81,9 @@ const onConfirm = async () => {
  * 关闭
  */
 const closed = () => {
-  rolePermission.value = []
+  // 关闭弹窗，还原组件状态
+  page.value = 1
+  size.value = 10
   emits('update:modelValue', false)
 }
 
@@ -110,7 +113,7 @@ const getRolePermission = async () => {
   const res = await getRolePermissionAPI(props.roleId)
   rolePermission.value = res.permission
   // 打印当前角色的权限
-  // console.log('rolePermission', rolePermission)
+  // console.log('rolePermission', rolePermission.value)
 }
 
 // 初始化多选框
@@ -148,6 +151,9 @@ const userSelectionChange = (values) => {
  * size 改变触发
  */
 const handleSizeChange = async (currentSize) => {
+  if (currentSize * page.value > total.value) {
+    page.value = 1
+  }
   size.value = currentSize
   await getPermissionList()
   reserveSelection()
@@ -162,11 +168,16 @@ const handleCurrentChange = async (currentPage) => {
   reserveSelection()
 }
 
+// 监听roleId变化
 watch(
   () => props.roleId,
   async (val) => {
     if (val) {
+      // 重新获取权限列表
+      await getPermissionList()
+      // 重新获取角色权限
       await getRolePermission()
+      // 重新勾选已有权限
       reserveSelection()
     }
   }

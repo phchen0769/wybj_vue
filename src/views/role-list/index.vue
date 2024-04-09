@@ -49,7 +49,7 @@ watchSwitchLang(getRoleList)
  * 分配权限
  */
 const distributePermissionVisible = ref(false)
-const selectRoleId = ref('')
+const selectRoleId = ref(0)
 const onDistributePermissionClick = (row) => {
   distributePermissionVisible.value = true
   selectRoleId.value = row.id
