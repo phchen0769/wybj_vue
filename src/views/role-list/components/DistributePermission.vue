@@ -2,6 +2,7 @@
   <el-dialog
     :title="$t('msg.excel.roleDialogTitle')"
     :model-value="modelValue"
+    :destroy-on-close="true"
     @close="closed"
     style="width: 70%">
     <el-table
@@ -155,8 +156,10 @@ const handleSizeChange = async (currentSize) => {
     page.value = 1
   }
   size.value = currentSize
+  // 页码改变，重新获取表格数据
   await getPermissionList()
-  reserveSelection()
+  await getRolePermission()
+  await reserveSelection()
 }
 
 /**
@@ -164,8 +167,10 @@ const handleSizeChange = async (currentSize) => {
  */
 const handleCurrentChange = async (currentPage) => {
   page.value = currentPage
+  // 页码改变，重新获取表格数据
   await getPermissionList()
-  reserveSelection()
+  await getRolePermission()
+  await reserveSelection()
 }
 
 // 监听roleId变化

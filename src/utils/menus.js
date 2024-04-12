@@ -61,7 +61,7 @@ export function generateMenus(routes, basePath = '') {
       }
 
       // icon 与 title 必须全部存在
-      if (route.meta.icon && route.meta.title) {
+      if (route.meta.icon && route.meta.title && route.hidden !== true) {
         // meta 存在生成 route 对象，放入 arr
         result.push(route)
       }

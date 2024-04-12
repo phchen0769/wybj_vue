@@ -186,10 +186,18 @@ export default {
     desc: 'brief introduction',
     action: 'operate',
     dynamicTitle: 'Dynamic display',
+    show: 'check',
+    remove: 'delete',
+    edit: 'editor',
     dialogTitle1: 'Are you sure you want to delete the article ',
     dialogTitle2: ' NS?',
+    removeSuccess: 'Article deleted successfully',
     titlePlaceholder: 'Please enter the title of the article',
     markdown: 'Markdown',
-    richText: 'Rich Text'
+    richText: 'Rich Text',
+    commit: 'commit',
+    createSuccess: 'The article was created successfully',
+    editorSuccess: 'Article modified successfully',
+    sortSuccess: 'Article ranking modified successfully'
   }
 }

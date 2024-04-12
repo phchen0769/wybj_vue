@@ -8,12 +8,12 @@
         </el-table-column>
         <el-table-column :label="$t('msg.role.desc')" prop="desc">
         </el-table-column>
+        <!--v-permission="['distributePermission']"-->
         <el-table-column
           :label="$t('msg.universal.action')"
           prop="action"
           width="260"
           #default="{ row }">
-          <!-- v-permission="['distributePermission']" -->
           <el-button
             type="primary"
             size="default"

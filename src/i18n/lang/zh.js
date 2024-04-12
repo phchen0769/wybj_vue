@@ -187,11 +187,18 @@ export default {
     desc: '内容简介',
     action: '操作',
     dynamicTitle: '动态展示',
-
+    show: '查看',
+    remove: '删除',
+    edit: '编辑',
     dialogTitle1: '确定要删除文章 ',
     dialogTitle2: ' 吗？',
+    removeSuccess: '文章删除成功',
     titlePlaceholder: '请输入文章标题',
     markdown: 'markdown',
-    richText: '富文本'
+    richText: '富文本',
+    commit: '提交',
+    createSuccess: '文章创建成功',
+    editorSuccess: '文章修改成功',
+    sortSuccess: '文章排名修改成功'
   }
 }

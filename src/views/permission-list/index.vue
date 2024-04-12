@@ -177,11 +177,11 @@ const allRouter = ref([])
 const getRouterAll = async () => {
   const res = await getRouterAllAPI()
   // 把hidden的路由去除后再赋值（主要用于下拉选择数据源）
-  allRouter.value = res.results.filter((item) => item.hidden === false)
+  allRouter.value = res.filter((item) => item.hidden === false)
   // 添加一个空选项
   allRouter.value.unshift({ path: '', router_id: null })
   // 打印所有信息
-  // console.log('allRouter', allRouter.value)
+  console.log('allRouter', allRouter.value)
 }
 
 getRouterAll()
