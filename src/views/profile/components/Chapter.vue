@@ -20,7 +20,7 @@ const chapterData = ref([])
 
 const getChapterData = async () => {
   const res = await chapterListAPI()
-  chapterData.value = await res.results
+  chapterData.value = await res
   // 打印chapterData内容
   // console.log('chapterData', chapterData.value)
 }

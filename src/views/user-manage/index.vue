@@ -188,7 +188,7 @@ const onRemoveClick = async (row) => {
       }
     ).then(async () => {
       await deleteUserAPI(row.id)
-      ElMessage.success(i18n.t('msg.excel.removeSuccess'))
+      ElMessage.success(i18n.t('msg.universal.removeSuccess'))
       // 重新渲染数据
       getListData()
     })

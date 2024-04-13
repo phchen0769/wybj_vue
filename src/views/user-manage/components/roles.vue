@@ -72,7 +72,7 @@ const allRoleList = ref([])
 // 获取所有角色数据的方法
 const getListData = async () => {
   const res = await getRoleListAPI()
-  allRoleList.value = res.results
+  allRoleList.value = res
   // 打印所有角色数据
   // console.log(allRoleList.value)
 }

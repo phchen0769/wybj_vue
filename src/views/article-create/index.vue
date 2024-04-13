@@ -30,7 +30,7 @@
 import Editor from './components/Editor.vue'
 import Markdown from './components/Markdown.vue'
 import { ref } from 'vue'
-import { articleDetail } from '@/api/article'
+import { getArticleDetailAPI } from '@/api/article'
 import { useRoute } from 'vue-router'
 
 const activeName = ref('markdown')
@@ -44,7 +44,7 @@ const route = useRoute()
 const articleId = route.params.id
 const detail = ref({})
 const getArticleDetail = async () => {
-  detail.value = await articleDetail(articleId)
+  detail.value = await getArticleDetailAPI(articleId)
   // 标题赋值
   title.value = detail.value.title
 }

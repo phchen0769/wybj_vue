@@ -181,7 +181,7 @@ const getRouterAll = async () => {
   // 添加一个空选项
   allRouter.value.unshift({ path: '', router_id: null })
   // 打印所有信息
-  console.log('allRouter', allRouter.value)
+  // console.log('allRouter', allRouter.value)
 }
 
 getRouterAll()

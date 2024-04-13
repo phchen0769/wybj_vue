@@ -38,7 +38,7 @@ const featureData = ref([])
 const getFeatureData = async () => {
   // 从后端获取数据
   const res = await featureListAPI()
-  featureData.value = res.results
+  featureData.value = res
   // 打印featureDate内容
   // console.log('featureData', featureData.value)
 }

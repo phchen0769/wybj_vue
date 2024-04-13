@@ -13,7 +13,7 @@
 import E from 'wangeditor'
 import i18next from 'i18next'
 import { useStore } from 'vuex'
-import { onMounted, defineProps, defineEmits, watch } from 'vue'
+import { onMounted, watch } from 'vue'
 import { commitArticle, editArticle } from './commit'
 
 const props = defineProps({

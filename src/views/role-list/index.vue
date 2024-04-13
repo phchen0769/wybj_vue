@@ -39,7 +39,7 @@ import DistributePermission from './components/DistributePermission.vue'
 const allRoles = ref([])
 const getRoleList = async () => {
   const res = await getRoleListAPI()
-  allRoles.value = res.results
+  allRoles.value = res
   // 打印角色数据
   // console.log(allRoles.value)
 }
