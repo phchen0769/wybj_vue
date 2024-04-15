@@ -17,12 +17,12 @@ import { generateTitle } from '@/utils/i18n'
 defineProps({
   title: {
     type: String,
-    // required: true,
+    required: true,
     default: ''
   },
   icon: {
     type: String,
-    // required: true,
+    required: true,
     default: ''
   },
   iconName: {

@@ -1,5 +1,5 @@
 {
-  "name": "wybj_vue",
+  "name": "Remote-diagnosis-vue3",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "md5": "^2.3.0",
     "rgb-hex": "^4.1.0",
     "screenfull": "^5.1.0",
+    "simplewebrtc": "^3.0.2",
     "sortablejs": "^1.15.2",
     "svg-sprite-loader": "^6.0.11",
     "vue": "^3.4.21",

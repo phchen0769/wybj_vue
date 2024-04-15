@@ -21,9 +21,8 @@ module.exports = {
       // 天坑!!!!!，此处位置必须和.env.development中的VUE_APP_BASE_API一致,否则代理不生效
       '/api': {
         // 要代理的地址
-        // target: 'https://api.imooc-admin.lgdsunday.club/',
-        // target: 'http://10.165.27.210:8000/',
-        target: 'http://192.168.12.166:8000/',
+        target: 'http://10.165.27.210:8000/',
+        // target: 'http://192.168.12.166:8000/',
         // 允许跨域
         changeOrigin: true
       }
