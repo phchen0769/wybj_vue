@@ -1,18 +1,19 @@
 {
 	"workbench.colorTheme": "Vue Theme",
+	"vscode_custom_css.imports": ["https://gist.githubusercontent.com/Ynng/3275eb9cb2b5816554877e5518417f44/raw/1447d34712a59a1ac48ae1ce6da18c5460ea7cea/custom.css"],
 	"editor.fontSize": 20,
-	/*配置html css js的默认格式化程序*/
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
-	"[javascript]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
 	"editor.formatOnSave": true, //保存时自动格式化
 	"eslint.enable": true, //开启eslint检查
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": "explicit"
-	},
 	"editor.guides.bracketPairs": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": "explicit"
+	  },
+	/*配置html css js的默认格式化程序*/
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"[vue]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[javascript]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"window.zoomLevel": -0.5,

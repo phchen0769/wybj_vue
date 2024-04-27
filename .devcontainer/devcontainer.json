@@ -1,7 +1,7 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/javascript-node
 {
-	"name": "Remote-diagnosis-vue",
+	"name": "Remote-diagnosis-vue-ts",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	// "image": "mcr.microsoft.com/devcontainers/javascript-node:0-18-bullseye",
 	"build": {
@@ -19,13 +19,11 @@
 		// Configure properties specific to VS Code.
 		"vscode": {
 			"extensions": [
-				"tombonnike.vscode-status-bar-format-toggle",
 				"VisualStudioExptTeam.vscodeintellicode",
 				"VisualStudioExptTeam.intellicode-api-usage-examples",
 				"Vue.volar",
 				"sdras.vue-vscode-snippets",
 				"dariofuzinato.vue-peek",
-				"mariorodeghiero.vue-theme",
 				"kisstkondoros.vscode-gutter-preview",
 				"jock.svg",
 				"xabikos.JavaScriptSnippets",
@@ -38,11 +36,8 @@
 				"christian-kohler.path-intellisense",
 				"syler.sass-indented",
 				"sibiraj-s.vscode-scss-formatter",
-				"GitHub.copilot",
 				"wangluo.vue-element-plus-snippets",
 				"ms-vscode.js-debug-nightly",
-				"FittenTech.Fitten-Code",
-				"ClemensPeters.format-json",
 				"ZainChen.json",
 				"ms-vscode.vscode-typescript-next"
 			]
