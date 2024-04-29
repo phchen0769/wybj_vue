@@ -1,6 +1,6 @@
 export function arrayToRouter(array) {
   // 1、导入所有可能的视图组件(vite写法)
-  const viewModules = import.meta.glob('@/views/**/index.vue')
+  const viewModules = import.meta.glob('@/views/**/**/index.vue')
   const nodes = []
   // 获取顶级节点
   for (let i = 0; i < array.length; i++) {
@@ -35,8 +35,7 @@ export function arrayToRouter(array) {
           // 核心代码，因为二级路由的component是需要匹配页面的 (vue-cli写法)
           // component: () => import('@/views/' + row.component + '/index.vue'),
           // 2、然后在需要的地方动态加载组件 (vite写法)
-          component: () =>
-            viewModules[`@/views/${row.component}/index.vue`]().then((mod) => mod.default),
+          component: viewModules[`/src/views/${row.component}/index.vue`],
           meta: { title: row.title, icon: row.icon },
           id: row.router_id
         }

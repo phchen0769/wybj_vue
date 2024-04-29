@@ -6,6 +6,12 @@ import i18n from '@/i18n'
  * @param basePath 基础路径，默认为 /
  * @param prefixTitle
  */
+
+// 自定义的路径连接函数
+function joinPaths(basePath: string, itemPath: string) {
+  return `${basePath.replace(/\/$/, '')}/${itemPath.replace(/^\//, '')}`
+}
+
 export const generateRoutes = (routes, basePath = '/', prefixTitle = []) => {
   // 创建 result 数据
   let res = []
@@ -13,7 +19,7 @@ export const generateRoutes = (routes, basePath = '/', prefixTitle = []) => {
   for (const route of routes) {
     // 创建包含 path 和 title 的 item
     const data = {
-      path: path.resolve(basePath, route.path),
+      path: joinPaths(basePath, route.path),
       title: [...prefixTitle]
     }
     // 当前存在 meta 时，使用 i18n 解析国际化数据，组合成新的 title 内容

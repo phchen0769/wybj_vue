@@ -1,5 +1,5 @@
 // https://webpack.docschina.org/guides/dependency-management/#requirecontext
-// 1、导入所有的svg图标
+// 1、导入图标处理组件
 import SvgIcon from '@/components/SvgIcon/index.vue'
 // const svgRequire = require.context('./svg', false, /\.svg$/) // 参数说明：目录，是否遍历子级目录，匹配文件的正则表达式
 // 此时返回一个Require函数，这个函数可以接收一个Require参数，这个参数是一个函数，这个函数会返回一个模块，可用于Require的导入
@@ -13,6 +13,13 @@ const svgRequires = import.meta.glob('./svg/*.svg')
 
 // 遍历所有的 svg 文件
 Object.keys(svgRequires).forEach((svgIcon) => svgRequires[svgIcon])
+// // 遍历所有的 svg 文件
+// Object.entries(svgRequires).forEach(([path, module]) => {
+//   // 获取 svg 文件的内容
+//   const svgContent = module.default
+//   // 添加 svg 内容到 DOM 中
+//   document.body.innerHTML += svgContent
+// })
 
 // 2、完成SvgIcon的全局注册
 export default (app) => {

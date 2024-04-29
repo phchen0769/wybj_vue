@@ -1,6 +1,11 @@
 // 纯前端动态路由获取
 import path from 'path'
 
+// 自定义的路径连接函数
+function joinPaths(basePath: string, itemPath: string) {
+  return `${basePath.replace(/\/$/, '')}/${itemPath.replace(/^\//, '')}`
+}
+
 /**
  * 返回所有子路由
  */
@@ -50,7 +55,9 @@ export function generateMenus(routes, basePath = '') {
       return
     }
     // 合并 path 作为跳转路径
-    const routePath = path.resolve(basePath, item.path)
+    // const routePath = path.resolve(basePath, item.path)
+    const routePath = joinPaths('', item.path)
+    // const routePath = item.path
     // 路由分离之后，存在同名父路由的情况，需要单独处理
     let route = result.find((item) => item.path === routePath)
     if (!route) {

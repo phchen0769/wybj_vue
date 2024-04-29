@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 import { isTimeOut } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: process.env.VITE_BASE_API,
   timeout: 5000
 })
 
@@ -50,11 +50,7 @@ service.interceptors.response.use(
   //  响应失败
   (error) => {
     // token超时
-    if (
-      error.response &&
-      error.response.data &&
-      error.response.data.code === 401
-    ) {
+    if (error.response && error.response.data && error.response.data.code === 401) {
       store.dispatch('user/logout')
       return Promise.reject(error)
     }

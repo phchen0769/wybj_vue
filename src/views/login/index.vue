@@ -1,10 +1,6 @@
 <template>
   <div class="login-container">
-    <el-form
-      class="login-form"
-      ref="loginFormRef"
-      :model="loginForm"
-      :rules="loginRules">
+    <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">{{ $t('msg.login.title') }}</h3>
         <lang-select class="lang-select" effect="light" />
@@ -21,7 +17,8 @@
           placeholder="请输入用户名"
           name="username"
           type="text"
-          v-model="loginForm.username" />
+          v-model="loginForm.username"
+        />
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
@@ -33,11 +30,11 @@
           placeholder="请输入密碼"
           name="password"
           :type="passwordType"
-          v-model="loginForm.password" />
+          v-model="loginForm.password"
+        />
         <span class="show-pwd" @click="showPwd">
           <!-- 密码眼睛图片逻辑判断-->
-          <svg-icon
-            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
+          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
         </span>
       </el-form-item>
 

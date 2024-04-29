@@ -6,7 +6,7 @@
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <!-- 搜索 -->
-      <header-search class="right-menu-item hover-effect"></header-search>
+      <header-search class="right-menu-item hover-effect" />
       <!--全屏 -->
       <screen-full class="right-menu-item hover-effect" />
       <!-- 切换主题 -->
@@ -17,10 +17,7 @@
         <div class="avatar-wrapper">
           <!-- 头像 -->
           <!-- 当userInfo为空时，el-avatar标签src内容也为空 -->
-          <el-avatar
-            shape="square"
-            :size="40"
-            :src="userInfo?.avatar || ''"></el-avatar>
+          <el-avatar shape="square" :size="40" :src="userInfo?.avatar || ''"></el-avatar>
           <!-- 工具栏 -->
           <el-icon><Setting /></el-icon>
         </div>
@@ -28,14 +25,10 @@
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
             <router-link to="/">
-              <el-dropdown-item>{{
-                $t('msg.navBar.home')
-              }}</el-dropdown-item></router-link
+              <el-dropdown-item>{{ $t('msg.navBar.home') }}</el-dropdown-item></router-link
             >
             <a target="__blank" href="#"
-              ><el-dropdown-item>{{
-                $t('msg.navBar.course')
-              }}</el-dropdown-item></a
+              ><el-dropdown-item>{{ $t('msg.navBar.course') }}</el-dropdown-item></a
             >
             <el-dropdown-item divided @click="logout">{{
               $t('msg.navBar.logout')

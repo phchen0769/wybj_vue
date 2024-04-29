@@ -6,14 +6,16 @@
     v-if="isExternal"
     :style="styleExternalIcon"
     class="svg-external-icon svg-icon"
-    :class="className"></div>
+    :class="className"
+  ></div>
   <!-- 展示内部图标 -->
   <svg
     v-else
     class="svg-icon"
     :class="className"
     aria-hidden="true"
-    @click="$emit('click', $event)">
+    @click="$emit('click', $event)"
+  >
     <use :xlink:href="iconName" />
   </svg>
 </template>

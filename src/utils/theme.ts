@@ -24,10 +24,7 @@ export const generateNewStyle = async (primaryColor) => {
   // 3.遍历生成的色值表，在默认样式进行全局替换
   // 遍历生成的样式表，在 CSS 的原样式中进行全局替换
   Object.keys(colors).forEach((key) => {
-    cssText = cssText.replace(
-      new RegExp('(:|\\s+)' + key, 'g'),
-      '$1' + colors[key]
-    )
+    cssText = cssText.replace(new RegExp('(:|\\s+)' + key, 'g'), '$1' + colors[key])
   })
 
   return cssText
@@ -52,7 +49,7 @@ export const generateColors = (primary) => {
  * 获取当前 element-plus 的默认样式表
  */
 export const getOriginalStyle = async () => {
-  const version = require('element-plus/package.json').version
+  const version = (await import('element-plus/package.json')).version
   const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
   const { data } = await axios(url)
   // 把获取到的数据筛选为原样式模板
