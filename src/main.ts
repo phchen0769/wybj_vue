@@ -8,6 +8,7 @@ import router from './router'
 import store from './store'
 import i18n from '@/i18n'
 import installElementPlus from './plugins/element'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 
 // 初始化样式表
 import '@/styles/reset.scss'
@@ -20,8 +21,9 @@ import '@/permission'
 const app = createApp(App)
 // 使用installElementPlus插件
 installElementPlus(app)
-// 使用installIcons插件(svgIcon)
-installIcons(app)
+// // 使用installIcons插件(svgIcon)
+// installIcons(app)
+app.component('svg-icon', SvgIcon)
 
 // 在vue实例中挂载store
 app.use(store)

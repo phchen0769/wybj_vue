@@ -1,72 +1,46 @@
-<!-- eslint-disable vue/multi-word-component-names -->
-
 <template>
-  <!-- 展示外部图标 -->
-  <div
-    v-if="isExternal"
-    :style="styleExternalIcon"
-    class="svg-external-icon svg-icon"
-    :class="className"
-  ></div>
-  <!-- 展示内部图标 -->
-  <svg
-    v-else
-    class="svg-icon"
-    :class="className"
-    aria-hidden="true"
-    @click="$emit('click', $event)"
-  >
-    <use :xlink:href="iconName" />
+  <svg :class="svgClass" aria-hidden="true">
+    <use :xlink:href="iconName" :fill="color" />
   </svg>
 </template>
 
-<script setup>
-import { computed } from 'vue'
-import { isExternal as external } from '@/utils/validate'
-// props是父组件传递参数给子组件
-const props = defineProps({
-  // icon 图标路径
-  icon: {
-    type: String,
-    required: true
+<script>
+import { defineComponent, computed } from 'vue'
+export default defineComponent({
+  props: {
+    iconClass: {
+      type: String,
+      required: true
+    },
+    className: {
+      type: String,
+      default: ''
+    },
+    color: {
+      type: String,
+      default: ''
+    }
   },
-  // 图标类名，用于处理图标样式
-  className: {
-    type: String,
-    default: ''
+  setup(props) {
+    return {
+      iconName: computed(() => `#icon-${props.iconClass}`),
+      svgClass: computed(() => {
+        if (props.className) {
+          return `svg-icon ${props.className}`
+        }
+        return 'svg-icon'
+      })
+    }
   }
 })
-
-/**
- * 判断当前图标是否为外部图标
- */
-const isExternal = computed(() => external(props.icon))
-
-/**
- * 外部图标的样式
- */
-const styleExternalIcon = computed(() => ({
-  mask: `url(${props.icon}) no-repeat 50% 50%`,
-  '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`
-}))
-/**
- * 内部图标
- */
-const iconName = computed(() => `#icon-${props.icon}`)
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .svg-icon {
   width: 1em;
   height: 1em;
-  vertical-align: -0.15em;
+  position: relative;
   fill: currentColor;
-  overflow: hidden;
-}
-
-.svg-external-icon {
-  background-color: currentColor;
-  mask-size: cover !important;
-  display: inline-block;
+  vertical-align: -2px;
 }
 </style>

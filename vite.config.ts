@@ -2,7 +2,8 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueSvgLoader from 'vite-svg-loader'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -26,7 +27,12 @@ export default defineConfig({
 
   plugins: [
     vue(),
-    vueSvgLoader(),
+    createSvgIconsPlugin({
+      // 指定要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), '@/src/icons/svg')],
+      // 执行icon name的格式
+      symbolId: 'icon-[dir]-[name]'
+    }),
     {
       // 用于把process.env替换为import.meta.env
       name: 'process',

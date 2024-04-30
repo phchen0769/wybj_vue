@@ -30,8 +30,8 @@ const routes = computed(() => {
 })
 
 // 获取vue-router中的路由
-console.log('routers', router.getRoutes())
-console.log('route', routes.value)
+// console.log('routers', router.getRoutes())
+// console.log('route', routes.value)
 
 // 默认激活项
 const route = useRoute()
