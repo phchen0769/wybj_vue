@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <!-- 触发triggerSidebarOpened函数 -->
   <div class="hamburger-container" @click="toggleClick">
@@ -17,9 +18,7 @@ const toggleClick = () => {
 }
 
 // 根据sidebarOpened的值设置图标
-const icon = computed(() =>
-  store.getters.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'
-)
+const icon = computed(() => (store.getters.sidebarOpened ? 'hamburger-opened' : 'hamburger-closed'))
 </script>
 
 <style lang="scss" scoped>

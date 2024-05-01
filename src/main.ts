@@ -1,19 +1,19 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
-// 导入element-plus
-// import ElementPlus from 'element-plus'
 
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import i18n from '@/i18n'
 import installElementPlus from './plugins/element'
+// 导入svgIcon
+import 'virtual:svg-icons-register'
+// 导入svgIcon插件
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
 // 初始化样式表
 import '@/styles/reset.scss'
-// 导入svgIcon
-import installIcons from '@/icons'
+
 // 导入路由守卫
 import '@/permission'
 
@@ -21,7 +21,7 @@ import '@/permission'
 const app = createApp(App)
 // 使用installElementPlus插件
 installElementPlus(app)
-// // 使用installIcons插件(svgIcon)
+
 // installIcons(app)
 app.component('svg-icon', SvgIcon)
 

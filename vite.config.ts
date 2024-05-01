@@ -17,8 +17,8 @@ export default defineConfig({
       // 天坑!!!!!，此处位置必须和.env.development中的VITE_BASE_API一致,否则代理不生效
       '/api': {
         // 要代理的地址
-        target: 'http://10.165.27.210:8000/',
-        // target: 'http://192.168.12.166:8000/',
+        // target: 'http://10.165.27.210:8000/',
+        target: 'http://192.168.12.166:8000/',
         // 允许跨域
         changeOrigin: true
       }
@@ -28,8 +28,8 @@ export default defineConfig({
   plugins: [
     vue(),
     createSvgIconsPlugin({
-      // 指定要缓存的图标文件夹
-      iconDirs: [path.resolve(process.cwd(), '@/src/icons/svg')],
+      // 指定要缓存的图标文件夹，天坑!!!!，此处路径src/icons，否则图标不生效
+      iconDirs: [path.resolve(process.cwd(), 'src/icons')],
       // 执行icon name的格式
       symbolId: 'icon-[dir]-[name]'
     }),

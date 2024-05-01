@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="login-container">
     <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
@@ -8,10 +9,8 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <span class="svg-container">
-          <!-- 使用在线svg图标 -->
-          <!-- <SvgIcon icon="https://res.lgdsunday.club/user.svg"></SvgIcon> -->
           <!-- 使用内部图标 -->
-          <svg-icon icon="user"></svg-icon>
+          <svg-icon icon="user" />
         </span>
         <el-input
           placeholder="请输入用户名"

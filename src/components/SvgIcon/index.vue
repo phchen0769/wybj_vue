@@ -1,37 +1,37 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <svg :class="svgClass" aria-hidden="true">
-    <use :xlink:href="iconName" :fill="color" />
+    <use :xlink:href="iconName" />
   </svg>
 </template>
 
-<script>
-import { defineComponent, computed } from 'vue'
-export default defineComponent({
-  props: {
-    iconClass: {
-      type: String,
-      required: true
-    },
-    className: {
-      type: String,
-      default: ''
-    },
-    color: {
-      type: String,
-      default: ''
-    }
+<script setup>
+import { computed } from 'vue'
+
+// props是父组件传递参数给子组件
+const props = defineProps({
+  // icon 图标路径
+  icon: {
+    type: String,
+    required: true
   },
-  setup(props) {
-    return {
-      iconName: computed(() => `#icon-${props.iconClass}`),
-      svgClass: computed(() => {
-        if (props.className) {
-          return `svg-icon ${props.className}`
-        }
-        return 'svg-icon'
-      })
-    }
+  // 图标类名，用于处理图标样式
+  className: {
+    type: String,
+    default: ''
   }
+})
+
+/**
+ * 图标数据处理
+ */
+const iconName = computed(() => `#icon-${props.icon}`)
+
+const svgClass = computed(() => {
+  if (props.className) {
+    return `svg-icon ${props.className}`
+  }
+  return 'svg-icon'
 })
 </script>
 
@@ -39,8 +39,8 @@ export default defineComponent({
 .svg-icon {
   width: 1em;
   height: 1em;
-  position: relative;
+  vertical-align: -0.15em;
   fill: currentColor;
-  vertical-align: -2px;
+  overflow: hidden;
 }
 </style>
