@@ -29,7 +29,7 @@ export default defineConfig({
     vue(),
     createSvgIconsPlugin({
       // 指定要缓存的图标文件夹，天坑!!!!，此处路径src/icons，否则图标不生效
-      iconDirs: [path.resolve(process.cwd(), 'src/icons')],
+      iconDirs: [path.resolve(process.cwd(), 'src/assets')],
       // 执行icon name的格式
       symbolId: 'icon-[dir]-[name]'
     }),

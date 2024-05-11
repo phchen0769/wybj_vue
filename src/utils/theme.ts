@@ -7,7 +7,7 @@ import axios from 'axios'
  * @param {*} elNewStyle  element-plus 的新样式
  * @param {*} isNewStyleTag 是否生成新的 style 标签
  */
-export const writeNewStyle = (elNewStyle) => {
+export const writeNewStyle = (elNewStyle: any) => {
   const style = document.createElement('style')
   style.innerText = elNewStyle
   document.head.appendChild(style)
@@ -16,7 +16,7 @@ export const writeNewStyle = (elNewStyle) => {
 /**
  * 根据主色值，生成最新的样式表
  */
-export const generateNewStyle = async (primaryColor) => {
+export const generateNewStyle = async (primaryColor: any) => {
   // 1. 根据主色生成色值表
   const colors = generateColors(primaryColor)
   // 2. 获取当前 element-plus 的默认样式，并且把需要进行替换的色值打上标记

@@ -49,6 +49,17 @@ export const publicRoutes = [
           iconName: 'User'
         }
       },
+      // 视频通话
+      {
+        path: '/video-call',
+        name: 'video-call',
+        component: () => import('@/views/video-call/index.vue'),
+        meta: {
+          title: 'videoCall',
+          icon: 'article',
+          iconName: 'article'
+        }
+      },
       // 404
       {
         path: '/404',
@@ -81,10 +92,10 @@ const router = createRouter({
 export function resetRouter() {
   if (store.getters.userInfo && store.getters.userInfo.routers) {
     const menus = store.getters.userInfo.routers
-    menus.forEach((menu) => {
+    menus.forEach((menu: any) => {
       if (menu.children) {
         // 如果存在子路由，分别移除每一个子路由
-        menu.children.forEach((child) => {
+        menu.children.forEach((child: any) => {
           router.removeRoute(child.name)
         })
       }

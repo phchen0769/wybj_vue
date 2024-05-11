@@ -5,14 +5,14 @@ import store from '@/store'
 /**
  * @description: 根据路由名称生成页面标题
  */
-export function generateTitle(title) {
+export function generateTitle(title: string) {
   return i18n.global.t('msg.route.' + title)
 }
 /**
  *
  * @param  {...any} cbs 所有的回调
  */
-export function watchSwitchLang(...cbs) {
+export function watchSwitchLang(...cbs: any[]) {
   watch(
     // 当language的值发生变化时，调用回调函数
     () => store.getters.language,

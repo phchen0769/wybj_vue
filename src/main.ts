@@ -14,6 +14,9 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 // 初始化样式表
 import '@/styles/reset.scss'
 
+// 视频通话样式
+import '@/views/video-call/style.scss'
+
 // 导入路由守卫
 import '@/permission'
 

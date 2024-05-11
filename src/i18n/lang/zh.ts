@@ -40,6 +40,7 @@ export default {
   },
   route: {
     profile: '个人中心',
+    videoCall: '视频通话',
     user: '用户',
     excelImport: 'Excel导入',
     userManage: '员工管理',

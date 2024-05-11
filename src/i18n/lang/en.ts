@@ -40,17 +40,18 @@ export default {
   },
   route: {
     profile: 'Profile',
-    user: 'user',
-    excelImport: 'ExcelImport',
-    userManage: 'UserManage',
-    userInfo: 'UserInfo',
-    roleList: 'RoleList',
-    permissionList: 'PermissionList',
+    videoCall: 'Video Call',
+    user: 'User',
+    excelImport: 'Excel Import',
+    userManage: 'User Manage',
+    userInfo: 'User Info',
+    roleList: 'Role List',
+    permissionList: 'Permission List',
     article: 'Record',
-    articleRanking: 'RecordRanking',
-    articleCreate: 'RecordCreate',
-    articleDetail: 'RecordDetail',
-    articleEditor: 'RecordEditor'
+    articleRanking: 'Record Ranking',
+    articleCreate: 'Record Create',
+    articleDetail: 'Record Detail',
+    articleEditor: 'Record Editor'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'
