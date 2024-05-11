@@ -58,6 +58,7 @@ const localVideoRef = ref<InstanceType<typeof AppVideo>>()
 const remoteVideoRef = ref<InstanceType<typeof AppVideo>>()
 const loginRef = ref<InstanceType<typeof Login>>()
 const noticeRef = ref<InstanceType<typeof Notice>>()
+// 获取用户信息
 const userInfo = useUserInfo()
 const rtcConfig: RTCConfiguration = {
   iceServers: [
@@ -78,6 +79,15 @@ let sc: SocketControl // socket控制器
 let callState = ref<CALL_STATE>(CALL_STATE.WAIT) // 通话状态
 let videoDirection = ref(true) // 对方/本地视频位置
 let [toast] = useToast(callState) // 通话提示hook
+
+// // 导入vuex
+// import { useStore } from 'vuex'
+// import { computed } from 'vue'
+// // 使用vuex
+// const store = useStore()
+// // 设置计算属性，获取用户信息，用于显示头像
+// const userInfo1 = computed(() => store.getters.userInfo)
+
 watch(
   () => userInfo.userInfo.username,
   () => {

@@ -13,12 +13,26 @@ import { showDiaLog } from '../utils'
 import { ref } from 'vue'
 import { DIALOG_TYPE } from '../enum'
 const $emit = defineEmits(['login'])
+
 let username = ref('')
+
+// 导入vuex
+import { useStore } from 'vuex'
+import { computed } from 'vue'
+// 使用vuex
+const store = useStore()
+// 设置计算属性，获取用户信息，用于显示头像
+const userInfo1 = computed(() => store.getters.userInfo)
+
+// 从vuex中直接读取用户名
+username.value = userInfo1.value.username
+
 let isError = ref(false)
+// 不显示登录框
 let isClose = ref(true)
 function login() {
   if (isError.value) return
-  if (username.value.length <= 0 || username.value.length > 4) {
+  if (username.value.length <= 0 || username.value.length > 400) {
     showDiaLog({ msg: '账号范围(1-4)', type: DIALOG_TYPE.WARNING })
     isError.value = true
     setTimeout(() => {
@@ -28,6 +42,10 @@ function login() {
     $emit('login', username.value)
   }
 }
+
+// 不需要触发登录按钮，直接登录
+login()
+
 function show(is: boolean) {
   isClose.value = is
 }
