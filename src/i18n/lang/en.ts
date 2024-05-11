@@ -42,15 +42,15 @@ export default {
     profile: 'Profile',
     user: 'user',
     excelImport: 'ExcelImport',
-    userManage: 'EmployeeManage',
+    userManage: 'UserManage',
     userInfo: 'UserInfo',
     roleList: 'RoleList',
     permissionList: 'PermissionList',
-    article: 'article',
-    articleRanking: 'ArticleRanking',
-    articleCreate: 'ArticleCreate',
-    articleDetail: 'ArticleDetail',
-    articleEditor: 'ArticleEditor'
+    article: 'Record',
+    articleRanking: 'RecordRanking',
+    articleCreate: 'RecordCreate',
+    articleDetail: 'RecordDetail',
+    articleEditor: 'RecordEditor'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'
@@ -117,7 +117,7 @@ export default {
   },
   userInfo: {
     print: 'Print',
-    title: 'Employee information',
+    title: 'User information',
     name: 'name',
     sex: 'gender',
     nation: 'nationality',
