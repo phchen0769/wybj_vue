@@ -2,25 +2,36 @@
   <Transition name="notice">
     <div class="notice show-box" v-if="isShow">
       <div class="left">
-        <SvgIcon name="user" color="#67C23A" size="48px" />
-        <span>{{ username ? `${username}来电` : '未知用户' }}</span>
+        <SvgIcon icon="video-user" color="#67C23A" size="48px" />
+        <span>{{
+          username ? `${username}` + $t('msg.videoCall.call') : $t('msg.videoCall.unkonw')
+        }}</span>
       </div>
       <div class="right">
-        <SvgIcon
-          name="close"
+        <!-- <SvgIcon
+          icon="video-close"
           color="#fe6c6f"
           size="48px"
           class="svg-call svg-close"
           @click="handleClose"
         />
-        <SvgIcon name="close" color="#67C23A" size="48px" class="svg-call" @click="handleCall" />
+        <SvgIcon
+          icon="video-close"
+          color="#67C23A"
+          size="48px"
+          class="svg-call"
+          @click="handleCall"
+        /> -->
+        <el-button type="danger" icon="PhoneFilled" circle @click="handleClose" />
+        <el-button type="success" icon="PhoneFilled" circle @click="handleCall" />
       </div>
     </div>
   </Transition>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
-import SvgIcon from './SvgIcon.vue'
+// import SvgIcon from './SvgIcon.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 let username = ref('')
 let isShow = ref(false)
 function showNotice(toUsername: string) {

@@ -5,10 +5,17 @@
       <div class="close">
         <span class="toast">{{ toast }}</span>
         <Transition name="close">
-          <SvgIcon
-            name="close"
+          <!-- <SvgIcon
+            icon="video-close"
             size="48"
             color="#fe6c6f"
+            @click="onOffCall"
+            v-if="callState === CALL_STATE.CONNECT || callState === CALL_STATE.SEND"
+          /> -->
+          <el-button
+            type="danger"
+            icon="PhoneFilled"
+            circle
             @click="onOffCall"
             v-if="callState === CALL_STATE.CONNECT || callState === CALL_STATE.SEND"
           />
@@ -44,7 +51,8 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import UserList from './components/UserList.vue'
-import SvgIcon from './components/SvgIcon.vue'
+// import SvgIcon from './components/SvgIcon.vue'
+// import SvgIcon from '@/components/SvgIcon/index.vue'
 import AppVideo from './components/AppVideo.vue'
 import Login from './components/Login.vue'
 import SocketControl from './socket'
@@ -54,6 +62,12 @@ import { useUserInfo } from '@/stores/userInfo'
 import { useToast } from './hooks/useToast'
 import Notice from './components/Notice.vue'
 import Settings from './components/Settings.vue'
+
+// 导入i18n
+import { useI18n } from 'vue-i18n'
+// 实例化i18n
+const i18n = useI18n()
+
 const localVideoRef = ref<InstanceType<typeof AppVideo>>()
 const remoteVideoRef = ref<InstanceType<typeof AppVideo>>()
 const loginRef = ref<InstanceType<typeof Login>>()
@@ -154,7 +168,8 @@ async function onCall(is: boolean) {
   if (callState.value === CALL_STATE.CONNECT) {
     showDiaLog({
       type: DIALOG_TYPE.WARNING,
-      msg: '当前处于通话中,请先挂断后重试!'
+      // msg: '当前处于通话中,请先挂断后重试!',
+      msg: i18n.t('msg.videoCall.msgBlocking')
     })
     sc.emit(SOCKET_ON_RTC.USER_REFUST, {})
     return
@@ -167,7 +182,7 @@ async function onCall(is: boolean) {
     if (userInfo.userInfo.toUserName && callState.value !== CALL_STATE.SEND) {
       callState.value = CALL_STATE.CONNECT // 同意通话，并设置自己状态为通话中
       sendOffer(userInfo.userInfo.toUserName, CALL_TYPE.RECIVER)
-    } else showDiaLog({ type: DIALOG_TYPE.WARNING, msg: '当前处于拨打中...' })
+    } else showDiaLog({ type: DIALOG_TYPE.WARNING, msg: i18n.t('msg.videoCall.msgCalling') })
   }
 }
 // 点击挂断
@@ -270,7 +285,7 @@ async function start(username: string) {
  */
 async function sendOffer(toUser: string, callType: CALL_TYPE) {
   if (!sc.socket) {
-    showDiaLog({ type: DIALOG_TYPE.WARNING, msg: '请先连接!' })
+    showDiaLog({ type: DIALOG_TYPE.WARNING, msg: i18n.t('msg.videoCall.msgConnect') })
     return
   }
   // 初始化当前视频

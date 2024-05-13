@@ -1,6 +1,6 @@
 <template>
   <SvgIcon
-    name="menu"
+    icon="video-menu"
     size="22"
     :class="['mobile-menu', isOpen ? 'open-menu' : '']"
     color="#67c23a"
@@ -9,26 +9,29 @@
   />
   <div class="userlist-mask" @click="isOpen = false" v-if="isOpen"></div>
   <div :class="['user-list', 'show-box', isMobile ? 'mobile' : '', isOpen ? 'open-user' : '']">
-    <span class="title">用户列表</span>
+    <span class="title" :style="{ color: $store.getters.cssVar.menuBg }">{{
+      $t('msg.videoCall.title')
+    }}</span>
     <div class="list">
       <div class="item show-box" v-for="item in userInfo.userList" :key="item.userId">
         <div class="left">
-          <SvgIcon name="user" size="22" />
+          <SvgIcon icon="video-user" size="22" />
           <span class="name">{{ item.username }}</span>
         </div>
         <AppButton
           @click="$emit('callUser', item.username)"
           v-if="item.username !== userInfo.userInfo.username"
           v-show="props.callState === CALL_STATE.WAIT"
-          >拨打</AppButton
+          >{{ $t('msg.videoCall.call') }}</AppButton
         >
-        <span v-else class="now">当前</span>
+        <span v-else class="now">{{ $t('msg.videoCall.current') }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
-import SvgIcon from './SvgIcon.vue'
+// import SvgIcon from './SvgIcon.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 import AppButton from './AppButton.vue'
 import { useUserInfo } from '@/stores/userInfo'
 import { CALL_STATE } from '../enum'
@@ -48,6 +51,7 @@ let isMobile = computed(() => {
 const props = withDefaults(defineProps<PropsType>(), {})
 </script>
 <style lang="scss" scoped>
+@import '@/styles/variables.module.scss';
 .open-user {
   left: 0px !important;
 }
@@ -86,7 +90,6 @@ const props = withDefaults(defineProps<PropsType>(), {})
   .title {
     align-self: center;
     font-weight: bold;
-    color: #e5bc64;
     margin-bottom: 12px;
   }
   .list {
@@ -104,7 +107,7 @@ const props = withDefaults(defineProps<PropsType>(), {})
         font-size: 12px;
         color: #67c23a;
         font-weight: bold;
-        width: 10%;
+        // width: 10%;
       }
       .left {
         display: flex;

@@ -1,9 +1,13 @@
 <template>
   <Transition name="T_top_dow" appear>
     <div v-if="isClose" :class="['login', 'show-box', isError ? 'error' : '']">
-      <span class="title">登录</span>
-      <input placeholder="输入账号(1-4)" v-model="username" :class="isError ? 'input-error' : ''" />
-      <AppButton @click="login" class="login-btn">进入</AppButton>
+      <span class="title">{{ $t('msg.videoCall.login') }}</span>
+      <input
+        :placeholder="$t('msg.videoCall.msgLogin')"
+        v-model="username"
+        :class="isError ? 'input-error' : ''"
+      />
+      <AppButton @click="login" class="login-btn">{{ $t('msg.videoCall.enter') }}</AppButton>
     </div>
   </Transition>
 </template>
@@ -33,7 +37,7 @@ let isClose = ref(true)
 function login() {
   if (isError.value) return
   if (username.value.length <= 0 || username.value.length > 400) {
-    showDiaLog({ msg: '账号范围(1-4)', type: DIALOG_TYPE.WARNING })
+    showDiaLog({ msg: $t('msg.videoCall.msgLogin'), type: DIALOG_TYPE.WARNING })
     isError.value = true
     setTimeout(() => {
       isError.value = false

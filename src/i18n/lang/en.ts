@@ -200,5 +200,33 @@ export default {
     createSuccess: 'The article was created successfully',
     editorSuccess: 'Article modified successfully',
     sortSuccess: 'Article ranking modified successfully'
+  },
+  videoCall: {
+    title: 'Online User',
+    call: 'Call',
+    current: 'Current',
+    incoming: 'Incoming call',
+    unknown: 'Unknown user',
+    callSetting: 'Call Setting',
+    remoteAudio: 'Remote Audio',
+    localAudio: 'Local Audio',
+    remoteVideo: 'Remote Video',
+    localVideo: 'Local Video',
+    video: ' Video',
+    deskShare: 'Desk Share ',
+    msgBlocking: 'The call is currently in progress. Please hang up and try again later!',
+    msgCalling: 'Currently dialing....',
+    msgConnect: 'Please connect first!',
+    msgToast1: 'In a call.',
+    msgToast2: 'Initiating a call.',
+    msgToast3: 'The other party has declined the call.',
+    msgToast4: 'The call has been disconnected.',
+    login: 'Login',
+    msgLogin: 'Please log in first!',
+    enter: 'Enter',
+    msgSocket1: 'Connection failed, user already logged in!',
+    msgSocket2: 'Please connect first!',
+    msgSocket3: 'Connectecd successfully!',
+    msgSocket4: 'Connection failed, user is already in use!"'
   }
 }

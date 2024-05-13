@@ -3,8 +3,10 @@ import { CALL_TYPE, DIALOG_TYPE, SOCKET_ON_RTC, SOCKET_ON_SYS } from './enum'
 import { useUserInfo } from '@/stores/userInfo'
 import type { ResRtcType, RtcEmitParams, RtcFun } from './type'
 import { showDiaLog } from './utils'
+// 导入i18n
+import i18n from '@/i18n'
 
-const baseUrl = 'http://192.168.12.166:3003/'
+const baseUrl = 'http://10.165.27.210:3003/'
 
 console.log(baseUrl)
 
@@ -22,7 +24,7 @@ export default class SocketControl {
   async connect() {
     return new Promise((res) => {
       if (this.userInfo.userList.find((u) => u.username === this.username)) {
-        showDiaLog({ type: DIALOG_TYPE.WARNING, msg: '连接失败,用户名也就存在!' })
+        showDiaLog({ type: DIALOG_TYPE.WARNING, msg: i18n.global.t('msg.videoCall.msgSocket1') })
         return
       }
       this.socket = io(baseUrl, {
@@ -31,7 +33,7 @@ export default class SocketControl {
       })
       res({})
       if (!this.socket) {
-        showDiaLog({ type: DIALOG_TYPE.WARNING, msg: '请先连接!' })
+        showDiaLog({ type: DIALOG_TYPE.WARNING, msg: i18n.global.t('msg.videoCall.msgSocket2') })
       } else {
         this.sys(this.socket)
       }
@@ -46,12 +48,12 @@ export default class SocketControl {
       this.userInfo.userList = data
     })
     this.socket.on(SOCKET_ON_SYS.CONNECTION, () => {
-      showDiaLog({ type: DIALOG_TYPE.SUCCESS, msg: '连接成功' })
+      showDiaLog({ type: DIALOG_TYPE.SUCCESS, msg: i18n.global.t('msg.videoCall.msgSocket3') })
       // 储存当前用户
       this.userInfo.userInfo.username = this.username
     })
     this.socket.on(SOCKET_ON_SYS.CONNECTION_ERROR, () => {
-      showDiaLog({ type: DIALOG_TYPE.ERROR, msg: '连接失败:可能用户名已经被使用!' })
+      showDiaLog({ type: DIALOG_TYPE.ERROR, msg: i18n.global.t('msg.videoCall.msgSocket4') })
     })
   }
   emit<T>(key: SOCKET_ON_RTC, data: T, callType?: CALL_TYPE) {

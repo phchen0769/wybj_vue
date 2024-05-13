@@ -1,33 +1,33 @@
 <template>
   <SvgIcon
-    name="setting"
+    icon="video-setting"
     size="32"
     :class="['setting-menu', isShow ? 'open-setting' : '']"
-    color="#e5bc64"
+    :color="$store.getters.cssVar.menuBg"
     @click="isShow = !isShow"
   />
   <div class="settings-mask" @click="isShow = false" v-if="isShow"></div>
   <Transition name="T_top_dow">
     <div class="setting show-box" @click.stop="void 0" v-if="isShow">
-      <span class="title">通话设置</span>
+      <span class="title">{{ $t('msg.videoCall.callSetting') }}</span>
       <div class="item">
-        <span class="name">对方声音</span>
+        <span class="name">{{ $t('msg.videoCall.remoteAudio') }}</span>
         <input type="checkbox" v-model="userInfo.settings.remoteAudio" />
       </div>
       <div class="item">
-        <span class="name">本地声音</span>
+        <span class="name">{{ $t('msg.videoCall.localAudio') }}</span>
         <input type="checkbox" v-model="userInfo.settings.localAudio" />
       </div>
       <div class="item">
-        <span class="name">对方视频</span>
+        <span class="name">{{ $t('msg.videoCall.remoteVideo') }}</span>
         <input type="checkbox" v-model="userInfo.settings.remoteVideo" />
       </div>
       <div class="item">
-        <span class="name">本地视频</span>
+        <span class="name">{{ $t('msg.videoCall.localVideo') }}</span>
         <input type="checkbox" v-model="userInfo.settings.localVideo" />
       </div>
       <div class="item">
-        <span class="name">视频通话</span>
+        <span class="name">{{ $t('msg.videoCall.video') }}</span>
         <input
           type="radio"
           name="radio"
@@ -36,7 +36,7 @@
         />
       </div>
       <div class="item">
-        <span class="name">共享屏幕</span>
+        <span class="name">{{ $t('msg.videoCall.deskShare') }}</span>
         <input
           type="radio"
           name="radio"
@@ -48,7 +48,8 @@
   </Transition>
 </template>
 <script lang="ts" setup>
-import SvgIcon from './SvgIcon.vue'
+// import SvgIcon from './SvgIcon.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue'
 import { useUserInfo } from '@/stores/userInfo'
 import { SETTINGS_VIDEO } from '../enum'
 import { ref } from 'vue'
@@ -56,6 +57,7 @@ const userInfo = useUserInfo()
 let isShow = ref(false)
 </script>
 <style lang="scss" scoped>
+@import '@/styles/variables.module.scss';
 input {
   cursor: pointer;
 }
@@ -93,7 +95,7 @@ input {
     align-self: center;
     font-size: 16px;
     font-weight: bold;
-    color: #e5bc64;
+    color: $menuBg;
   }
   .item {
     display: flex;

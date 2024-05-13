@@ -201,5 +201,33 @@ export default {
     createSuccess: '文章创建成功',
     editorSuccess: '文章修改成功',
     sortSuccess: '文章排名修改成功'
+  },
+  videoCall: {
+    title: '在线用户',
+    call: '拨打',
+    current: '当前',
+    incoming: '来电',
+    unknown: '未知用户',
+    callSetting: '通话设置',
+    remoteAudio: '对方声音',
+    localAudio: '本地声音',
+    remoteVideo: '对方视频',
+    localVideo: '本地视频',
+    video: ' 视频通话',
+    deskShare: '共享屏幕',
+    msgBlocking: '当前处于通话中,请先挂断后重试!',
+    msgCalling: '当前处于拨打中...',
+    msgConnect: '请先连接!',
+    msgToast1: '通话中...',
+    msgToast2: '正在发起通话...',
+    msgToast3: '对方已拒绝',
+    msgToast4: '已挂断',
+    login: '登录',
+    msgLogin: '输入账号',
+    enter: '进入',
+    msgSocket1: '连接失败,用户名已经存在!',
+    msgSocket2: '请先连接!',
+    msgSocket3: '连接成功!',
+    msgSocket4: '连接失败,用户名已经被使用!'
   }
 }
