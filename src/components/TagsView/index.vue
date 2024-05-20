@@ -1,5 +1,5 @@
 <template>
-  <div class="tags-view-container">
+  <div class="tags-view-container" id="guide-tags">
     <el-scrollbar class="tags-view-wrapper">
       <router-link
         class="tags-view-item"
@@ -11,20 +11,19 @@
         v-for="(tag, index) in $store.getters.tagsViewList"
         :key="tag.fullPath"
         :to="{ path: tag.fullPath }"
-        @contextmenu.prevent="openMenu($event, index)">
+        @contextmenu.prevent="openMenu($event, index)"
+      >
         {{ tag.title }}
         <el-icon
           v-show="!isActive(tag)"
           class="el-icon-close"
-          @click.prevent.stop="onCloseClick(index)">
+          @click.prevent.stop="onCloseClick(index)"
+        >
           <Close />
         </el-icon>
       </router-link>
     </el-scrollbar>
-    <context-menu
-      v-show="visible"
-      :style="menuStyle"
-      :index="selectIndex"></context-menu>
+    <context-menu v-show="visible" :style="menuStyle" :index="selectIndex"></context-menu>
   </div>
 </template>
 
@@ -96,7 +95,9 @@ watch(visible, (val) => {
   width: 100%;
   background: #fff;
   border-bottom: 1px solid #d8dce5;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.12),
+    0 0 3px 0 rgba(0, 0, 0, 0.04);
   .tags-view-item {
     display: inline-block;
     position: relative;

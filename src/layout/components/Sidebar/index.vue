@@ -7,7 +7,7 @@
       </h1>
     </div>
     <el-scrollbar>
-      <sidebar-menu></sidebar-menu>
+      <sidebar-menu id="guide-sidebar"></sidebar-menu>
     </el-scrollbar>
   </div>
 </template>

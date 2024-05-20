@@ -101,13 +101,16 @@ export default {
     tagTitle: '标签',
     tagDesc: '已打开页面标签',
     sidebarTitle: '菜单',
-    sidebarDesc: '项目功能菜单'
+    sidebarDesc: '项目功能菜单',
+    endingTitle: '结束',
+    endingDesc: '点击“完成”以继续使用系统，谢谢。',
+    done: '完成'
   },
   profile: {
-    muted: '《vue3 改写 vue-element-admin，实现后台前端综合解决方案》项目演示',
+    muted: '用于医生和患者之间的视频咨询的网络应用程序，医生可以根据患者的病症，编写医疗记录。',
     introduce: '介绍',
-    projectIntroduction: '项目介绍',
-    projectFunction: '项目功能',
+    projectIntroduction: '远程诊断系统：',
+    projectFunction: '系统功能',
     feature: '功能',
     chapter: '章节',
     author: '作者',

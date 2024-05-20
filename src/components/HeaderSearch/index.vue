@@ -1,10 +1,6 @@
 <template>
   <div :class="{ show: isShow }" class="header-search">
-    <svg-icon
-      id="guide-search"
-      class-name="search-icon"
-      icon="search"
-      @click.stop="onShowClick" />
+    <svg-icon id="guide-search" class-name="search-icon" icon="search" @click.stop="onShowClick" />
     <el-select
       ref="headerSearchSelectRef"
       class="header-search-select"
@@ -15,12 +11,14 @@
       :placeholder="i18n.t('msg.headerSearch.placeholder')"
       :no-data-text="i18n.t('msg.headerSearch.noData')"
       :remote-method="querySearch"
-      @change="onSelectChange">
+      @change="onSelectChange"
+    >
       <el-option
         v-for="option in searchOptions"
         :key="option.item.path"
         :label="option.item.title.join(' > ')"
-        :value="option.item"></el-option>
+        :value="option.item"
+      ></el-option>
     </el-select>
   </div>
 </template>
