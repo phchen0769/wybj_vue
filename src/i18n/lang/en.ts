@@ -45,13 +45,13 @@ export default {
     excelImport: 'Excel Import',
     userManage: 'User Manage',
     userInfo: 'User Info',
-    roleList: 'Role List',
-    permissionList: 'Permission List',
-    article: 'Record',
-    articleRanking: 'Record Ranking',
-    articleCreate: 'Record Create',
-    articleDetail: 'Record Detail',
-    articleEditor: 'Record Editor'
+    roleManage: 'Role Manage',
+    permissionManage: 'Permission Manage',
+    record: 'Record',
+    recordRanking: 'Record List',
+    recordCreate: 'Record Create',
+    recordDetail: 'Record Detail',
+    recordEditor: 'Record Editor'
   },
   toast: {
     switchLangSuccess: 'Switch Language Success'
@@ -111,13 +111,13 @@ export default {
     introduce: 'Introduce',
     projectIntroduction: 'Remote Diagnosis System:',
     projectFunction: 'System Function',
-    feature: 'Feature',
-    chapter: 'Chapter',
-    author: 'Author',
-    name: 'Sunday',
-    job: 'A front-end development program',
+    feature: 'Features',
+    record: 'Records',
+    doctor: 'Doctors',
+    name: 'Liu Kejun',
+    job: "An associate chief physician and master's supervisor.",
     Introduction:
-      'A senior technical expert, once worked in a domestic first-line Internet company, and has coordinated multiple large-scale projects with more than tens of millions of users. Committed to researching big front-end technology, he has been invited to participate in domestic front-end technology sharing sessions many times, such as: Google China Technology Sharing Session in 2018.'
+      'Graduated from the Sun Yat-sen University Cancer Center, specializing in tumor prevention and treatment.As the first author and corresponding author, he has published more than 10 SCI academic papers internationally, and has served as a reviewer for journals such as BMC Medicine and Experimental Hematology & Oncology. His research results have been presented at international and domestic conferences such as WCLC, ASCO, ESMO Asia, and CSCO. He has received 1 municipal science and technology progress award, obtained 2 utility model patents, and authored 3 national-level monographs.'
   },
   userInfo: {
     print: 'Print',

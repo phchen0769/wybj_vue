@@ -45,13 +45,13 @@ export default {
     excelImport: 'Excel导入',
     userManage: '员工管理',
     userInfo: '员工信息',
-    roleList: '角色列表',
-    permissionList: '权限列表',
-    article: '文章',
-    articleRanking: '文章排名',
-    articleCreate: '创建文章',
-    articleDetail: '文章详情',
-    articleEditor: '文章编辑'
+    roleManage: '角色列表',
+    permissionManage: '权限列表',
+    record: '记录',
+    recordRanking: '记录列表',
+    recordCreate: '创建记录',
+    recordDetail: '记录详情',
+    recordEditor: '记录编辑'
   },
   toast: {
     switchLangSuccess: '切换语言成功'
@@ -112,12 +112,12 @@ export default {
     projectIntroduction: '远程诊断系统：',
     projectFunction: '系统功能',
     feature: '功能',
-    chapter: '章节',
-    author: '作者',
-    name: 'Sunday',
-    job: '一个前端开发程序猿',
+    record: '病例',
+    doctor: '医生',
+    name: '刘克军',
+    job: '副主任医师，硕士研究生导师',
     Introduction:
-      '高级技术专家，曾就职于国内一线互联网公司，统筹过的多个大型项目用户数已过千万级。致力于研究大前端技术，多次受邀参加国内前端技术分享会，如：2018 年 Google 中国技术分享会。'
+      '毕业于中山大学肿瘤防治中心，主要擅长肺癌、胸腺瘤、肺结节的诊治。以第一作者和通讯作者在国际上发表SCI学术论文10余篇，BMC Medicine、Experimental Hematology &Oncology等杂志审稿人，研究成果在WCLC、ASCO、ESMO Asia、CSCO等国内外会议上发布，获得市科技进步奖1项，授权实用新型专利2项，编写国家级专著3部。担任中国民族卫生协会卫生健康技术推广专家委员会委员、广东省医学会肿瘤内科学分会青年委员会副主任委员，广东省临床医学学会肺癌精准治疗及临床研究专业委员会常务委员，广东省精准医学应用学会肿瘤综合治疗分会常务委员，广东省精准医学应用学会胃肠肿瘤分会中西结合专业委员会委员，广东省基层医药学会中西医结合肿瘤专业委员会委员，广东省临床医学学会肿瘤学专业委员会委员，广东省中西医结合学会肿瘤免疫专委会青年委员，广州抗癌协会肿瘤支持与康复治疗专业委员会委员，广州抗癌协会肿瘤复发与转移专业委员会委员，广州抗癌协会肿瘤遗传学专业委员会委员，东莞市医学会肿瘤学分会青年委员兼秘书、东莞市抗癌协会副秘书长、东莞市康复医学会理事、东莞市康复医学会肿瘤运动康复分会常务理事。擅长：肺癌、淋巴瘤、胸腺瘤、胸膜间皮瘤、软组织肉瘤等恶性肿瘤的化疗、靶向治疗、免疫治疗及综合治疗，在肺结节诊治及化疗后骨髓抑制、感染性休克、上腔静脉压迫综合征、高血钙症、肿瘤溶解综合征、肺癌咯血等急危重症诊治方面有一定的造诣。'
   },
   userInfo: {
     print: '打印',
