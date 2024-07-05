@@ -52,7 +52,8 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useUserStore } from '@/stores/user'
 import LangSelect from '@/components/LangSelect/index.vue'
 import { useI18n } from 'vue-i18n'
 
@@ -95,7 +96,8 @@ const showPwd = () => {
 // 登录按钮点击事件
 const loading = ref(false)
 // 实例化vux实例
-const store = useStore()
+// const store = useStore()
+const userStore = useUserStore()
 // 获取表单实例：当需要手动触发表单校验时，可以通过ref获取表单实例
 const loginFormRef = ref(null)
 const handlerLogin = () => {
@@ -106,8 +108,9 @@ const handlerLogin = () => {
     if (!valid) return
     // 2、发送请求（触发登录动作）
     loading.value = true
-    store
-      .dispatch('user/login', loginForm.value)
+    userStore
+      // .dispatch('user/login', loginForm.value)
+      .login(loginForm.value)
       .then(() => {
         loading.value = false
         // 3、进行登录
@@ -126,6 +129,7 @@ $bg: #2b3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
 $cursor: #fff;
+
 
 .login-container {
   min-height: 100%;
@@ -151,7 +155,7 @@ $cursor: #fff;
     :deep(.el-input) {
       display: inline-block;
       height: 47px;
-      width: 85%;
+      width: 80%;
 
       input {
         height: 47px;
@@ -166,6 +170,7 @@ $cursor: #fff;
       .el-input__wrapper {
         width: 100%;
         background-color: currentColor;
+        border: none;
       }
     }
 

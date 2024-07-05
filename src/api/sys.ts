@@ -4,7 +4,7 @@ import request from '@/utils/request'
  * return promise
  */
 
-export const login = (data) => {
+export const loginAPI = (data: { username: string, password: string }) => {
   return request({
     url: '/login',
     method: 'POST',

@@ -1,6 +1,6 @@
 import { SETTINGS_VIDEO } from '@/views/video-call/enum'
 import { defineStore } from 'pinia'
-import type { UserItem } from './type'
+import type { UserItem } from '@/types/api'
 
 export const useUserInfo = defineStore('userInfo', {
   // 推荐使用 完整类型推断的箭头函数

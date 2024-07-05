@@ -22,7 +22,7 @@ RUN apk update && apk add --no-cache --update-cache libuv\
 
 RUN npm config set registry https://mirrors.huaweicloud.com/repository/npm/
 
-WORKDIR /workspaces/Remote-diagnosis-vue3
+WORKDIR /workspaces/admin_vue
 
 EXPOSE 8080
 
