@@ -1,26 +1,13 @@
 <!-- eslint-disable vue/multi-word-component-names -->
-
 <template>
-  <!-- 展示外部图标 -->
-  <div
-    v-if="isExternal"
-    :style="styleExternalIcon"
-    class="svg-external-icon svg-icon"
-    :class="className"></div>
-  <!-- 展示内部图标 -->
-  <svg
-    v-else
-    class="svg-icon"
-    :class="className"
-    aria-hidden="true"
-    @click="$emit('click', $event)">
+  <svg :class="svgClass" aria-hidden="true">
     <use :xlink:href="iconName" />
   </svg>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { isExternal as external } from '@/utils/validate'
+
 // props是父组件传递参数给子组件
 const props = defineProps({
   // icon 图标路径
@@ -36,35 +23,25 @@ const props = defineProps({
 })
 
 /**
- * 判断当前图标是否为外部图标
- */
-const isExternal = computed(() => external(props.icon))
-
-/**
- * 外部图标的样式
- */
-const styleExternalIcon = computed(() => ({
-  mask: `url(${props.icon}) no-repeat 50% 50%`,
-  '-webkit-mask': `url(${props.icon}) no-repeat 50% 50%`
-}))
-/**
- * 内部图标
+ * 图标数据处理
  */
 const iconName = computed(() => `#icon-${props.icon}`)
+
+const svgClass = computed(() => {
+  if (props.className) {
+    return `svg-icon ${props.className}`
+  }
+  return 'svg-icon'
+})
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .svg-icon {
-  width: 1em;
-  height: 1em;
+  width: 1.2em;
+  height: 1.2em;
   vertical-align: -0.15em;
   fill: currentColor;
   overflow: hidden;
-}
-
-.svg-external-icon {
-  background-color: currentColor;
-  mask-size: cover !important;
-  display: inline-block;
+  margin: 0.1em 0.5em 0.3em 0.3em;
 }
 </style>

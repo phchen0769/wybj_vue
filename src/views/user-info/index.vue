@@ -41,17 +41,16 @@
                 >{{ item }}</el-tag
               >
             </el-descriptions-item>
-            <el-descriptions-item
-              :label="$t('msg.userInfo.address')"
-              :span="2"
-              >{{ detailData.address }}</el-descriptions-item
-            >
+            <el-descriptions-item :label="$t('msg.userInfo.address')" :span="2">{{
+              detailData.address
+            }}</el-descriptions-item>
           </el-descriptions>
           <!-- 头像渲染 -->
           <el-image
             class="avatar"
             :src="detailData.avatar"
-            :preview-src-list="[detailData.avatar]"></el-image>
+            :preview-src-list="[detailData.avatar]"
+          ></el-image>
         </div>
         <div class="body">
           <!-- 内容渲染表格 -->

@@ -8,11 +8,9 @@
     :active-text-color="$store.getters.cssVar.menuActiveText"
     :default-active="activeMenu"
     :unique-opened="true"
-    router>
-    <sidebar-item
-      v-for="item in routes"
-      :key="item.path"
-      :route="item"></sidebar-item>
+    router
+  >
+    <sidebar-item v-for="item in routes" :key="item.path" :route="item"></sidebar-item>
   </el-menu>
 </template>
 
@@ -33,7 +31,8 @@ const routes = computed(() => {
 })
 
 // 获取vue-router中的路由
-// console.log(router.getRoutes())
+// console.log('routers', router.getRoutes())
+// console.log('route', routes.value)
 
 // 默认激活项
 const route = useRoute()
@@ -43,7 +42,7 @@ const activeMenu = computed(() => {
 })
 </script>
 <style lang="scss" scoped>
-@import '~@/styles/variables.module.scss';
+@import '@/styles/variables.module.scss';
 .el-menu {
   border: none;
 }

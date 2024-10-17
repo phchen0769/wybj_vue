@@ -7,7 +7,9 @@
       <el-checkbox
         v-for="item in allRoleList"
         :key="item.id"
-        :label="item.name"></el-checkbox>
+        :value="item.name"
+        >{{ item.name }}</el-checkbox
+      >
     </el-checkbox-group>
 
     <template #footer>

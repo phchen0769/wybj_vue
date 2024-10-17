@@ -1,9 +1,8 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <el-breadcrumb class="breadcrumb" id="guide-breadcrumb" separator="/">
     <transition-group name="breadcrumb">
-      <el-breadcrumb-item
-        v-for="(item, index) in breadcrumbData"
-        :key="item.path">
+      <el-breadcrumb-item v-for="(item, index) in breadcrumbData" :key="item.path">
         <!-- 不可点击项 -->
         <span v-if="index === breadcrumbData.length - 1" class="no-redirect">{{
           generateTitle(item.meta.title)
@@ -28,9 +27,7 @@ const route = useRoute()
 const breadcrumbData = ref([])
 const getBreadcrumbData = () => {
   // 根据当前路由信息，生成面包屑数据
-  breadcrumbData.value = route.matched.filter(
-    (item) => item.meta && item.meta.title
-  )
+  breadcrumbData.value = route.matched.filter((item) => item.meta && item.meta.title)
   // console.log(breadcrumbData.value)
 }
 // 监听路由变化时触发

@@ -1,10 +1,7 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="login-container">
-    <el-form
-      class="login-form"
-      ref="loginFormRef"
-      :model="loginForm"
-      :rules="loginRules">
+    <el-form class="login-form" ref="loginFormRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">{{ $t('msg.login.title') }}</h3>
         <lang-select class="lang-select" effect="light" />
@@ -12,16 +9,15 @@
       <!-- 用户名 -->
       <el-form-item prop="username">
         <span class="svg-container">
-          <!-- 使用在线svg图标 -->
-          <!-- <SvgIcon icon="https://res.lgdsunday.club/user.svg"></SvgIcon> -->
           <!-- 使用内部图标 -->
-          <svg-icon icon="user"></svg-icon>
+          <svg-icon icon="user" />
         </span>
         <el-input
           placeholder="请输入用户名"
           name="username"
           type="text"
-          v-model="loginForm.username" />
+          v-model="loginForm.username"
+        />
       </el-form-item>
       <!-- 密码 -->
       <el-form-item prop="password">
@@ -33,11 +29,11 @@
           placeholder="请输入密碼"
           name="password"
           :type="passwordType"
-          v-model="loginForm.password" />
+          v-model="loginForm.password"
+        />
         <span class="show-pwd" @click="showPwd">
           <!-- 密码眼睛图片逻辑判断-->
-          <svg-icon
-            :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
+          <svg-icon :icon="passwordType === 'password' ? 'eye' : 'eye-open'"></svg-icon>
         </span>
       </el-form-item>
 
@@ -56,7 +52,8 @@
 import SvgIcon from '@/components/SvgIcon/index.vue'
 import { ref } from 'vue'
 import { validatePassword } from './rules'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useUserStore } from '@/stores/user'
 import LangSelect from '@/components/LangSelect/index.vue'
 import { useI18n } from 'vue-i18n'
 
@@ -99,7 +96,8 @@ const showPwd = () => {
 // 登录按钮点击事件
 const loading = ref(false)
 // 实例化vux实例
-const store = useStore()
+// const store = useStore()
+const userStore = useUserStore()
 // 获取表单实例：当需要手动触发表单校验时，可以通过ref获取表单实例
 const loginFormRef = ref(null)
 const handlerLogin = () => {
@@ -110,8 +108,9 @@ const handlerLogin = () => {
     if (!valid) return
     // 2、发送请求（触发登录动作）
     loading.value = true
-    store
-      .dispatch('user/login', loginForm.value)
+    userStore
+      // .dispatch('user/login', loginForm.value)
+      .login(loginForm.value)
       .then(() => {
         loading.value = false
         // 3、进行登录
@@ -130,6 +129,7 @@ $bg: #2b3a4b;
 $dark_gray: #889aa4;
 $light_gray: #eee;
 $cursor: #fff;
+
 
 .login-container {
   min-height: 100%;
@@ -155,7 +155,7 @@ $cursor: #fff;
     :deep(.el-input) {
       display: inline-block;
       height: 47px;
-      width: 85%;
+      width: 80%;
 
       input {
         height: 47px;
@@ -170,6 +170,7 @@ $cursor: #fff;
       .el-input__wrapper {
         width: 100%;
         background-color: currentColor;
+        border: none;
       }
     }
 

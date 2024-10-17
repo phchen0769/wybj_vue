@@ -1,22 +1,19 @@
 <template>
   <div class="">
     <div class="logo-container" :style="{ height: logoHeight + 'px' }">
-      <el-avatar
-        :size="logoHeight"
-        shape="square"
-        :src="$store.getters.userInfo.avatar" />
+      <el-avatar :size="logoHeight" shape="square" :src="$store.getters.userInfo.avatar" />
       <h1 class="logo-title" v-if="$store.getters.sidebarOpened">
         {{ $store.getters.userInfo.username }}
       </h1>
     </div>
     <el-scrollbar>
-      <sidebar-menu></sidebar-menu>
+      <sidebar-menu id="guide-sidebar"></sidebar-menu>
     </el-scrollbar>
   </div>
 </template>
 
 <script setup>
-import SidebarMenu from './SidebarMenu'
+import SidebarMenu from './SidebarMenu.vue'
 import {} from 'vue'
 const logoHeight = 44
 </script>

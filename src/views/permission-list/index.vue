@@ -2,10 +2,7 @@
   <div class="permission-container">
     <el-card>
       <el-table :data="permissionList" border style="width: 100%">
-        <el-table-column
-          :label="$t('msg.permission.num')"
-          prop="id"
-          width="60" />
+        <el-table-column :label="$t('msg.permission.num')" prop="id" width="60" />
         <!-- 权限名称 -->
         <el-table-column prop="name" :label="$t('msg.permission.name')" />
         <!-- 方法 -->
@@ -14,10 +11,7 @@
         <el-table-column prop="desc" :label="$t('msg.universal.desc')" />
         <!-- 所属路由 -->
         <el-table-column prop="router" :label="$t('msg.permission.router')" />
-        <el-table-column
-          :label="$t('msg.universal.action')"
-          fixed="right"
-          width="260">
+        <el-table-column :label="$t('msg.universal.action')" fixed="right" width="260">
           <template #default="{ row }">
             <!-- v-permission="['distributeRole']" -->
             <!-- v-permission="['removeUser']" -->
@@ -25,18 +19,12 @@
               $t('msg.universal.add')
             }}</el-button>
 
-            <el-button
-              type="primary"
-              size="default"
-              @click="onEditClick(row)"
-              >{{ $t('msg.universal.update') }}</el-button
-            >
-            <el-button
-              type="danger"
-              size="default"
-              @click="onRemoveClick(row)"
-              >{{ $t('msg.universal.remove') }}</el-button
-            >
+            <el-button type="primary" size="default" @click="onEditClick(row)">{{
+              $t('msg.universal.update')
+            }}</el-button>
+            <el-button type="danger" size="default" @click="onRemoveClick(row)">{{
+              $t('msg.universal.remove')
+            }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -49,7 +37,8 @@
         :page-sizes="[10, 50, 100]"
         :page-size="size"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total">
+        :total="total"
+      >
       </el-pagination>
     </el-card>
   </div>
@@ -58,7 +47,8 @@
   <el-dialog
     v-model="dialogFormAddVisible"
     :title="$t('msg.permission.addDialogTitle')"
-    width="500">
+    width="500"
+  >
     <el-form v-model="selectPermission">
       <el-form-item :label="$t('msg.permission.num')" label-width="140px">
         <el-input v-model="selectPermission.id" autocomplete="off" />
@@ -75,12 +65,14 @@
       <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
-          :placeholder="$t('msg.permission.selectRouterDialog')">
+          :placeholder="$t('msg.permission.selectRouterDialog')"
+        >
           <el-option
             v-for="item in allRouter"
             :key="item.router_id"
             :value="item.router_id"
-            :label="item.path" />
+            :label="item.path"
+          />
         </el-select>
       </el-form-item>
     </el-form>
@@ -100,7 +92,8 @@
   <el-dialog
     v-model="dialogFormEditVisible"
     :title="$t('msg.permission.editDialogTitle')"
-    width="500">
+    width="500"
+  >
     <el-form v-model="selectPermission">
       <el-form-item :label="$t('msg.permission.num')" label-width="140px">
         {{ selectPermission.id }}
@@ -117,12 +110,14 @@
       <el-form-item :label="$t('msg.permission.router')" label-width="140px">
         <el-select
           v-model="selectPermission.router"
-          :placeholder="$t('msg.permission.selectRouterDialog')">
+          :placeholder="$t('msg.permission.selectRouterDialog')"
+        >
           <el-option
             v-for="item in allRouter"
             :key="item.router_id"
             :value="item.router_id"
-            :label="item.path" />
+            :label="item.path"
+          />
         </el-select>
       </el-form-item>
     </el-form>
@@ -177,7 +172,8 @@ const allRouter = ref([])
 const getRouterAll = async () => {
   const res = await getRouterAllAPI()
   // 把hidden的路由去除后再赋值（主要用于下拉选择数据源）
-  allRouter.value = res.filter((item) => item.hidden === false)
+  // allRouter.value = res.filter((item) => item.hidden === false)
+  allRouter.value = res
   // 添加一个空选项
   allRouter.value.unshift({ path: '', router_id: null })
   // 打印所有信息

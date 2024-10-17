@@ -2,9 +2,7 @@
   <div class="editor-container">
     <div id="editor-box"></div>
     <div class="bottom">
-      <el-button type="primary" @click="onSubmitClick">{{
-        $t('msg.article.commit')
-      }}</el-button>
+      <el-button type="primary" @click="onSubmitClick">{{ $t('msg.article.commit') }}</el-button>
     </div>
   </div>
 </template>

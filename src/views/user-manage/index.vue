@@ -16,17 +16,12 @@
     <el-card>
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column label="#" type="index" />
-        <el-table-column prop="username" :label="$t('msg.excel.name')">
-        </el-table-column>
-        <el-table-column prop="mobile" :label="$t('msg.excel.mobile')">
-        </el-table-column>
+        <el-table-column prop="username" :label="$t('msg.excel.name')"> </el-table-column>
+        <el-table-column prop="mobile" :label="$t('msg.excel.mobile')"> </el-table-column>
         <el-table-column :label="$t('msg.excel.avatar')" align="center">
           <!-- <template v-slot="{ row }"> -->
           <template #default="{ row }">
-            <el-image
-              class="avatar"
-              :src="row.avatar"
-              :preview-src-list="[row.avatar]"></el-image>
+            <el-image class="avatar" :src="row.avatar" :preview-src-list="[row.avatar]"></el-image>
           </template>
         </el-table-column>
         <el-table-column :label="$t('msg.excel.role')">
@@ -47,31 +42,19 @@
             {{ row.add_time }}
           </template>
         </el-table-column>
-        <el-table-column
-          :label="$t('msg.universal.action')"
-          fixed="right"
-          width="260">
+        <el-table-column :label="$t('msg.universal.action')" fixed="right" width="260">
           <template #default="{ row }">
-            <el-button
-              type="primary"
-              size="default"
-              @click="onShowClick(row.id)"
-              >{{ $t('msg.universal.check') }}</el-button
-            >
+            <el-button type="primary" size="default" @click="onShowClick(row.id)">{{
+              $t('msg.universal.check')
+            }}</el-button>
             <!-- v-permission="['distributeRole']" -->
-            <el-button
-              type="info"
-              size="default"
-              @click="onShowRoleClick(row)"
-              >{{ $t('msg.excel.showRole') }}</el-button
-            >
+            <el-button type="info" size="default" @click="onShowRoleClick(row)">{{
+              $t('msg.excel.showRole')
+            }}</el-button>
             <!-- v-permission="['removeUser']" -->
-            <el-button
-              type="danger"
-              size="default"
-              @click="onRemoveClick(row)"
-              >{{ $t('msg.universal.remove') }}</el-button
-            >
+            <el-button type="danger" size="default" @click="onRemoveClick(row)">{{
+              $t('msg.universal.remove')
+            }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -84,14 +67,16 @@
         :page-sizes="[5, 10, 20, 50, 100]"
         :page-size="size"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total">
+        :total="total"
+      >
       </el-pagination>
     </el-card>
     <!-- <export-to-excel v-model="exportToExcelVisible"></export-to-excel> -->
     <roles-dialog
       v-model="roleDialogVisible"
       :userId="selectUserId.toString()"
-      @updateRole="getListData"></roles-dialog>
+      @updateRole="getListData"
+    ></roles-dialog>
   </div>
 </template>
 
@@ -180,9 +165,7 @@ const i18n = useI18n()
 const onRemoveClick = async (row) => {
   try {
     await ElMessageBox.confirm(
-      i18n.t('msg.excel.dialogTitle1') +
-        row.username +
-        i18n.t('msg.excel.dialogTitle2'),
+      i18n.t('msg.excel.dialogTitle1') + row.username + i18n.t('msg.excel.dialogTitle2'),
       {
         type: 'warning'
       }
