@@ -1,47 +1,67 @@
 <template>
-  <router-view />
+<div id="main" class="app-main">
+    <router-view></router-view>
+</div>
 </template>
-<script setup>
-import { useStore } from 'vuex'
-import { generateNewStyle, writeNewStyle } from '@/utils/theme'
-import { watchSwitchLang } from '@/utils/i18n'
 
-const store = useStore()
-generateNewStyle(store.getters.mainColor).then((newStyleText) => {
-  writeNewStyle(newStyleText)
-})
-
-// 语言切换后,重新获取用户信息
-watchSwitchLang(() => {
-  if (store.getters.token) {
-    store.dispatch('user/getUserInfo')
-  }
-})
-
-// 解决ERROR ResizeObserver loop completed with undelivered notifications.
-const debounce = (fn, delay) => {
-  let timer = null
-
-  return function () {
-    const context = this
-
-    const args = arguments
-
-    clearTimeout(timer)
-
-    timer = setTimeout(function () {
-      fn.apply(context, args)
-    }, delay)
-  }
-}
-
-const _ResizeObserver = window.ResizeObserver
-
-window.ResizeObserver = class ResizeObserver extends _ResizeObserver {
-  constructor(callback) {
-    callback = debounce(callback, 16)
-    super(callback)
-  }
-}
+<script>
+export default {
+    data() {
+        return {};
+    },
+    mounted() {},
+    beforeDestroy() {},
+    methods: {}
+};
 </script>
-<style lang="scss"></style>
+
+<style lang="less">
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+}
+
+.app-main {
+    width: 100%;
+    height: 100%;
+}
+
+.br button {
+    margin-right: 8px;
+}
+
+.operation button {
+    margin-right: 8px;
+}
+
+.operation .brr button {
+    margin-right: 0px !important;
+}
+
+.ivu-btn-text:focus {
+    box-shadow: none !important;
+}
+
+.ivu-tag {
+    cursor: pointer;
+}
+
+.block-tool .ivu-tooltip,
+.block-tool .ivu-tooltip-rel {
+    display: block;
+}
+
+.block-pop .ivu-poptip,
+.block-pop .ivu-poptip-rel {
+    display: block;
+}
+
+.form-wangEditor,
+.form-quill {
+    .ivu-form-item-content {
+        line-height: unset !important;
+    }
+}
+</style>
